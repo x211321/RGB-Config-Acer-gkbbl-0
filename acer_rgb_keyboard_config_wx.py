@@ -266,6 +266,12 @@ class frame_main ( wx.Frame ):
         self.menuItem_tray = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Show tray icon", wx.EmptyString, wx.ITEM_CHECK )
         self.menu_options.Append( self.menuItem_tray )
 
+        self.menuItem_startMinimized = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Start minimized", wx.EmptyString, wx.ITEM_CHECK )
+        self.menu_options.Append( self.menuItem_startMinimized )
+
+        self.menuItem_closeToTray = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Close to tray", wx.EmptyString, wx.ITEM_CHECK )
+        self.menu_options.Append( self.menuItem_closeToTray )
+
         self.menuItem_log = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Show log", wx.EmptyString, wx.ITEM_CHECK )
         self.menu_options.Append( self.menuItem_log )
 
@@ -298,6 +304,8 @@ class frame_main ( wx.Frame ):
         self.Bind( wx.EVT_MENU, self.on_menu_openProfileFolder, id = self.menuItem_openProfileFolder.GetId() )
         self.Bind( wx.EVT_MENU, self.on_close, id = self.menuItem_quit.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_tray, id = self.menuItem_tray.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_startMinimized, id = self.menuItem_startMinimized.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_closeToTray, id = self.menuItem_closeToTray.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_log, id = self.menuItem_log.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_profiles, id = self.menuItem_profiles.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_about, id = self.menuItem_about.GetId() )
@@ -339,6 +347,12 @@ class frame_main ( wx.Frame ):
         event.Skip()
 
     def on_menu_tray( self, event ):
+        event.Skip()
+
+    def on_menu_startMinimized( self, event ):
+        event.Skip()
+
+    def on_menu_closeToTray( self, event ):
         event.Skip()
 
     def on_menu_log( self, event ):

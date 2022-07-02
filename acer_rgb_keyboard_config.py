@@ -66,8 +66,8 @@ class AcerRGBGUI_Tray(TaskBarIcon):
 
         self.SetIcon(wx.Icon('./icon.png', wx.BITMAP_TYPE_PNG), "RGB Config")
 
-        self.Bind(wx.EVT_MENU, self.on_toggle_gui   , id=1)
-        self.Bind(wx.EVT_MENU, self.on_close_gui    , id=2)
+        self.Bind(wx.EVT_MENU, self.on_toggle_gui        , id=1)
+        self.Bind(wx.EVT_MENU, self.parent.on_force_close, id=2)
 
         self.Bind(wx.adv.EVT_TASKBAR_LEFT_DOWN, self.on_toggle_gui)
 
@@ -95,9 +95,6 @@ class AcerRGBGUI_Tray(TaskBarIcon):
             self.parent.Hide()
         else:
             self.parent.Show()
-
-    def on_close_gui(self, event):
-        self.parent.Close()
 
     def on_quick_profile(self, event):
         self.parent.loadProfile(self.parent.profiles[event.Id-DYNAMIC_TAY_START])
@@ -189,6 +186,15 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
     # on_close
     #-------------------
     def on_close(self, event):
+        if self.preferences["closeToTray"]:
+            self.Hide()
+        else:
+            self.on_force_close(event)
+
+    ####################
+    # on_force_close
+    #-------------------
+    def on_force_close(self, event):
         self.trayIcon.Destroy()
         self.Destroy()
 
@@ -255,9 +261,23 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
         if self.menuItem_tray.IsChecked():
             self.createTrayIcon()
         else:
-            self.trayIcon.Destroy()
+            self.trayIcon.RemoveIcon()
 
         self.preferences["tray"] = self.menuItem_tray.IsChecked()
+        self.savePreferences()
+
+    ####################
+    # on_menu_startMinimized
+    #-------------------
+    def on_menu_startMinimized(self, event):
+        self.preferences["startMinimized"] = self.menuItem_startMinimized.IsChecked()
+        self.savePreferences()
+
+    ####################
+    # on_menu_closeToTray
+    #-------------------
+    def on_menu_closeToTray(self, event):
+        self.preferences["closeToTray"] = self.menuItem_closeToTray.IsChecked()
         self.savePreferences()
 
     ####################
@@ -460,7 +480,9 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
     def loadPreferences(self):
         self.preferences = {"tray": False,
                             "log": True,
-                            "profiles": True}
+                            "profiles": True,
+                            "startMinimized": False,
+                            "closeToTray": False}
 
         pref_file = os.path.join(PREFERENCE_DIR, PREFERENCE_FILE)
 
@@ -470,10 +492,22 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
 
             if self.preferences["tray"]:
                 self.menuItem_tray.Check()
+
+                if self.preferences["startMinimized"]:
+                    self.menuItem_startMinimized.Check()
+                if self.preferences["closeToTray"]:
+                    self.menuItem_closeToTray.Check()
+            else:
+                self.menuItem_startMinimized.Check(False)
+                self.menuItem_startMinimized.Enable(False)
+                self.menuItem_closeToTray.Check(False)
+                self.menuItem_closeToTray.Enable(False)
+
             if self.preferences["log"]:
                 self.menuItem_log.Check()
             if self.preferences["profiles"]:
                 self.menuItem_profiles.Check()
+
 
             self.appLog("Preferences loaded: " + pref_file, (0, 190, 0))
 
@@ -481,6 +515,18 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
     # savePreferences
     #-------------------
     def savePreferences(self):
+        if not self.preferences["tray"]:
+            self.preferences["startMinimized"] = False
+            self.menuItem_startMinimized.Check(False)
+            self.menuItem_startMinimized.Enable(False)
+
+            self.preferences["closeToTray"] = False
+            self.menuItem_closeToTray.Check(False)
+            self.menuItem_closeToTray.Enable(False)
+        else:
+            self.menuItem_startMinimized.Enable()
+            self.menuItem_closeToTray.Enable()
+
         with open(os.path.join(PREFERENCE_DIR, PREFERENCE_FILE), "w") as file:
             json.dump(self.preferences, file, indent=4)
 
@@ -682,7 +728,9 @@ class AcerRGBGUI(wx.App):
     def OnInit(self):
         self.mainFrame = AcerRGBGUI_Frame(None, "Acer RGB Settings")
         self.SetTopWindow(self.mainFrame)
-        self.mainFrame.Show(True)
+
+        if not self.mainFrame.preferences["startMinimized"] or not self.mainFrame.preferences["tray"]:
+            self.mainFrame.Show(True)
 
         return True
 
