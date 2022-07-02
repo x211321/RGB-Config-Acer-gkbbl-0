@@ -13,10 +13,10 @@ import wx.adv
 import wx.richtext
 
 ###########################################################################
-## Class MainFrame
+## Class frame_main
 ###########################################################################
 
-class MainFrame ( wx.Frame ):
+class frame_main ( wx.Frame ):
 
     def __init__( self, parent ):
         wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"RGB Config (acer-gkbbl-0)", pos = wx.DefaultPosition, size = wx.Size( 800,600 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
@@ -357,5 +357,55 @@ class MainFrame ( wx.Frame ):
     def splitter_main_verticalOnIdle( self, event ):
         self.splitter_main_vertical.SetSashPosition( 500 )
         self.splitter_main_vertical.Unbind( wx.EVT_IDLE )
+
+
+###########################################################################
+## Class dialog_about
+###########################################################################
+
+class dialog_about ( wx.Dialog ):
+
+    def __init__( self, parent ):
+        wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"About RGB Config (acer-gkbbl-0)", pos = wx.DefaultPosition, size = wx.DefaultSize, style = wx.DEFAULT_DIALOG_STYLE )
+
+        self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+
+        vertical_about = wx.BoxSizer( wx.VERTICAL )
+
+        self.label_about_header = wx.StaticText( self, wx.ID_ANY, u"RGB Config (acer-gkbbl-0)", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_about_header.Wrap( -1 )
+
+        self.label_about_header.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+
+        vertical_about.Add( self.label_about_header, 0, wx.ALL|wx.EXPAND, 5 )
+
+        self.label_about_license = wx.StaticText( self, wx.ID_ANY, u"MIT License\n\nCopyright 2022 x211321\n\nPermission is hereby granted, free of charge, to any person obtaining \na copy of this software and associated documentation files (the \"Software\"), \nto deal in the Software without restriction, including without limitation\nthe rights to use, copy, modify, merge, publish, distribute, sublicense,\n and/or sell copies of the Software, and to permit persons to whom the\nSoftware is furnished to do , subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included\n in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES \nOF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND \nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\nHOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, \nWHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR \nOTHER DEALINGS IN THE SOFTWARE.", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_about_license.Wrap( -1 )
+
+        vertical_about.Add( self.label_about_license, 0, wx.ALL|wx.EXPAND, 5 )
+
+        self.hyperlink_about = wx.adv.HyperlinkCtrl( self, wx.ID_ANY, u"RGB Config (acer-gkbbl-0) on GitHub", u"https://github.com/x211321/Acer-RGB-Keyboard-Config-Linux", wx.DefaultPosition, wx.DefaultSize, wx.adv.HL_DEFAULT_STYLE )
+        vertical_about.Add( self.hyperlink_about, 0, wx.ALL|wx.EXPAND, 5 )
+
+        self.button_about_close = wx.Button( self, wx.ID_ANY, u"Close", wx.DefaultPosition, wx.DefaultSize, 0 )
+        vertical_about.Add( self.button_about_close, 0, wx.ALIGN_CENTER_HORIZONTAL|wx.ALL, 15 )
+
+
+        self.SetSizer( vertical_about )
+        self.Layout()
+        vertical_about.Fit( self )
+
+        self.Centre( wx.BOTH )
+
+        # Connect Events
+        self.button_about_close.Bind( wx.EVT_BUTTON, self.on_button_about_close_click )
+
+    def __del__( self ):
+        pass
+
+
+    # Virtual event handlers, override them in your derived class
+    def on_button_about_close_click( self, event ):
+        event.Skip()
 
 

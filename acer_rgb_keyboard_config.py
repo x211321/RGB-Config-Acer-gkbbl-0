@@ -105,12 +105,25 @@ class AcerRGBGUI_Tray(TaskBarIcon):
 
 
 ####################
+# class AcerRGBGUI_About
+#-------------------
+# Extend wx wxPython About dialog
+class AcerRGBGUI_About(acer_rgb_keyboard_config_wx.dialog_about):
+    def __init__(self, parent):
+        acer_rgb_keyboard_config_wx.dialog_about.__init__(self, parent)
+
+    def on_button_about_close_click(self, event):
+        self.Destroy()
+
+
+
+####################
 # class AcerRGBGUI_Frame
 #-------------------
 # Extend wx wxPython Frame
-class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
+class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
     def __init__(self, parent, title):
-        acer_rgb_keyboard_config_wx.MainFrame.__init__(self, parent)
+        acer_rgb_keyboard_config_wx.frame_main.__init__(self, parent)
 
         self.colorWidgets = (self.color_color0,
                              self.color_color1,
@@ -276,6 +289,14 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
 
         self.preferences["profiles"] = self.menuItem_log.IsChecked()
         self.savePreferences()
+
+    ####################
+    # on_menu_about
+    #-------------------
+    def on_menu_about(self, event):
+        dlg = AcerRGBGUI_About(self)
+        dlg.ShowModal()
+
 
     ####################
     # createTrayIcon
