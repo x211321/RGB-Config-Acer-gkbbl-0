@@ -28,6 +28,8 @@ import pathlib
 import webbrowser
 import acer_rgb_keyboard_config_wx
 
+from wx.adv import TaskBarIcon
+
 FACER_RGB = "facer_rgb.py"
 
 RGB_MODE_STATIC   = 0
@@ -45,7 +47,64 @@ PROFILE_DIR = str(pathlib.Path.home()) + "/.config/predator/saved profiles"
 RGB_DEVICE        = "/dev/acer-gkbbl-0"
 RGB_DEVICE_STATIC = "/dev/acer-gkbbl-static-0"
 
-# Expand wxpython frame
+DYNAMIC_TAY_START = 5
+ACTIVE_PROFILE    = "[ACTIVE]"
+PROFILE_EXTENSION = ".json"
+
+####################
+# class AcerRGBGUI_Tray
+#-------------------
+# Handles tray icon
+class AcerRGBGUI_Tray(TaskBarIcon):
+    def __init__(self, parent):
+        TaskBarIcon.__init__(self)
+
+        self.parent = parent
+
+        self.SetIcon(wx.Icon('./icon.png', wx.BITMAP_TYPE_PNG))
+
+        self.Bind(wx.EVT_MENU, self.on_toggle_gui   , id=1)
+        self.Bind(wx.EVT_MENU, self.on_close_gui    , id=2)
+
+        self.Bind(wx.adv.EVT_TASKBAR_LEFT_DOWN, self.on_toggle_gui)
+
+    def CreatePopupMenu(self):
+        menu = wx.Menu()
+
+        menuID = DYNAMIC_TAY_START
+
+        # Add available profiles dynamically
+        for profile in self.parent.profiles:
+            menu.Append(menuID, profile)
+            self.Bind(wx.EVT_MENU, self.on_quick_profile, id=menuID)
+
+            menuID += 1
+
+        menu.AppendSeparator()
+
+        menu.Append(1, "RGB Config")
+        menu.Append(2, "Close")
+
+        return menu
+
+    def on_toggle_gui(self, event):
+        if self.parent.IsShown():
+            self.parent.Hide()
+        else:
+            self.parent.Show()
+
+    def on_close_gui(self, event):
+        self.parent.Close()
+
+    def on_quick_profile(self, event):
+        self.parent.loadProfile(self.parent.profiles[event.Id-DYNAMIC_TAY_START])
+        self.parent.apply()
+
+
+####################
+# class AcerRGBGUI_Frame
+#-------------------
+# Extend wx wxPython Frame
 class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
     def __init__(self, parent, title):
         acer_rgb_keyboard_config_wx.MainFrame.__init__(self, parent)
@@ -60,14 +119,22 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
                              self.label_color2,
                              self.label_color3)
 
+        self.SetIcon(wx.Icon('./icon.png', wx.BITMAP_TYPE_PNG))
+
         # Search for profiles
+        self.profiles = []
+
         if not os.path.exists(PROFILE_DIR):
             os.makedirs(PROFILE_DIR)
 
         self.listProfiles()
 
         # Load last applied settigs
-        self.loadProfile(os.path.join(PROFILE_DIR, "[DEFAULT].json"))
+        self.loadProfile(ACTIVE_PROFILE)
+
+        # Create tray icon
+        self.trayIcon = AcerRGBGUI_Tray(self)
+        self.Bind(wx.EVT_CLOSE, self.on_close)
 
         # Check RGB Devices available
         if os.path.exists(RGB_DEVICE):
@@ -85,9 +152,22 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
             self.urlLog("https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module")
 
     ####################
+    # on_close
+    #-------------------
+    def on_close(self, event):
+        self.trayIcon.Destroy()
+        self.Destroy()
+
+    ####################
     # on_rgb_mode_select
     #-------------------
     def on_rgb_mode_select(self, event):
+        self.setWidgetState()
+
+    ####################
+    # on_direction_select
+    #-------------------
+    def on_direction_select(self, event):
         self.setWidgetState()
 
     ####################
@@ -114,7 +194,7 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
     #-------------------
     def on_load_click(self, event):
         profile = self.list_profiles.GetStringSelection()
-        self.loadProfile(os.path.join(PROFILE_DIR, profile))
+        self.loadProfile(profile)
 
     ####################
     # on_save_click
@@ -138,31 +218,50 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
             self.enableSpeed(0)
             self.enableDirection(0)
             self.enableColors((1, 1, 1, 1))
+            self.animation_preview.LoadFile("./preview_gif/preview_static.gif", wx.adv.ANIMATION_TYPE_GIF)
+            self.animation_preview.Play()
 
         if selection == RGB_MODE_BREATH:
             self.enableSpeed(1)
             self.enableDirection(0)
             self.enableColors((1, 0, 0, 0))
+            self.animation_preview.LoadFile("./preview_gif/preview_breath.gif", wx.adv.ANIMATION_TYPE_GIF)
+            self.animation_preview.Play()
 
         if selection == RGB_MODE_NEON:
             self.enableSpeed(1)
             self.enableDirection(0)
             self.enableColors((0, 0, 0, 0))
+            self.animation_preview.LoadFile("./preview_gif/preview_neon.gif", wx.adv.ANIMATION_TYPE_GIF)
+            self.animation_preview.Play()
 
         if selection == RGB_MODE_WAVE:
             self.enableSpeed(1)
             self.enableDirection(1)
             self.enableColors((0, 0, 0, 0))
+            if self.radio_left_right.GetValue():
+                self.animation_preview.LoadFile("./preview_gif/preview_wave_left_right.gif", wx.adv.ANIMATION_TYPE_GIF)
+            else:
+                self.animation_preview.LoadFile("./preview_gif/preview_wave_right_left.gif", wx.adv.ANIMATION_TYPE_GIF)
+            self.animation_preview.Play()
 
         if selection == RGB_MODE_SHIFTING:
             self.enableSpeed(1)
             self.enableDirection(1)
             self.enableColors((1, 0, 0, 0))
+            if self.radio_left_right.GetValue():
+                self.animation_preview.LoadFile("./preview_gif/preview_shifting_left_right.gif", wx.adv.ANIMATION_TYPE_GIF)
+            else:
+                self.animation_preview.LoadFile("./preview_gif/preview_shifting_right_left.gif", wx.adv.ANIMATION_TYPE_GIF)
+            self.animation_preview.Play()
 
         if selection == RGB_MODE_ZOOM:
             self.enableSpeed(1)
             self.enableDirection(0)
             self.enableColors((1, 0, 0, 0))
+            self.animation_preview.LoadFile("./preview_gif/preview_zoom.gif", wx.adv.ANIMATION_TYPE_GIF)
+            self.animation_preview.Play()
+
 
     ####################
     # enableSpeed
@@ -263,10 +362,14 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
     #-------------------
     def listProfiles(self):
         self.list_profiles.Clear()
+        self.profiles = []
 
         for file in os.listdir(PROFILE_DIR):
             if os.path.isfile(os.path.join(PROFILE_DIR, file)):
-                self.list_profiles.Append(file)
+                self.list_profiles.Append(pathlib.Path(file).stem)
+                self.profiles.append(pathlib.Path(file).stem)
+
+                self.profiles.sort(reverse=True)
             
         self.appLog("Profiles listed")
 
@@ -276,6 +379,8 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
     def loadProfile(self, profile):
         if len(profile):
             self.setDefaultSettings()
+
+            profile = os.path.join(PROFILE_DIR, profile) + PROFILE_EXTENSION
 
             if os.path.isfile(profile):
                 with open(f"{profile}", 'rt') as file:
@@ -289,10 +394,13 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
     # deleteProfile
     #-------------------
     def deleteProfile(self, profile):
-        dlg = wx.MessageDialog(self, "Delete \"" + os.path.basename(profile) + "\"?", "Delete profile", wx.YES_NO)
+        dlg = wx.MessageDialog(self, "Delete \"" + profile + "\"?", "Delete profile", wx.YES_NO)
         res = dlg.ShowModal()
 
         if res == wx.ID_YES:
+
+            profile += PROFILE_EXTENSION
+
             if os.path.isfile(profile):
                 os.remove(profile)
 
@@ -316,7 +424,7 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
                 profile = str(dlg.GetValue())
             
             if len(profile):
-                with open(os.path.join(PROFILE_DIR, profile) + ".json", "w") as file:
+                with open(os.path.join(PROFILE_DIR, profile) + PROFILE_EXTENSION, "w") as file:
                     json.dump(self.settings, file, indent=4)
 
             self.appLog("Profile saved: " + profile, (0, 190, 0))
@@ -341,7 +449,7 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
     def apply(self):
         self.getSettings()
 
-        self.saveProfile("[DEFAULT]")
+        self.saveProfile(ACTIVE_PROFILE)
 
         if self.settings["mode"] == RGB_MODE_STATIC:
             # Static RGB mode
@@ -439,7 +547,9 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
         
 
 
-
+####################
+# class AcerRGBGUI
+#-------------------
 # Create wxpython app
 class AcerRGBGUI(wx.App):
     def OnInit(self):

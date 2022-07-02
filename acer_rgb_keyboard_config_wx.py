@@ -9,6 +9,7 @@
 
 import wx
 import wx.xrc
+import wx.adv
 import wx.richtext
 
 ###########################################################################
@@ -56,12 +57,15 @@ class MainFrame ( wx.Frame ):
         self.label_mode = wx.StaticText( self.panel_left, wx.ID_ANY, u"RGB Mode", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_LEFT )
         self.label_mode.Wrap( -1 )
 
-        horizontal_mode.Add( self.label_mode, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+        horizontal_mode.Add( self.label_mode, 2, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 
         choise_modeChoices = [ u"Static", u"Breath", u"Neon", u"Wave", u"Shifting", u"Zoom" ]
         self.choise_mode = wx.Choice( self.panel_left, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, choise_modeChoices, 0 )
         self.choise_mode.SetSelection( 0 )
-        horizontal_mode.Add( self.choise_mode, 2, wx.ALL|wx.EXPAND, 5 )
+        horizontal_mode.Add( self.choise_mode, 3, wx.ALL|wx.EXPAND, 5 )
+
+        self.animation_preview = wx.adv.AnimationCtrl( self.panel_left, wx.ID_ANY, wx.adv.NullAnimation, wx.DefaultPosition, wx.Size( 60,40 ), wx.adv.AC_DEFAULT_STYLE|wx.adv.AC_NO_AUTORESIZE )
+        horizontal_mode.Add( self.animation_preview, 0, wx.ALIGN_CENTER_VERTICAL|wx.ALIGN_RIGHT|wx.ALL, 5 )
 
 
         vertical_settings.Add( horizontal_mode, 0, wx.EXPAND, 5 )
@@ -251,6 +255,8 @@ class MainFrame ( wx.Frame ):
 
         # Connect Events
         self.choise_mode.Bind( wx.EVT_CHOICE, self.on_rgb_mode_select )
+        self.radio_left_right.Bind( wx.EVT_RADIOBUTTON, self.on_direction_select )
+        self.radio_right_left.Bind( wx.EVT_RADIOBUTTON, self.on_direction_select )
         self.button_save.Bind( wx.EVT_BUTTON, self.on_save_click )
         self.button_apply.Bind( wx.EVT_BUTTON, self.on_apply_click )
         self.button_refresh.Bind( wx.EVT_BUTTON, self.on_refresh_click )
@@ -265,6 +271,10 @@ class MainFrame ( wx.Frame ):
     # Virtual event handlers, override them in your derived class
     def on_rgb_mode_select( self, event ):
         event.Skip()
+
+    def on_direction_select( self, event ):
+        event.Skip()
+
 
     def on_save_click( self, event ):
         event.Skip()
