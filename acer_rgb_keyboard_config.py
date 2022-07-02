@@ -26,6 +26,7 @@ import os
 import json
 import pathlib
 import webbrowser
+import subprocess
 import acer_rgb_keyboard_config_wx
 
 from wx.adv import TaskBarIcon
@@ -50,6 +51,8 @@ RGB_DEVICE_STATIC = "/dev/acer-gkbbl-static-0"
 DYNAMIC_TAY_START = 5
 ACTIVE_PROFILE    = "[ACTIVE]"
 PROFILE_EXTENSION = ".json"
+PREFERENCE_DIR    = str(pathlib.Path.home()) + "/.config/acer_rgb_config"
+PREFERENCE_FILE   = "preferences.json"
 
 ####################
 # class AcerRGBGUI_Tray
@@ -61,7 +64,7 @@ class AcerRGBGUI_Tray(TaskBarIcon):
 
         self.parent = parent
 
-        self.SetIcon(wx.Icon('./icon.png', wx.BITMAP_TYPE_PNG))
+        self.SetIcon(wx.Icon('./icon.png', wx.BITMAP_TYPE_PNG), "RGB Config")
 
         self.Bind(wx.EVT_MENU, self.on_toggle_gui   , id=1)
         self.Bind(wx.EVT_MENU, self.on_close_gui    , id=2)
@@ -121,20 +124,38 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
 
         self.SetIcon(wx.Icon('./icon.png', wx.BITMAP_TYPE_PNG))
 
+        self.preferences = {}
+
         # Search for profiles
         self.profiles = []
 
         if not os.path.exists(PROFILE_DIR):
             os.makedirs(PROFILE_DIR)
 
+        if not os.path.exists(PREFERENCE_DIR):
+            os.makedirs(PREFERENCE_DIR)
+
         self.listProfiles()
 
         # Load last applied settigs
         self.loadProfile(ACTIVE_PROFILE)
 
+        # Load app preferences
+        self.loadPreferences()
+
         # Create tray icon
-        self.trayIcon = AcerRGBGUI_Tray(self)
-        self.Bind(wx.EVT_CLOSE, self.on_close)
+        if self.preferences["tray"]:
+            self.createTrayIcon()
+
+        # Apply log preference
+        if not self.preferences["log"]:
+            self.panel_bottom.Hide()
+            self.splitter_main_horizonzal.Unsplit()
+
+        # Apply profiles preference
+        if not self.preferences["profiles"]:
+            self.panel_right.Hide()
+            self.splitter_main_vertical.Unsplit()
 
         # Check RGB Devices available
         if os.path.exists(RGB_DEVICE):
@@ -207,6 +228,61 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
     #-------------------
     def on_log_url_click(self, event):
         webbrowser.open(self.rich_log.GetValue()[event.GetURLStart():event.GetURLEnd()+1], new=0, autoraise=True)
+
+    ####################
+    # on_menu_openProfileFolder
+    #-------------------
+    def on_menu_openProfileFolder(self, event):
+        subprocess.Popen(["xdg-open", PROFILE_DIR])
+
+    ####################
+    # on_menu_tray
+    #-------------------
+    def on_menu_tray(self, event):
+        if self.menuItem_tray.IsChecked():
+            self.createTrayIcon()
+        else:
+            self.trayIcon.Destroy()
+
+        self.preferences["tray"] = self.menuItem_tray.IsChecked()
+        self.savePreferences()
+
+    ####################
+    # on_menu_log
+    #-------------------
+    def on_menu_log(self, event):
+        if self.menuItem_log.IsChecked():
+            self.panel_bottom.Show()
+            self.splitter_main_horizonzal.SplitHorizontally(self.panel_top, self.panel_bottom)
+            self.splitter_main_horizonzal.SetSashPosition(460)
+        else:
+            self.panel_bottom.Hide()
+            self.splitter_main_horizonzal.Unsplit()
+
+        self.preferences["log"] = self.menuItem_log.IsChecked()
+        self.savePreferences()
+
+    ####################
+    # on_menu_profiles
+    #-------------------
+    def on_menu_profiles(self, event):
+        if self.menuItem_profiles.IsChecked():
+            self.panel_right.Show()
+            self.splitter_main_vertical.SplitVertically(self.panel_left, self.panel_right)
+            self.splitter_main_vertical.SetSashPosition(500)
+        else:
+            self.panel_right.Hide()
+            self.splitter_main_vertical.Unsplit()
+
+        self.preferences["profiles"] = self.menuItem_log.IsChecked()
+        self.savePreferences()
+
+    ####################
+    # createTrayIcon
+    #-------------------
+    def createTrayIcon(self):
+        self.trayIcon = AcerRGBGUI_Tray(self)
+        self.Bind(wx.EVT_CLOSE, self.on_close)
 
     ####################
     # setWidgetState
@@ -356,6 +432,36 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.MainFrame):
             self.setColor(widget, self.settings["colors"][i])
 
         self.setWidgetState()
+
+    ####################
+    # loadPreferences
+    #-------------------
+    def loadPreferences(self):
+        self.preferences = {"tray": False,
+                            "log": True,
+                            "profiles": True}
+
+        pref_file = os.path.join(PREFERENCE_DIR, PREFERENCE_FILE)
+
+        if os.path.isfile(pref_file):
+            with open(f"{pref_file}", 'rt') as file:
+                self.preferences = {**self.preferences, **json.load(file)}
+
+            if self.preferences["tray"]:
+                self.menuItem_tray.Check()
+            if self.preferences["log"]:
+                self.menuItem_log.Check()
+            if self.preferences["profiles"]:
+                self.menuItem_profiles.Check()
+
+            self.appLog("Preferences loaded: " + pref_file, (0, 190, 0))
+
+    ####################
+    # savePreferences
+    #-------------------
+    def savePreferences(self):
+        with open(os.path.join(PREFERENCE_DIR, PREFERENCE_FILE), "w") as file:
+            json.dump(self.preferences, file, indent=4)
 
     ####################
     # listProfiles

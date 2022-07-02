@@ -182,24 +182,24 @@ class MainFrame ( wx.Frame ):
         self.panel_left.SetSizer( vertical_settings )
         self.panel_left.Layout()
         vertical_settings.Fit( self.panel_left )
-        self.pane_right = wx.Panel( self.splitter_main_vertical, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
+        self.panel_right = wx.Panel( self.splitter_main_vertical, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
         vertical_profiles = wx.BoxSizer( wx.VERTICAL )
 
 
         vertical_profiles.Add( ( 0, 10), 0, wx.EXPAND, 5 )
 
-        self.label_profiles = wx.StaticText( self.pane_right, wx.ID_ANY, u"Profiles", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_profiles = wx.StaticText( self.panel_right, wx.ID_ANY, u"Profiles", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_profiles.Wrap( -1 )
 
         self.label_profiles.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
 
         vertical_profiles.Add( self.label_profiles, 0, wx.EXPAND|wx.LEFT|wx.TOP, 5 )
 
-        self.m_staticline2 = wx.StaticLine( self.pane_right, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
+        self.m_staticline2 = wx.StaticLine( self.panel_right, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
         vertical_profiles.Add( self.m_staticline2, 0, wx.EXPAND |wx.ALL, 5 )
 
         list_profilesChoices = []
-        self.list_profiles = wx.ListBox( self.pane_right, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, list_profilesChoices, wx.LB_SINGLE|wx.LB_SORT )
+        self.list_profiles = wx.ListBox( self.panel_right, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, list_profilesChoices, wx.LB_SINGLE|wx.LB_SORT )
         vertical_profiles.Add( self.list_profiles, 1, wx.ALL|wx.EXPAND, 5 )
 
 
@@ -207,23 +207,23 @@ class MainFrame ( wx.Frame ):
 
         grid_profile_buttons = wx.GridSizer( 0, 3, 0, 0 )
 
-        self.button_refresh = wx.Button( self.pane_right, wx.ID_ANY, u"Refresh", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.button_refresh = wx.Button( self.panel_right, wx.ID_ANY, u"Refresh", wx.DefaultPosition, wx.DefaultSize, 0 )
         grid_profile_buttons.Add( self.button_refresh, 0, wx.ALIGN_LEFT|wx.ALL, 10 )
 
-        self.button_delete = wx.Button( self.pane_right, wx.ID_ANY, u"Delete", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.button_delete = wx.Button( self.panel_right, wx.ID_ANY, u"Delete", wx.DefaultPosition, wx.DefaultSize, 0 )
         grid_profile_buttons.Add( self.button_delete, 0, wx.ALIGN_CENTER|wx.ALL, 10 )
 
-        self.button_load = wx.Button( self.pane_right, wx.ID_ANY, u"Load", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.button_load = wx.Button( self.panel_right, wx.ID_ANY, u"Load", wx.DefaultPosition, wx.DefaultSize, 0 )
         grid_profile_buttons.Add( self.button_load, 0, wx.ALIGN_RIGHT|wx.ALL, 10 )
 
 
         vertical_profiles.Add( grid_profile_buttons, 0, wx.EXPAND, 5 )
 
 
-        self.pane_right.SetSizer( vertical_profiles )
-        self.pane_right.Layout()
-        vertical_profiles.Fit( self.pane_right )
-        self.splitter_main_vertical.SplitVertically( self.panel_left, self.pane_right, 500 )
+        self.panel_right.SetSizer( vertical_profiles )
+        self.panel_right.Layout()
+        vertical_profiles.Fit( self.panel_right )
+        self.splitter_main_vertical.SplitVertically( self.panel_left, self.panel_right, 500 )
         vertical_top.Add( self.splitter_main_vertical, 1, wx.EXPAND, 5 )
 
 
@@ -250,6 +250,38 @@ class MainFrame ( wx.Frame ):
         self.SetSizer( horizontal_main )
         self.Layout()
         self.status_status = self.CreateStatusBar( 1, wx.STB_SIZEGRIP|wx.BORDER_THEME, wx.ID_ANY )
+        self.menubar_main = wx.MenuBar( 0 )
+        self.menubar_main.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_INACTIVECAPTIONTEXT ) )
+
+        self.menu_file = wx.Menu()
+        self.menuItem_openProfileFolder = wx.MenuItem( self.menu_file, wx.ID_ANY, u"Open profile folder", wx.EmptyString, wx.ITEM_NORMAL )
+        self.menu_file.Append( self.menuItem_openProfileFolder )
+
+        self.menuItem_quit = wx.MenuItem( self.menu_file, wx.ID_ANY, u"Quit", wx.EmptyString, wx.ITEM_NORMAL )
+        self.menu_file.Append( self.menuItem_quit )
+
+        self.menubar_main.Append( self.menu_file, u"File" )
+
+        self.menu_options = wx.Menu()
+        self.menuItem_tray = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Show tray icon", wx.EmptyString, wx.ITEM_CHECK )
+        self.menu_options.Append( self.menuItem_tray )
+
+        self.menuItem_log = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Show log", wx.EmptyString, wx.ITEM_CHECK )
+        self.menu_options.Append( self.menuItem_log )
+
+        self.menuItem_profiles = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Show profiles", wx.EmptyString, wx.ITEM_CHECK )
+        self.menu_options.Append( self.menuItem_profiles )
+
+        self.menubar_main.Append( self.menu_options, u"Options" )
+
+        self.menu_about = wx.Menu()
+        self.menuItem_about = wx.MenuItem( self.menu_about, wx.ID_ANY, u"About RGB Config (acer-gkbbl-0)", wx.EmptyString, wx.ITEM_NORMAL )
+        self.menu_about.Append( self.menuItem_about )
+
+        self.menubar_main.Append( self.menu_about, u"About" )
+
+        self.SetMenuBar( self.menubar_main )
+
 
         self.Centre( wx.BOTH )
 
@@ -263,6 +295,12 @@ class MainFrame ( wx.Frame ):
         self.button_delete.Bind( wx.EVT_BUTTON, self.on_delete_click )
         self.button_load.Bind( wx.EVT_BUTTON, self.on_load_click )
         self.rich_log.Bind( wx.EVT_TEXT_URL, self.on_log_url_click )
+        self.Bind( wx.EVT_MENU, self.on_menu_openProfileFolder, id = self.menuItem_openProfileFolder.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_close, id = self.menuItem_quit.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_tray, id = self.menuItem_tray.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_log, id = self.menuItem_log.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_profiles, id = self.menuItem_profiles.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_about, id = self.menuItem_about.GetId() )
 
     def __del__( self ):
         pass
@@ -292,6 +330,24 @@ class MainFrame ( wx.Frame ):
         event.Skip()
 
     def on_log_url_click( self, event ):
+        event.Skip()
+
+    def on_menu_openProfileFolder( self, event ):
+        event.Skip()
+
+    def on_close( self, event ):
+        event.Skip()
+
+    def on_menu_tray( self, event ):
+        event.Skip()
+
+    def on_menu_log( self, event ):
+        event.Skip()
+
+    def on_menu_profiles( self, event ):
+        event.Skip()
+
+    def on_menu_about( self, event ):
         event.Skip()
 
     def splitter_main_horizonzalOnIdle( self, event ):
