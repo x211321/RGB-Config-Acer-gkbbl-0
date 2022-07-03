@@ -427,7 +427,7 @@ class dialog_about ( wx.Dialog ):
 
         vertical_about.Add( self.label_about_license, 0, wx.ALL|wx.EXPAND, 5 )
 
-        self.hyperlink_about = wx.adv.HyperlinkCtrl( self, wx.ID_ANY, u"RGB Config (acer-gkbbl-0) on GitHub", u"https://github.com/x211321/Acer-RGB-Keyboard-Config-Linux", wx.DefaultPosition, wx.DefaultSize, wx.adv.HL_DEFAULT_STYLE )
+        self.hyperlink_about = wx.adv.HyperlinkCtrl( self, wx.ID_ANY, u"RGB Config (acer-gkbbl-0) on GitHub", u"https://github.com/x211321/RGB-Config-Acer-gkbbl-0", wx.DefaultPosition, wx.DefaultSize, wx.adv.HL_DEFAULT_STYLE )
         vertical_about.Add( self.hyperlink_about, 0, wx.ALL|wx.EXPAND, 5 )
 
         self.button_about_close = wx.Button( self, wx.ID_ANY, u"Close", wx.DefaultPosition, wx.DefaultSize, 0 )
