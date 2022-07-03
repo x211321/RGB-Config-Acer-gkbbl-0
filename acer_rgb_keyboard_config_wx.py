@@ -57,15 +57,20 @@ class frame_main ( wx.Frame ):
         self.label_mode = wx.StaticText( self.panel_left, wx.ID_ANY, u"RGB Mode", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_LEFT )
         self.label_mode.Wrap( -1 )
 
-        horizontal_mode.Add( self.label_mode, 2, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+        horizontal_mode.Add( self.label_mode, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+
+        bSizer16 = wx.BoxSizer( wx.HORIZONTAL )
 
         choise_modeChoices = [ u"Static", u"Breath", u"Neon", u"Wave", u"Shifting", u"Zoom" ]
         self.choise_mode = wx.Choice( self.panel_left, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, choise_modeChoices, 0 )
         self.choise_mode.SetSelection( 0 )
-        horizontal_mode.Add( self.choise_mode, 3, wx.ALL|wx.EXPAND, 5 )
+        bSizer16.Add( self.choise_mode, 3, wx.ALIGN_LEFT|wx.ALL, 5 )
 
         self.animation_preview = wx.adv.AnimationCtrl( self.panel_left, wx.ID_ANY, wx.adv.NullAnimation, wx.DefaultPosition, wx.Size( 60,40 ), wx.adv.AC_DEFAULT_STYLE|wx.adv.AC_NO_AUTORESIZE )
-        horizontal_mode.Add( self.animation_preview, 0, wx.ALIGN_CENTER_VERTICAL|wx.ALIGN_RIGHT|wx.ALL, 5 )
+        bSizer16.Add( self.animation_preview, 0, wx.ALIGN_CENTER_VERTICAL|wx.ALIGN_RIGHT|wx.ALL|wx.EXPAND, 5 )
+
+
+        horizontal_mode.Add( bSizer16, 2, wx.EXPAND, 5 )
 
 
         vertical_settings.Add( horizontal_mode, 0, wx.EXPAND, 5 )
@@ -272,16 +277,22 @@ class frame_main ( wx.Frame ):
         self.menuItem_closeToTray = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Close to tray", wx.EmptyString, wx.ITEM_CHECK )
         self.menu_options.Append( self.menuItem_closeToTray )
 
-        self.menuItem_log = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Show log", wx.EmptyString, wx.ITEM_CHECK )
-        self.menu_options.Append( self.menuItem_log )
-
-        self.menuItem_profiles = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Show profiles", wx.EmptyString, wx.ITEM_CHECK )
-        self.menu_options.Append( self.menuItem_profiles )
-
         self.menuItem_applyStart = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Apply [ACTIVE] on startup", wx.EmptyString, wx.ITEM_CHECK )
         self.menu_options.Append( self.menuItem_applyStart )
 
         self.menubar_main.Append( self.menu_options, u"Options" )
+
+        self.menu_view = wx.Menu()
+        self.menuItem_log = wx.MenuItem( self.menu_view, wx.ID_ANY, u"Show log", wx.EmptyString, wx.ITEM_CHECK )
+        self.menu_view.Append( self.menuItem_log )
+
+        self.menuItem_profiles = wx.MenuItem( self.menu_view, wx.ID_ANY, u"Show profiles", wx.EmptyString, wx.ITEM_CHECK )
+        self.menu_view.Append( self.menuItem_profiles )
+
+        self.menuItem_preview = wx.MenuItem( self.menu_view, wx.ID_ANY, u"Show preview", wx.EmptyString, wx.ITEM_CHECK )
+        self.menu_view.Append( self.menuItem_preview )
+
+        self.menubar_main.Append( self.menu_view, u"View" )
 
         self.menu_about = wx.Menu()
         self.menuItem_about = wx.MenuItem( self.menu_about, wx.ID_ANY, u"About RGB Config (acer-gkbbl-0)", wx.EmptyString, wx.ITEM_NORMAL )
@@ -309,9 +320,10 @@ class frame_main ( wx.Frame ):
         self.Bind( wx.EVT_MENU, self.on_menu_tray, id = self.menuItem_tray.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_startMinimized, id = self.menuItem_startMinimized.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_closeToTray, id = self.menuItem_closeToTray.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_applyStart, id = self.menuItem_applyStart.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_log, id = self.menuItem_log.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_profiles, id = self.menuItem_profiles.GetId() )
-        self.Bind( wx.EVT_MENU, self.on_menu_applyStart, id = self.menuItem_applyStart.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_preview, id = self.menuItem_preview.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_about, id = self.menuItem_about.GetId() )
 
     def __del__( self ):
@@ -359,13 +371,16 @@ class frame_main ( wx.Frame ):
     def on_menu_closeToTray( self, event ):
         event.Skip()
 
+    def on_menu_applyStart( self, event ):
+        event.Skip()
+
     def on_menu_log( self, event ):
         event.Skip()
 
     def on_menu_profiles( self, event ):
         event.Skip()
 
-    def on_menu_applyStart( self, event ):
+    def on_menu_preview( self, event ):
         event.Skip()
 
     def on_menu_about( self, event ):
