@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #################################################################################################
-## RGB Config (acer-gkbbl-0) - https://github.com/x211321/Acer-RGB-Keyboard-Config-Linux           
+## RGB Config (acer-gkbbl-0) - https://github.com/x211321/RGB-Config-Acer-gkbbl-0     
 ##
 ## A graphical user interface to interact with the RGB controls of the acer-gkbbl-0 Kernel module 
 ## by JafarAkhondali. The kernel module must be installed seperatly for this application to work 
