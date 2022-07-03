@@ -277,8 +277,13 @@ class frame_main ( wx.Frame ):
         self.menuItem_closeToTray = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Close to tray", wx.EmptyString, wx.ITEM_CHECK )
         self.menu_options.Append( self.menuItem_closeToTray )
 
+        self.menu_options.AppendSeparator()
+
         self.menuItem_applyStart = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Apply [ACTIVE] on startup", wx.EmptyString, wx.ITEM_CHECK )
         self.menu_options.Append( self.menuItem_applyStart )
+
+        self.menuItem_extendSpeed = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Extend max speed", wx.EmptyString, wx.ITEM_CHECK )
+        self.menu_options.Append( self.menuItem_extendSpeed )
 
         self.menubar_main.Append( self.menu_options, u"Options" )
 
@@ -321,6 +326,7 @@ class frame_main ( wx.Frame ):
         self.Bind( wx.EVT_MENU, self.on_menu_startMinimized, id = self.menuItem_startMinimized.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_closeToTray, id = self.menuItem_closeToTray.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_applyStart, id = self.menuItem_applyStart.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_extendSpeed, id = self.menuItem_extendSpeed.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_log, id = self.menuItem_log.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_profiles, id = self.menuItem_profiles.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_preview, id = self.menuItem_preview.GetId() )
@@ -372,6 +378,9 @@ class frame_main ( wx.Frame ):
         event.Skip()
 
     def on_menu_applyStart( self, event ):
+        event.Skip()
+
+    def on_menu_extendSpeed( self, event ):
         event.Skip()
 
     def on_menu_log( self, event ):

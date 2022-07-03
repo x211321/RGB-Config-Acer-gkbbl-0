@@ -224,6 +224,10 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
         if self.preferences["applyStart"]:
             self.apply()
 
+        # Extend speed limit when enabled
+        if self.preferences["extendSpeed"]:
+            self.slider_speed.SetRange(0, 255)
+
         # Check RGB Devices available
         # - show error message in log when device not found
         if os.path.exists(RGB_DEVICE):
@@ -380,6 +384,32 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
         self.preferences["applyStart"] = self.menuItem_applyStart.IsChecked()
         self.savePreferences()
 
+
+    ####################
+    # on_menu_extendSpeed
+    #-------------------
+    # Event handler - menu extend speed
+    def on_menu_extendSpeed(self, event):
+        # Confirm speed extension with user
+        if self.menuItem_extendSpeed.IsChecked():
+            dlg = wx.MessageDialog(self, "Offical Acer software only allows speed values between 0 and 9.\n\n" \
+                                        "In theory the acer-gkbbl-0 kernel module accepts speed values between 0 and 255. " \
+                                        "Values above the standard limit of 9 might yield undesired results.\n\n" \
+                                        "It is advised to proceed with caution.\n\n" \
+                                        "Are you sure you want to extend the speed limit?"
+                                        , "Extend max speed", wx.YES_NO)
+            res = dlg.ShowModal()
+
+            if not res == wx.ID_YES:
+                self.menuItem_extendSpeed.Check(False)
+
+        self.preferences["extendSpeed"] = self.menuItem_extendSpeed.IsChecked()
+        self.savePreferences()
+
+        if self.preferences["extendSpeed"]:
+            self.slider_speed.SetRange(0, 255)
+        else:
+            self.slider_speed.SetRange(0, 9)
 
     ####################
     # on_menu_log
@@ -600,7 +630,8 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
             "preview"       : True,
             "startMinimized": False,
             "closeToTray"   : False,
-            "applyStart"    : False
+            "applyStart"    : False,
+            "extendSpeed"   : False
         }
 
         # Get path to preference file
@@ -635,6 +666,8 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
                 self.menuItem_preview.Check()
             if self.preferences["applyStart"]:
                 self.menuItem_applyStart.Check()
+            if self.preferences["extendSpeed"]:
+                self.menuItem_extendSpeed.Check()
 
             self.appLog("Preferences loaded: " + pref_file, (0, 190, 0))
 
