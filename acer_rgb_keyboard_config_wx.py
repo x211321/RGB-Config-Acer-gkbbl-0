@@ -305,7 +305,7 @@ class frame_main ( wx.Frame ):
         self.button_load.Bind( wx.EVT_BUTTON, self.on_load_click )
         self.rich_log.Bind( wx.EVT_TEXT_URL, self.on_log_url_click )
         self.Bind( wx.EVT_MENU, self.on_menu_openProfileFolder, id = self.menuItem_openProfileFolder.GetId() )
-        self.Bind( wx.EVT_MENU, self.on_close, id = self.menuItem_quit.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_force_close, id = self.menuItem_quit.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_tray, id = self.menuItem_tray.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_startMinimized, id = self.menuItem_startMinimized.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_closeToTray, id = self.menuItem_closeToTray.GetId() )
@@ -347,7 +347,7 @@ class frame_main ( wx.Frame ):
     def on_menu_openProfileFolder( self, event ):
         event.Skip()
 
-    def on_close( self, event ):
+    def on_force_close( self, event ):
         event.Skip()
 
     def on_menu_tray( self, event ):
