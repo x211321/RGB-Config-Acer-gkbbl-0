@@ -133,6 +133,12 @@ The actual application files are installed in **/usr/local/lib/rgb_config_acer_g
  * wxFormBuilder
  * wxPython
  * Python3
+ * Python3-polib
+ 
+Debian/Ubuntu/Mint
+```
+sudo apt install python3-wxgtk4.0 python3-polib
+```
 
 
 
