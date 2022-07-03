@@ -51,7 +51,10 @@ import webbrowser
 import subprocess
 
 # App GUI managed by wxFormBuilder
-import acer_rgb_keyboard_config_wx
+import rgb_config_acer_gkbbl_0_wx
+
+# Version
+from version import VERSION
 
 # Advanced wxPython imports
 from wx.adv import TaskBarIcon
@@ -82,7 +85,7 @@ PROFILE_DIR = str(pathlib.Path.home()) + "/.config/predator/saved profiles"
 DYNAMIC_TRAY_START = 5
 ACTIVE_PROFILE     = "[ACTIVE]"
 PROFILE_EXTENSION  = ".json"
-PREFERENCE_DIR     = str(pathlib.Path.home()) + "/.config/acer_rgb_config"
+PREFERENCE_DIR     = str(pathlib.Path.home()) + "/.config/rgb_config_acer_gkbbl_0"
 PREFERENCE_FILE    = "preferences.json"
 
 
@@ -141,9 +144,9 @@ class AcerRGBGUI_Tray(TaskBarIcon):
 # class AcerRGBGUI_About
 #-------------------
 # Extend wx wxPython About dialog
-class AcerRGBGUI_About(acer_rgb_keyboard_config_wx.dialog_about):
+class AcerRGBGUI_About(rgb_config_acer_gkbbl_0_wx.dialog_about):
     def __init__(self, parent):
-        acer_rgb_keyboard_config_wx.dialog_about.__init__(self, parent)
+        rgb_config_acer_gkbbl_0_wx.dialog_about.__init__(self, parent)
 
     def on_button_about_close_click(self, event):
         self.Destroy()
@@ -153,7 +156,7 @@ class AcerRGBGUI_About(acer_rgb_keyboard_config_wx.dialog_about):
 # class AcerRGBGUI_Frame
 #-------------------
 # Extend wx wxPython Frame
-class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
+class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
 
     #########################################
     ## MAIN WINDOW INIT
@@ -163,10 +166,13 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
     # __init__
     #-------------------
     def __init__(self, parent, title):
-        acer_rgb_keyboard_config_wx.frame_main.__init__(self, parent)
+        rgb_config_acer_gkbbl_0_wx.frame_main.__init__(self, parent)
 
         # Set app icon
         self.SetIcon(wx.Icon('./icon.png', wx.BITMAP_TYPE_PNG))
+
+        # Set app title
+        self.SetTitle("RGB Config (acer-gkbbl-0) " + str(VERSION))
 
         # Defince color widgets
         self.colorWidgets = [
@@ -461,6 +467,7 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
     # Event handler - menu about
     def on_menu_about(self, event):
         dlg = AcerRGBGUI_About(self)
+        dlg.SetTitle("About RGB Config (acer-gkbbl-0) " + str(VERSION))
         dlg.ShowModal()
 
 
@@ -642,34 +649,34 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
             with open(f"{pref_file}", 'rt') as file:
                 self.preferences = {**self.preferences, **json.load(file)}
 
-            # Restore preferences
-            if self.preferences["tray"]:
-                self.menuItem_tray.Check()
+        # Restore preferences
+        if self.preferences["tray"]:
+            self.menuItem_tray.Check()
 
-                if self.preferences["startMinimized"]:
-                    self.menuItem_startMinimized.Check()
-                if self.preferences["closeToTray"]:
-                    self.menuItem_closeToTray.Check()
-            else:
-                # Make sure preferences that depend on "tray"
-                # are disabled when "tray" is disabled
-                self.menuItem_startMinimized.Check(False)
-                self.menuItem_startMinimized.Enable(False)
-                self.menuItem_closeToTray.Check(False)
-                self.menuItem_closeToTray.Enable(False)
+            if self.preferences["startMinimized"]:
+                self.menuItem_startMinimized.Check()
+            if self.preferences["closeToTray"]:
+                self.menuItem_closeToTray.Check()
+        else:
+            # Make sure preferences that depend on "tray"
+            # are disabled when "tray" is disabled
+            self.menuItem_startMinimized.Check(False)
+            self.menuItem_startMinimized.Enable(False)
+            self.menuItem_closeToTray.Check(False)
+            self.menuItem_closeToTray.Enable(False)
 
-            if self.preferences["log"]:
-                self.menuItem_log.Check()
-            if self.preferences["profiles"]:
-                self.menuItem_profiles.Check()
-            if self.preferences["preview"]:
-                self.menuItem_preview.Check()
-            if self.preferences["applyStart"]:
-                self.menuItem_applyStart.Check()
-            if self.preferences["extendSpeed"]:
-                self.menuItem_extendSpeed.Check()
+        if self.preferences["log"]:
+            self.menuItem_log.Check()
+        if self.preferences["profiles"]:
+            self.menuItem_profiles.Check()
+        if self.preferences["preview"]:
+            self.menuItem_preview.Check()
+        if self.preferences["applyStart"]:
+            self.menuItem_applyStart.Check()
+        if self.preferences["extendSpeed"]:
+            self.menuItem_extendSpeed.Check()
 
-            self.appLog("Preferences loaded: " + pref_file, (0, 190, 0))
+        self.appLog("Preferences loaded: " + pref_file, (0, 190, 0))
 
 
     ####################
