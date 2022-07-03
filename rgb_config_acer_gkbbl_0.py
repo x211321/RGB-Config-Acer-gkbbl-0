@@ -172,7 +172,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
         self.SetIcon(wx.Icon('./icon.png', wx.BITMAP_TYPE_PNG))
 
         # Set app title
-        self.SetTitle("RGB Config (acer-gkbbl-0) " + str(VERSION))
+        self.SetTitle("RGB Config (acer-gkbbl-0) " + VERSION)
 
         # Defince color widgets
         self.colorWidgets = [
@@ -467,7 +467,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
     # Event handler - menu about
     def on_menu_about(self, event):
         dlg = AcerRGBGUI_About(self)
-        dlg.SetTitle("About RGB Config (acer-gkbbl-0) " + str(VERSION))
+        dlg.SetTitle("About RGB Config (acer-gkbbl-0) " + VERSION)
         dlg.ShowModal()
 
 

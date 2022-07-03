@@ -10,8 +10,8 @@ sys.path.append("../")
 from version import VERSION
 
 BUILD_DIR  = "build"
-BUNDLE_DIR = "RGB_Config_acer-gkbbl-0_" + str(VERSION) + "_script"
-DEBPKG_DIR = "RGB_Config_acer-gkbbl-0_" + str(VERSION) + "_deb"
+BUNDLE_DIR = "RGB_Config_acer-gkbbl-0_" + VERSION + "_script"
+DEBPKG_DIR = "RGB_Config_acer-gkbbl-0_" + VERSION + "_deb"
 
 # Find directory that contains this script
 baseDir = os.path.abspath(os.path.dirname(__file__))
@@ -67,14 +67,14 @@ shutil.copy("../rgb_config_acer_gkbbl_0.desktop", os.path.join(DEBPKG_DIR, "usr/
 
 # Write metadata
 metaData =  "Package: rgb-config-acer-gkbbl-0\n" \
-            "Version: " + str(VERSION) + "\n" \
+            "Version: " + VERSION + "\n" \
             "Section: base\n" \
             "Priority: optional\n" \
             "Architecture: amd64\n" \
             "Depends: python3-wxgtk4.0\n" \
             "Maintainer: x211321\n" \
             "Description: A simple GUI for controlling the RGB settings of the acer-gkbbl-0 kernel module\n" \
-            "Homepage: https://github.com/x211321/Acer-RGB-Keyboard-Config-Linux\n"
+            "Homepage: https://github.com/x211321/RGB-Config-Acer-gkbbl-0\n"
 
 file = open (os.path.join(DEBPKG_DIR, "DEBIAN/control"), "w", encoding="utf-8")
 file.write(metaData)
