@@ -2608,6 +2608,20 @@
                         <property name="unchecked_bitmap"></property>
                         <event name="OnMenuSelection">on_menu_profiles</event>
                     </object>
+                    <object class="wxMenuItem" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="checked">0</property>
+                        <property name="enabled">1</property>
+                        <property name="help"></property>
+                        <property name="id">wxID_ANY</property>
+                        <property name="kind">wxITEM_CHECK</property>
+                        <property name="label">Apply [ACTIVE] on startup</property>
+                        <property name="name">menuItem_applyStart</property>
+                        <property name="permission">none</property>
+                        <property name="shortcut"></property>
+                        <property name="unchecked_bitmap"></property>
+                        <event name="OnMenuSelection">on_menu_applyStart</event>
+                    </object>
                 </object>
                 <object class="wxMenu" expanded="1">
                     <property name="label">About</property>

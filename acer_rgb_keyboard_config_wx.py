@@ -278,6 +278,9 @@ class frame_main ( wx.Frame ):
         self.menuItem_profiles = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Show profiles", wx.EmptyString, wx.ITEM_CHECK )
         self.menu_options.Append( self.menuItem_profiles )
 
+        self.menuItem_applyStart = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Apply [ACTIVE] on startup", wx.EmptyString, wx.ITEM_CHECK )
+        self.menu_options.Append( self.menuItem_applyStart )
+
         self.menubar_main.Append( self.menu_options, u"Options" )
 
         self.menu_about = wx.Menu()
@@ -308,6 +311,7 @@ class frame_main ( wx.Frame ):
         self.Bind( wx.EVT_MENU, self.on_menu_closeToTray, id = self.menuItem_closeToTray.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_log, id = self.menuItem_log.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_profiles, id = self.menuItem_profiles.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_applyStart, id = self.menuItem_applyStart.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_about, id = self.menuItem_about.GetId() )
 
     def __del__( self ):
@@ -359,6 +363,9 @@ class frame_main ( wx.Frame ):
         event.Skip()
 
     def on_menu_profiles( self, event ):
+        event.Skip()
+
+    def on_menu_applyStart( self, event ):
         event.Skip()
 
     def on_menu_about( self, event ):

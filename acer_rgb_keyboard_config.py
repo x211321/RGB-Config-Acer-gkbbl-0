@@ -167,6 +167,10 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
             self.panel_right.Hide()
             self.splitter_main_vertical.Unsplit()
 
+        # Apply [ACTIVE] on startup when enabled
+        if self.preferences["applyStart"]:
+            self.apply()
+
         # Check RGB Devices available
         if os.path.exists(RGB_DEVICE):
             self.appLog("RGB device " + RGB_DEVICE + " detected")
@@ -278,6 +282,13 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
     #-------------------
     def on_menu_closeToTray(self, event):
         self.preferences["closeToTray"] = self.menuItem_closeToTray.IsChecked()
+        self.savePreferences()
+
+    ####################
+    # on_menu_applyStart
+    #-------------------
+    def on_menu_applyStart(self, event):
+        self.preferences["applyStart"] = self.menuItem_applyStart.IsChecked()
         self.savePreferences()
 
     ####################
@@ -482,7 +493,8 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
                             "log": True,
                             "profiles": True,
                             "startMinimized": False,
-                            "closeToTray": False}
+                            "closeToTray": False,
+                            "applyStart": False}
 
         pref_file = os.path.join(PREFERENCE_DIR, PREFERENCE_FILE)
 
@@ -507,6 +519,8 @@ class AcerRGBGUI_Frame(acer_rgb_keyboard_config_wx.frame_main):
                 self.menuItem_log.Check()
             if self.preferences["profiles"]:
                 self.menuItem_profiles.Check()
+            if self.preferences["applyStart"]:
+                self.menuItem_applyStart.Check()
 
 
             self.appLog("Preferences loaded: " + pref_file, (0, 190, 0))
