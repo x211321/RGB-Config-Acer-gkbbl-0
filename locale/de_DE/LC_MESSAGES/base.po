@@ -1,0 +1,229 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2022-07-03 21:10+0200\n"
+"PO-Revision-Date: 2022-07-03 21:16+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 2.3\n"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:25 ../rgb_config_acer_gkbbl_0_wx.py:421
+msgid "RGB Config (acer-gkbbl-0)"
+msgstr "RGB Config (acer-gkbbl-0)"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:48
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:60
+msgid "RGB Mode"
+msgstr "RGB Modus"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:67
+msgid "Breath"
+msgstr "Breath"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:67
+msgid "Neon"
+msgstr "Neon"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:67
+msgid "Shifting"
+msgstr "Shifting"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:67
+msgid "Static"
+msgstr "Static"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:67
+msgid "Wave"
+msgstr "Wave"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:67
+msgid "Zoom"
+msgstr "Zoom"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:83
+msgid "Brightness"
+msgstr "Helligkeit"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:96
+msgid "Speed"
+msgstr "Geschwindigkeit"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:109
+msgid "Direction"
+msgstr "Richtung"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:114
+msgid "Left to Right"
+msgstr "Links nach Rechts"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:117
+msgid "Right to Left"
+msgstr "Rechts nach Links"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:125
+msgid "Color section 1"
+msgstr "Farbe für Abschnitt 1"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:138
+msgid "Color section 2"
+msgstr "Farbe für Abschnitt 2"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:151
+msgid "Color section 3"
+msgstr "Farbe für Abschnitt 3"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:164
+msgid "Color section 4"
+msgstr "Farbe für Abschnitt 4"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:180
+msgid "Save as profile"
+msgstr "Als Profil speichern"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:183
+msgid "Apply"
+msgstr "Anwenden"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:199
+msgid "Profiles"
+msgstr "Profile"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:218
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:221
+msgid "Delete"
+msgstr "Löschen"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:224
+msgid "Load"
+msgstr "Laden"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:263
+msgid "Open profile folder"
+msgstr "Profilordner öffnen"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:266
+msgid "Quit"
+msgstr "Beenden"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:269
+msgid "File"
+msgstr "Datei"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:272
+msgid "Show tray icon"
+msgstr "Tray icon anzeigen"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:275
+msgid "Start minimized"
+msgstr "Minimiert starten"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:278
+msgid "Close to tray"
+msgstr "Beim schließen in System Tray minimieren"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:283
+msgid "Apply [ACTIVE] on startup"
+msgstr "[ACTIVE] Profil beim Programmstart anwenden"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:286
+msgid "Extend max speed"
+msgstr "Maximale Geschwindigkeit erhöhen"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:289
+msgid "Options"
+msgstr "Optionen"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:292
+msgid "Show log"
+msgstr "Log anzeigen"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:295
+msgid "Show profiles"
+msgstr "Profile anzeigen"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:298
+msgid "Show preview"
+msgstr "Vorschau anzeigen"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:301
+msgid "View"
+msgstr "Anzeige"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:304 ../rgb_config_acer_gkbbl_0_wx.py:415
+msgid "About RGB Config (acer-gkbbl-0)"
+msgstr "Über RGB Config (acer-gkbbl-0)"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:307
+msgid "About"
+msgstr "Über"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:428
+msgid ""
+"MIT License\n"
+"\n"
+"Copyright 2022 x211321\n"
+"\n"
+"Permission is hereby granted, free of charge, to any person obtaining \n"
+"a copy of this software and associated documentation files (the \"Software\"), \n"
+"to deal in the Software without restriction, including without limitation\n"
+"the rights to use, copy, modify, merge, publish, distribute, sublicense,\n"
+" and/or sell copies of the Software, and to permit persons to whom the\n"
+"Software is furnished to do , subject to the following conditions:\n"
+"\n"
+"The above copyright notice and this permission notice shall be included\n"
+" in all copies or substantial portions of the Software.\n"
+"\n"
+"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\n"
+"EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES \n"
+"OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND \n"
+"NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\n"
+"HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, \n"
+"WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\n"
+"FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR \n"
+"OTHER DEALINGS IN THE SOFTWARE."
+msgstr ""
+"MIT Lizenz\n"
+"\n"
+"Copyright 2022 x211321\n"
+"\n"
+"Permission is hereby granted, free of charge, to any person obtaining \n"
+"a copy of this software and associated documentation files (the \"Software\"), \n"
+"to deal in the Software without restriction, including without limitation\n"
+"the rights to use, copy, modify, merge, publish, distribute, sublicense,\n"
+" and/or sell copies of the Software, and to permit persons to whom the\n"
+"Software is furnished to do , subject to the following conditions:\n"
+"\n"
+"The above copyright notice and this permission notice shall be included\n"
+" in all copies or substantial portions of the Software.\n"
+"\n"
+"THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\n"
+"EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES \n"
+"OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND \n"
+"NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\n"
+"HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, \n"
+"WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\n"
+"FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR \n"
+"OTHER DEALINGS IN THE SOFTWARE."
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:433
+msgid "RGB Config (acer-gkbbl-0) on GitHub"
+msgstr "RGB Config (acer-gkbbl-0) auf GitHub"
+
+#: ../rgb_config_acer_gkbbl_0_wx.py:436
+msgid "Close"
+msgstr "Schließen"
