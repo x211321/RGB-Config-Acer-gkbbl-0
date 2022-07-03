@@ -256,8 +256,6 @@ class frame_main ( wx.Frame ):
         self.Layout()
         self.status_status = self.CreateStatusBar( 1, wx.STB_SIZEGRIP|wx.BORDER_THEME, wx.ID_ANY )
         self.menubar_main = wx.MenuBar( 0 )
-        self.menubar_main.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_INACTIVECAPTIONTEXT ) )
-
         self.menu_file = wx.Menu()
         self.menuItem_openProfileFolder = wx.MenuItem( self.menu_file, wx.ID_ANY, u"Open profile folder", wx.EmptyString, wx.ITEM_NORMAL )
         self.menu_file.Append( self.menuItem_openProfileFolder )
