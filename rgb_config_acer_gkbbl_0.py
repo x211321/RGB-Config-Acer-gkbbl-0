@@ -132,6 +132,11 @@ class AcerRGBGUI_Tray(TaskBarIcon):
     def on_toggle_gui(self, event):
         if self.parent.IsShown():
             self.parent.Hide()
+
+            # Destroy about dialog if open
+            if self.parent.aboutDlg:
+                self.parent.aboutDlg.Destroy()
+                self.parent.aboutDlg = None
         else:
             self.parent.Show()
 
@@ -167,6 +172,8 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
     #-------------------
     def __init__(self, parent, title):
         rgb_config_acer_gkbbl_0_wx.frame_main.__init__(self, parent)
+
+        self.aboutDlg = None
 
         # Set app icon
         self.SetIcon(wx.Icon('./icon.png', wx.BITMAP_TYPE_PNG))
@@ -466,9 +473,10 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
     #-------------------
     # Event handler - menu about
     def on_menu_about(self, event):
-        dlg = AcerRGBGUI_About(self)
-        dlg.SetTitle("About RGB Config (acer-gkbbl-0) " + VERSION)
-        dlg.ShowModal()
+        self.aboutDlg = AcerRGBGUI_About(self)
+        self.aboutDlg.SetTitle("About RGB Config (acer-gkbbl-0) " + VERSION)
+        self.aboutDlg.ShowModal()
+        self.aboutDlg = None
 
 
     #########################################
