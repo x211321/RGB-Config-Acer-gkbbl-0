@@ -68,7 +68,10 @@ python3 ./rgb_config_acer_gkbbl_0.py
 ![Options](./screenshots/options.png)
 
 ## Show tray icon
-Display a tray icon in the system tray where to RGB-Config-Acer-gkbbl-0 can be hidden. The tray also provides quick access to saved profiles. Left click on the tray icon to hide or restore RGB-Config-Acer-gkbbl-0. Right click to show the tray menu. The tray icon only works in desktop environments that are compatible with classic system tray (e.g. it did not show on a fresh ubuntu install).
+Display a tray icon in the system tray where to RGB-Config-Acer-gkbbl-0 can be hidden. The tray also provides quick access to saved profiles. 
+ * Left click on the tray icon to hide or restore RGB-Config-Acer-gkbbl-0
+ * Right click to show the tray menu
+ * The tray icon only works in desktop environments that are compatible with classic system tray (e.g. it did not show on a fresh ubuntu install).
 
 ![Tray menu](./screenshots/tray_menu.png)
 
@@ -90,9 +93,9 @@ Official Acer software only allows animation speeds between 0 and 9. The acer-gk
 RGB settings can be saved as profiles. Simply configure your prefered settings and click on the "Save as profile" button. The application will ask for a profile name and store it in the profile directory.
 
 ## Load profiles
-Saved profiles are listed in the profile list on the right side of the application. Click on a profile and press the "Load" button to restore the profile settings. Loaded profiles are **not** automatically applyed to the kernel device and must first be activated via the "Apply" button. 
+Saved profiles are listed in the profile list on the right side of the application. Click on a profile and press the "Load" button to restore the profile settings. Loaded profiles are **not** automatically applyed to the RGB device and must first be activated via the "Apply" button. 
 
-Profiles that are selected via the tray icon are directly applied and must not be activated separately.
+ * Profiles that are selected via the tray icon are directly applied and must not be activated separately.
 
 ## Delete profiles
 Select the profile you want to delete from the profile list and press the "Delete" button. The profile will be removed from the profile directory.
@@ -101,20 +104,20 @@ Select the profile you want to delete from the profile list and press the "Delet
 The [ACTIVE] profile is automatically generated whenever RGB settings are applied. The [ACTIVE] profile thus represents the last used settings and is automatically restored whenever the RGB-Config-Acer-gkbbl-0 is started.
 
 ## Compatibility with facer_rgb.py
-The profiles that RGB-Config-Acer-gkbbl-0 generates are compatible with the facer_rgb script that is provided by  JafarAkhondalis "acer-predator-turbo-and-rgb-keyboard-linux-module" project, with the exeption of static mode for which RGB-Config-Acer-gkbbl-0 has implemented muliple colors per profile. A static mode profile that was generated with RGB-Config-Acer-gkbbl-0 would only apply the first color when run with facer_rgb.
+The profiles that RGB-Config-Acer-gkbbl-0 generates are compatible with the **facer_rgb** script that is provided by  JafarAkhondalis "acer-predator-turbo-and-rgb-keyboard-linux-module", with the exeption of static mode for which RGB-Config-Acer-gkbbl-0 has implemented muliple colors per profile (one for each section of the keyboard). A static mode profile that was generated with RGB-Config-Acer-gkbbl-0 would only apply the color of the first section run with facer_rgb.
 
 ## Profile directory
-Profiles are stored in:
+In compatibility with facer_rgb, profiles are stored in:
 ```
 ~/.config/predator/saved profiles/
 ```
 
 # Configuration file
 RGB-Config-Acer-gkbbl-0 saves user preferences in:
-
 ```
 ~/.config/rgb_config_acer_gkbbl_0/preferences.json
 ```
+
 # Dev instructions
 
 ## General structure
@@ -128,7 +131,7 @@ The "scripts" folder contains the **build_linux.py** script which generates the 
 
 Also included are the **rgb_config_acer_gkbbl_0** shell script that is placed in **/usr/local/bin** when installed via the **.deb** package and the "rgb_config_acer_gkbbl_0.desktop" file which gets installed under **/usr/share/applications/**.
 
-The actual application files are installed in **/usr/local/lib/rgb_config_acer_gkbbl_0/** by the **.deb** package.
+The .deb packages installs the actual application files to **/usr/local/lib/rgb_config_acer_gkbbl_0/**.
 
 ## Dev dependencies
  * wxFormBuilder
