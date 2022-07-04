@@ -129,7 +129,7 @@ RGB-Config-Acer-gkbbl-0 saves user preferences in:
 ## The "scripts" folder
 The "scripts" folder contains the **build_linux.py** script which generates the **.zip** and **.deb** files that are attached to the release page. 
 
-Also included are the **rgb_config_acer_gkbbl_0** shell script (which is placed in **/usr/local/bin** when installed via the **.deb** package) and the **rgb_config_acer_gkbbl_0.desktop** file which gets installed under **/usr/share/applications/**.
+Also included are the **rgb_config_acer_gkbbl_0** shell script (which is placed in **/usr/local/bin** when installed via the **.deb** package) and the **rgb_config_acer_gkbbl_0.desktop** file (which gets installed under **/usr/share/applications/**).
 
 The .deb packages installs the actual application files to **/usr/local/lib/rgb_config_acer_gkbbl_0/**.
 
