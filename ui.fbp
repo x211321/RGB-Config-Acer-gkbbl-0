@@ -2545,7 +2545,7 @@
                         <event name="OnMenuSelection">on_force_close</event>
                     </object>
                 </object>
-                <object class="wxMenu" expanded="0">
+                <object class="wxMenu" expanded="1">
                     <property name="label">Options</property>
                     <property name="name">menu_options</property>
                     <property name="permission">protected</property>
@@ -2622,6 +2622,12 @@
                         <property name="shortcut"></property>
                         <property name="unchecked_bitmap"></property>
                         <event name="OnMenuSelection">on_menu_extendSpeed</event>
+                    </object>
+                    <object class="submenu" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="label">Language</property>
+                        <property name="name">subMenu_language</property>
+                        <property name="permission">protected</property>
                     </object>
                 </object>
                 <object class="wxMenu" expanded="0">

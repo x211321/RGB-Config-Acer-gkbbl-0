@@ -15,6 +15,7 @@
 #################################################################################################
 
 import os
+import sys
 import json
 import pathlib
 import webbrowser
@@ -25,6 +26,10 @@ import lib.var as var
 from lib.prefs import app_preferences
 from lib.version import VERSION
 
+APP_NAME = "rgb_config_acer_gkbbl_0"
+
+APP_DIR  = os.path.abspath(os.path.dirname(__file__))
+LANG_DIR = os.path.join(APP_DIR, "assets", "locale")
 
 # Set app language
 if len(app_preferences["language"]):
@@ -32,9 +37,15 @@ if len(app_preferences["language"]):
 
 # Settup gettext
 import gettext
-gettext.bindtextdomain("rgb_config_acer_gkbbl_0", os.path.join(os.path.abspath(os.path.dirname(__file__)), "assets", "locale"))
-gettext.textdomain("rgb_config_acer_gkbbl_0")
+gettext.bindtextdomain(APP_NAME, LANG_DIR)
+gettext.textdomain(APP_NAME)
 _ = gettext.gettext
+
+# Get the active language from gettext language file path
+if gettext.find(APP_NAME, LANG_DIR): 
+    ACTIVE_LANG = gettext.find(APP_NAME, LANG_DIR).replace(LANG_DIR, "")[1:3]
+else:
+    ACTIVE_LANG = "en"
 
 
 # Error message if wxPython is not available
@@ -132,6 +143,9 @@ class AcerRGBGUI_Frame(ui.frame_main):
         # Load app preferences
         self.preferences = {}
         self.loadPreferences()
+
+        # Generate language menu
+        self.generateLanguageMenu()
 
         # List profiles
         self.profiles = []
@@ -402,6 +416,31 @@ class AcerRGBGUI_Frame(ui.frame_main):
         self.aboutDlg = None
 
 
+    ####################
+    # on_menu_change_language
+    #-------------------
+    # Event handler - menu change language
+    def on_menu_change_language(self, event):
+
+        # Get menu item of event
+        menuItem = event.GetEventObject().MenuItems[event.Id]
+
+        # Get langujage from item label
+        language = menuItem.GetItemLabel()
+
+        # Save new preferences
+        self.preferences["language"] = language
+        self.savePreferences()
+
+        # Language change requies app restart - ask user
+        dlg = wx.MessageDialog(self, _("The application must be restartet to apply the language change.\n\n" \
+                                       "Do you want to restart now?"), _("Change language"), wx.YES_NO)
+        res = dlg.ShowModal()
+
+        if res == wx.ID_YES:
+            os.execv(sys.executable, ['python3'] + sys.argv)
+
+
     #########################################
     ## DIALOG INTERACTION
     #########################################
@@ -549,6 +588,26 @@ class AcerRGBGUI_Frame(ui.frame_main):
     # - arg color: dict with keys red, green and blue (0-255)
     def setColor(self, widget, color):
         widget.SetColour(wx.Colour(color["red"], color["green"], color["blue"]))
+
+
+    ####################
+    # generateLanguageMenu
+    #-------------------
+    # Searches for translation files for the application 
+    # and lists them in the options menu
+    def generateLanguageMenu(self):
+        menuID = 0
+
+        for language in os.listdir(LANG_DIR):
+            if os.path.isdir(os.path.join(LANG_DIR, language)):
+                item = self.subMenu_language.AppendRadioItem(menuID, language)
+                self.Bind(wx.EVT_MENU, self.on_menu_change_language, id=menuID)
+
+                menuID += 1
+
+                # Check active language
+                if language == ACTIVE_LANG:
+                    item.Check()
 
 
     #########################################
