@@ -133,17 +133,37 @@ RGB-Config-Acer-gkbbl-0 saves user preferences in:
 ## The "scripts" folder
 The "scripts" folder contains the **build_linux.py** script which generates the **.zip** and **.deb** files that are attached to the release page. 
 
-Also included are the **rgb_config_acer_gkbbl_0** shell script (which is placed in **/usr/local/bin** when installed via the **.deb** package) and the **rgb_config_acer_gkbbl_0.desktop** file (which gets installed under **/usr/share/applications/**).
+Also included are the **rgb_config_acer_gkbbl_0** shell script (which is placed in **/usr/local/bin/** when installed via the **.deb** package) and the **rgb_config_acer_gkbbl_0.desktop** file (which gets installed under **/usr/share/applications/**).
 
 The .deb packages installs the actual application files to **/usr/local/lib/rgb_config_acer_gkbbl_0/**.
 
+## i18n
+**RGB-Config-Acer-gkbbl-0** has support for multiple languages. Available languages can be found in the **assets/locale/** folder. 
+
+To update the translation files run the **i18n_gen.py** script in the **scripts** folder.
+
+To add a new language, extend the **languages** list at the top of the **i18n_gen.py** script with the two letter language code you want to add and run the script. A new translation template will be generated at:
+
+```
+assets/locale/<LANGUAGE>/LC_MESSAGES/rgb_config_acer_gkbbl_0.po
+```
+
+This translation template can be loaded with a compatible software like [Poedit](https://poedit.net/).
+
+Once saved in Poedit, the new language will show up in the Options menu of **RGB-Config-Acer-gkbbl-0**. Poedit automatically generates the compiled **.mo** language file that is used by the program code.
+
 ## Dev dependencies
- * wxFormBuilder
+
+**Libraries**
  * wxPython
  * Python3
  * Python3-polib
  
-Debian/Ubuntu/Mint
+**Tools**
+ * wxFormBuilder
+ * Poedit
+ 
+**Debian/Ubuntu/Mint**
 ```
 sudo apt install python3-wxgtk4.0 python3-polib
 ```
