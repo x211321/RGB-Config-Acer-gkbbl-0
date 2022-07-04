@@ -38,6 +38,8 @@ shutil.copy("../../README.md"                 , os.path.join(BUNDLE_DIR, "README
 shutil.copytree("../../lib/"                  , os.path.join(BUNDLE_DIR, "lib/"))
 shutil.copytree("../../assets/"               , os.path.join(BUNDLE_DIR, "assets/"))
 
+shutil.rmtree(os.path.join(BUNDLE_DIR, "lib/__pycache__/"))
+
 # Zip bundle
 zip = ZipFile(BUNDLE_DIR + ".zip", "w")
 
