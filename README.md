@@ -33,9 +33,9 @@ Download the **RGB_Config_acer-gkbbl-0_deb.deb** file from the [releases page](h
 sudo dpkg -i RGB_Config_acer-gkbbl-0_<VERSION>_deb.deb
 ```
 
-After installation **RGB-Config-Acer-gkbbl-0** should show up in your application launcher under both the **Settings** and **Utils** sections. 
+After installation **RGB Config (acer-gkbbl-0)** should show up in your application launcher under both the **Settings** and **Utils** sections. 
 
-Alternatively run **RGB-Config-Acer-gkbbl-0** from the command line:
+Alternatively run the application from the command line:
 
 ```
 rgb_config_acer_gkbbl_0
@@ -44,7 +44,7 @@ rgb_config_acer_gkbbl_0
 ## Python script
 Python 3 should already be provided by most Linux distributions.
 
-Download the **RGB_Config_acer-gkbbl-0_script.zip** file from the [releases page](https://github.com/x211321/RGB-Config-Acer-gkbbl-0/releases) and extract it somewhere on your hard drive.
+Download the **RGB_Config_acer-gkbbl-0_\<VERSION>_script.zip** file from the [releases page](https://github.com/x211321/RGB-Config-Acer-gkbbl-0/releases) and extract it somewhere on your hard drive.
 
 The required dependencies can be installed via your distributions package manager.
 
