@@ -3,7 +3,7 @@ A simple GUI for controlling the RGB settings of the acer-gkbbl-0 kernel module
 
 Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) for information on the kernel module
 
-![Main window](./img/screenshots/main_window.gif)
+![Main window](./img/screenshots/main_window.png)
 
 # Features
  * Configure RGB settings of the acer-gkbbl-0 kernel module
