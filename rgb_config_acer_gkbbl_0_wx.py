@@ -12,6 +12,9 @@ import wx.xrc
 import wx.adv
 import wx.richtext
 
+import gettext
+_ = gettext.gettext
+
 ###########################################################################
 ## Class frame_main
 ###########################################################################
@@ -19,7 +22,7 @@ import wx.richtext
 class frame_main ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"RGB Config (acer-gkbbl-0)", pos = wx.DefaultPosition, size = wx.Size( 800,600 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"RGB Config (acer-gkbbl-0)"), pos = wx.DefaultPosition, size = wx.Size( 800,600 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 
@@ -42,7 +45,7 @@ class frame_main ( wx.Frame ):
 
         vertical_settings.Add( ( 0, 10), 0, wx.EXPAND, 5 )
 
-        self.label_settings = wx.StaticText( self.panel_left, wx.ID_ANY, u"Settings", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_settings = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Settings"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_settings.Wrap( -1 )
 
         self.label_settings.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
@@ -54,14 +57,14 @@ class frame_main ( wx.Frame ):
 
         horizontal_mode = wx.BoxSizer( wx.HORIZONTAL )
 
-        self.label_mode = wx.StaticText( self.panel_left, wx.ID_ANY, u"RGB Mode", wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_LEFT )
+        self.label_mode = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"RGB Mode"), wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_LEFT )
         self.label_mode.Wrap( -1 )
 
         horizontal_mode.Add( self.label_mode, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 
         bSizer16 = wx.BoxSizer( wx.HORIZONTAL )
 
-        choise_modeChoices = [ u"Static", u"Breath", u"Neon", u"Wave", u"Shifting", u"Zoom" ]
+        choise_modeChoices = [ _(u"Static"), _(u"Breath"), _(u"Neon"), _(u"Wave"), _(u"Shifting"), _(u"Zoom") ]
         self.choise_mode = wx.Choice( self.panel_left, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, choise_modeChoices, 0 )
         self.choise_mode.SetSelection( 0 )
         bSizer16.Add( self.choise_mode, 3, wx.ALIGN_LEFT|wx.ALL, 5 )
@@ -77,7 +80,7 @@ class frame_main ( wx.Frame ):
 
         horizontal_brightness = wx.BoxSizer( wx.HORIZONTAL )
 
-        self.label_brightness = wx.StaticText( self.panel_left, wx.ID_ANY, u"Brightness", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_brightness = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Brightness"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_brightness.Wrap( -1 )
 
         horizontal_brightness.Add( self.label_brightness, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
@@ -90,7 +93,7 @@ class frame_main ( wx.Frame ):
 
         horizontal_speed = wx.BoxSizer( wx.HORIZONTAL )
 
-        self.label_speed = wx.StaticText( self.panel_left, wx.ID_ANY, u"Speed", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_speed = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Speed"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_speed.Wrap( -1 )
 
         horizontal_speed.Add( self.label_speed, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
@@ -103,15 +106,15 @@ class frame_main ( wx.Frame ):
 
         horizontal_direction = wx.BoxSizer( wx.HORIZONTAL )
 
-        self.label_direction = wx.StaticText( self.panel_left, wx.ID_ANY, u"Direction", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_direction = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Direction"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_direction.Wrap( -1 )
 
         horizontal_direction.Add( self.label_direction, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL|wx.EXPAND, 5 )
 
-        self.radio_left_right = wx.RadioButton( self.panel_left, wx.ID_ANY, u"Left to Right", wx.DefaultPosition, wx.DefaultSize, wx.RB_GROUP )
+        self.radio_left_right = wx.RadioButton( self.panel_left, wx.ID_ANY, _(u"Left to Right"), wx.DefaultPosition, wx.DefaultSize, wx.RB_GROUP )
         horizontal_direction.Add( self.radio_left_right, 1, wx.ALL|wx.EXPAND, 5 )
 
-        self.radio_right_left = wx.RadioButton( self.panel_left, wx.ID_ANY, u"Right to Left", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.radio_right_left = wx.RadioButton( self.panel_left, wx.ID_ANY, _(u"Right to Left"), wx.DefaultPosition, wx.DefaultSize, 0 )
         horizontal_direction.Add( self.radio_right_left, 1, wx.ALL|wx.EXPAND, 5 )
 
 
@@ -119,7 +122,7 @@ class frame_main ( wx.Frame ):
 
         horizontal_color1 = wx.BoxSizer( wx.HORIZONTAL )
 
-        self.label_color0 = wx.StaticText( self.panel_left, wx.ID_ANY, u"Color section 1", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_color0 = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Color section 1"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_color0.Wrap( -1 )
 
         horizontal_color1.Add( self.label_color0, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
@@ -132,7 +135,7 @@ class frame_main ( wx.Frame ):
 
         horizontal_color2 = wx.BoxSizer( wx.HORIZONTAL )
 
-        self.label_color1 = wx.StaticText( self.panel_left, wx.ID_ANY, u"Color section 2", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_color1 = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Color section 2"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_color1.Wrap( -1 )
 
         horizontal_color2.Add( self.label_color1, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
@@ -145,7 +148,7 @@ class frame_main ( wx.Frame ):
 
         horizontal_color3 = wx.BoxSizer( wx.HORIZONTAL )
 
-        self.label_color2 = wx.StaticText( self.panel_left, wx.ID_ANY, u"Color section 3", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_color2 = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Color section 3"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_color2.Wrap( -1 )
 
         horizontal_color3.Add( self.label_color2, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
@@ -158,7 +161,7 @@ class frame_main ( wx.Frame ):
 
         horizontal_color4 = wx.BoxSizer( wx.HORIZONTAL )
 
-        self.label_color3 = wx.StaticText( self.panel_left, wx.ID_ANY, u"Color section 4", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_color3 = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Color section 4"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_color3.Wrap( -1 )
 
         horizontal_color4.Add( self.label_color3, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
@@ -174,10 +177,10 @@ class frame_main ( wx.Frame ):
 
         grid_settings_buttons = wx.GridSizer( 0, 2, 0, 0 )
 
-        self.button_save = wx.Button( self.panel_left, wx.ID_ANY, u"Save as profile", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.button_save = wx.Button( self.panel_left, wx.ID_ANY, _(u"Save as profile"), wx.DefaultPosition, wx.DefaultSize, 0 )
         grid_settings_buttons.Add( self.button_save, 0, wx.ALIGN_LEFT|wx.ALL, 10 )
 
-        self.button_apply = wx.Button( self.panel_left, wx.ID_ANY, u"Apply", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.button_apply = wx.Button( self.panel_left, wx.ID_ANY, _(u"Apply"), wx.DefaultPosition, wx.DefaultSize, 0 )
         grid_settings_buttons.Add( self.button_apply, 0, wx.ALIGN_RIGHT|wx.ALL, 10 )
 
 
@@ -193,7 +196,7 @@ class frame_main ( wx.Frame ):
 
         vertical_profiles.Add( ( 0, 10), 0, wx.EXPAND, 5 )
 
-        self.label_profiles = wx.StaticText( self.panel_right, wx.ID_ANY, u"Profiles", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_profiles = wx.StaticText( self.panel_right, wx.ID_ANY, _(u"Profiles"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_profiles.Wrap( -1 )
 
         self.label_profiles.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
@@ -212,13 +215,13 @@ class frame_main ( wx.Frame ):
 
         grid_profile_buttons = wx.GridSizer( 0, 3, 0, 0 )
 
-        self.button_refresh = wx.Button( self.panel_right, wx.ID_ANY, u"Refresh", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.button_refresh = wx.Button( self.panel_right, wx.ID_ANY, _(u"Refresh"), wx.DefaultPosition, wx.DefaultSize, 0 )
         grid_profile_buttons.Add( self.button_refresh, 0, wx.ALIGN_LEFT|wx.ALL, 10 )
 
-        self.button_delete = wx.Button( self.panel_right, wx.ID_ANY, u"Delete", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.button_delete = wx.Button( self.panel_right, wx.ID_ANY, _(u"Delete"), wx.DefaultPosition, wx.DefaultSize, 0 )
         grid_profile_buttons.Add( self.button_delete, 0, wx.ALIGN_CENTER|wx.ALL, 10 )
 
-        self.button_load = wx.Button( self.panel_right, wx.ID_ANY, u"Load", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.button_load = wx.Button( self.panel_right, wx.ID_ANY, _(u"Load"), wx.DefaultPosition, wx.DefaultSize, 0 )
         grid_profile_buttons.Add( self.button_load, 0, wx.ALIGN_RIGHT|wx.ALL, 10 )
 
 
@@ -257,51 +260,51 @@ class frame_main ( wx.Frame ):
         self.status_status = self.CreateStatusBar( 1, wx.STB_SIZEGRIP|wx.BORDER_THEME, wx.ID_ANY )
         self.menubar_main = wx.MenuBar( 0 )
         self.menu_file = wx.Menu()
-        self.menuItem_openProfileFolder = wx.MenuItem( self.menu_file, wx.ID_ANY, u"Open profile folder", wx.EmptyString, wx.ITEM_NORMAL )
+        self.menuItem_openProfileFolder = wx.MenuItem( self.menu_file, wx.ID_ANY, _(u"Open profile folder"), wx.EmptyString, wx.ITEM_NORMAL )
         self.menu_file.Append( self.menuItem_openProfileFolder )
 
-        self.menuItem_quit = wx.MenuItem( self.menu_file, wx.ID_ANY, u"Quit", wx.EmptyString, wx.ITEM_NORMAL )
+        self.menuItem_quit = wx.MenuItem( self.menu_file, wx.ID_ANY, _(u"Quit"), wx.EmptyString, wx.ITEM_NORMAL )
         self.menu_file.Append( self.menuItem_quit )
 
-        self.menubar_main.Append( self.menu_file, u"File" )
+        self.menubar_main.Append( self.menu_file, _(u"File") )
 
         self.menu_options = wx.Menu()
-        self.menuItem_tray = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Show tray icon", wx.EmptyString, wx.ITEM_CHECK )
+        self.menuItem_tray = wx.MenuItem( self.menu_options, wx.ID_ANY, _(u"Show tray icon"), wx.EmptyString, wx.ITEM_CHECK )
         self.menu_options.Append( self.menuItem_tray )
 
-        self.menuItem_startMinimized = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Start minimized", wx.EmptyString, wx.ITEM_CHECK )
+        self.menuItem_startMinimized = wx.MenuItem( self.menu_options, wx.ID_ANY, _(u"Start minimized"), wx.EmptyString, wx.ITEM_CHECK )
         self.menu_options.Append( self.menuItem_startMinimized )
 
-        self.menuItem_closeToTray = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Close to tray", wx.EmptyString, wx.ITEM_CHECK )
+        self.menuItem_closeToTray = wx.MenuItem( self.menu_options, wx.ID_ANY, _(u"Close to tray"), wx.EmptyString, wx.ITEM_CHECK )
         self.menu_options.Append( self.menuItem_closeToTray )
 
         self.menu_options.AppendSeparator()
 
-        self.menuItem_applyStart = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Apply [ACTIVE] on startup", wx.EmptyString, wx.ITEM_CHECK )
+        self.menuItem_applyStart = wx.MenuItem( self.menu_options, wx.ID_ANY, _(u"Apply [ACTIVE] on startup"), wx.EmptyString, wx.ITEM_CHECK )
         self.menu_options.Append( self.menuItem_applyStart )
 
-        self.menuItem_extendSpeed = wx.MenuItem( self.menu_options, wx.ID_ANY, u"Extend max speed", wx.EmptyString, wx.ITEM_CHECK )
+        self.menuItem_extendSpeed = wx.MenuItem( self.menu_options, wx.ID_ANY, _(u"Extend max speed"), wx.EmptyString, wx.ITEM_CHECK )
         self.menu_options.Append( self.menuItem_extendSpeed )
 
-        self.menubar_main.Append( self.menu_options, u"Options" )
+        self.menubar_main.Append( self.menu_options, _(u"Options") )
 
         self.menu_view = wx.Menu()
-        self.menuItem_log = wx.MenuItem( self.menu_view, wx.ID_ANY, u"Show log", wx.EmptyString, wx.ITEM_CHECK )
+        self.menuItem_log = wx.MenuItem( self.menu_view, wx.ID_ANY, _(u"Show log"), wx.EmptyString, wx.ITEM_CHECK )
         self.menu_view.Append( self.menuItem_log )
 
-        self.menuItem_profiles = wx.MenuItem( self.menu_view, wx.ID_ANY, u"Show profiles", wx.EmptyString, wx.ITEM_CHECK )
+        self.menuItem_profiles = wx.MenuItem( self.menu_view, wx.ID_ANY, _(u"Show profiles"), wx.EmptyString, wx.ITEM_CHECK )
         self.menu_view.Append( self.menuItem_profiles )
 
-        self.menuItem_preview = wx.MenuItem( self.menu_view, wx.ID_ANY, u"Show preview", wx.EmptyString, wx.ITEM_CHECK )
+        self.menuItem_preview = wx.MenuItem( self.menu_view, wx.ID_ANY, _(u"Show preview"), wx.EmptyString, wx.ITEM_CHECK )
         self.menu_view.Append( self.menuItem_preview )
 
-        self.menubar_main.Append( self.menu_view, u"View" )
+        self.menubar_main.Append( self.menu_view, _(u"View") )
 
         self.menu_about = wx.Menu()
-        self.menuItem_about = wx.MenuItem( self.menu_about, wx.ID_ANY, u"About RGB Config (acer-gkbbl-0)", wx.EmptyString, wx.ITEM_NORMAL )
+        self.menuItem_about = wx.MenuItem( self.menu_about, wx.ID_ANY, _(u"About RGB Config (acer-gkbbl-0)"), wx.EmptyString, wx.ITEM_NORMAL )
         self.menu_about.Append( self.menuItem_about )
 
-        self.menubar_main.Append( self.menu_about, u"About" )
+        self.menubar_main.Append( self.menu_about, _(u"About") )
 
         self.SetMenuBar( self.menubar_main )
 
@@ -409,28 +412,28 @@ class frame_main ( wx.Frame ):
 class dialog_about ( wx.Dialog ):
 
     def __init__( self, parent ):
-        wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = u"About RGB Config (acer-gkbbl-0)", pos = wx.DefaultPosition, size = wx.DefaultSize, style = wx.DEFAULT_DIALOG_STYLE )
+        wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"About RGB Config (acer-gkbbl-0)"), pos = wx.DefaultPosition, size = wx.DefaultSize, style = wx.DEFAULT_DIALOG_STYLE )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 
         vertical_about = wx.BoxSizer( wx.VERTICAL )
 
-        self.label_about_header = wx.StaticText( self, wx.ID_ANY, u"RGB Config (acer-gkbbl-0)", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_about_header = wx.StaticText( self, wx.ID_ANY, _(u"RGB Config (acer-gkbbl-0)"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_about_header.Wrap( -1 )
 
         self.label_about_header.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
 
         vertical_about.Add( self.label_about_header, 0, wx.ALL|wx.EXPAND, 5 )
 
-        self.label_about_license = wx.StaticText( self, wx.ID_ANY, u"MIT License\n\nCopyright 2022 x211321\n\nPermission is hereby granted, free of charge, to any person obtaining \na copy of this software and associated documentation files (the \"Software\"), \nto deal in the Software without restriction, including without limitation\nthe rights to use, copy, modify, merge, publish, distribute, sublicense,\n and/or sell copies of the Software, and to permit persons to whom the\nSoftware is furnished to do , subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included\n in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES \nOF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND \nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\nHOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, \nWHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR \nOTHER DEALINGS IN THE SOFTWARE.", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_about_license = wx.StaticText( self, wx.ID_ANY, _(u"MIT License\n\nCopyright 2022 x211321\n\nPermission is hereby granted, free of charge, to any person obtaining \na copy of this software and associated documentation files (the \"Software\"), \nto deal in the Software without restriction, including without limitation\nthe rights to use, copy, modify, merge, publish, distribute, sublicense,\n and/or sell copies of the Software, and to permit persons to whom the\nSoftware is furnished to do , subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included\n in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES \nOF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND \nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\nHOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, \nWHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR \nOTHER DEALINGS IN THE SOFTWARE."), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_about_license.Wrap( -1 )
 
         vertical_about.Add( self.label_about_license, 0, wx.ALL|wx.EXPAND, 5 )
 
-        self.hyperlink_about = wx.adv.HyperlinkCtrl( self, wx.ID_ANY, u"RGB Config (acer-gkbbl-0) on GitHub", u"https://github.com/x211321/RGB-Config-Acer-gkbbl-0", wx.DefaultPosition, wx.DefaultSize, wx.adv.HL_DEFAULT_STYLE )
+        self.hyperlink_about = wx.adv.HyperlinkCtrl( self, wx.ID_ANY, _(u"RGB Config (acer-gkbbl-0) on GitHub"), u"https://github.com/x211321/RGB-Config-Acer-gkbbl-0", wx.DefaultPosition, wx.DefaultSize, wx.adv.HL_DEFAULT_STYLE )
         vertical_about.Add( self.hyperlink_about, 0, wx.ALL|wx.EXPAND, 5 )
 
-        self.button_about_close = wx.Button( self, wx.ID_ANY, u"Close", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.button_about_close = wx.Button( self, wx.ID_ANY, _(u"Close"), wx.DefaultPosition, wx.DefaultSize, 0 )
         vertical_about.Add( self.button_about_close, 0, wx.ALIGN_CENTER_HORIZONTAL|wx.ALL, 15 )
 
 

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-07-03 21:32+0200\n"
+"POT-Creation-Date: 2022-07-04 19:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,6 +14,105 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
+
+#: ../rgb_config_acer_gkbbl_0.py:106 ../rgb_config_acer_gkbbl_0.py:130
+msgid "RGB Config"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:131 ../rgb_config_acer_gkbbl_0_wx.py:436
+msgid "Close"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:185
+msgid "RGB Config (acer-gkbbl-0) "
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:250
+msgid "RGB device %s detected"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:252
+msgid "ERROR: RGB device %s not found"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:253 ../rgb_config_acer_gkbbl_0.py:260
+msgid "Install instructions:"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:257
+msgid "Static RGB device %s detected"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:259
+msgid "ERROR: Static RGB device %s not found"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:411
+msgid ""
+"Offical Acer software only allows speed values between 0 and 9.\n"
+"\n"
+"In theory the acer-gkbbl-0 kernel module accepts speed values between 0 and 255. Values above the standard limit of 9 might yield undesired results.\n"
+"\n"
+"It is advised to proceed with caution.\n"
+"\n"
+"Are you sure you want to extend the speed limit?"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:416 ../rgb_config_acer_gkbbl_0_wx.py:286
+msgid "Extend max speed"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:480
+msgid "About RGB Config (acer-gkbbl-0) "
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:690
+msgid "Preferences loaded: "
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:741
+msgid "Profiles listed"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:778
+msgid "Profile loaded: "
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:792
+msgid "Delete \" %s \"?"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:803
+msgid "Profile deleted: "
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:821
+msgid "Profile name"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:821
+msgid "Save profile"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:834
+msgid "Profile saved: "
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:851 ../rgb_config_acer_gkbbl_0.py:863
+msgid "RGB Device %s not available"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:901
+msgid "Settings applied"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:913
+msgid "Payload written to %s"
+msgstr ""
+
+#: ../rgb_config_acer_gkbbl_0.py:1003
+msgid "Acer RGB Settings"
+msgstr ""
 
 #: ../rgb_config_acer_gkbbl_0_wx.py:25 ../rgb_config_acer_gkbbl_0_wx.py:421
 msgid "RGB Config (acer-gkbbl-0)"
@@ -139,10 +238,6 @@ msgstr ""
 msgid "Apply [ACTIVE] on startup"
 msgstr ""
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:286
-msgid "Extend max speed"
-msgstr ""
-
 #: ../rgb_config_acer_gkbbl_0_wx.py:289
 msgid "Options"
 msgstr ""
@@ -199,9 +294,5 @@ msgstr ""
 
 #: ../rgb_config_acer_gkbbl_0_wx.py:433
 msgid "RGB Config (acer-gkbbl-0) on GitHub"
-msgstr ""
-
-#: ../rgb_config_acer_gkbbl_0_wx.py:436
-msgid "Close"
 msgstr ""
 

@@ -14,6 +14,9 @@
 ## View the acompaning LICENSE file for additional licensing information
 #################################################################################################
 
+import gettext
+_ = gettext.gettext
+
 # Error message if wxPython is not available
 WXPYTHON_NOT_AVAILABLE = "wxPython not available\n\n" \
                          "Please install wxPython via your distributions package manager or python3 pip.\n\n" \
@@ -100,7 +103,7 @@ class AcerRGBGUI_Tray(TaskBarIcon):
         self.parent = parent
 
         # Set tray icon
-        self.SetIcon(wx.Icon('./icon.png', wx.BITMAP_TYPE_PNG), "RGB Config")
+        self.SetIcon(wx.Icon('./icon.png', wx.BITMAP_TYPE_PNG), _("RGB Config"))
 
         # Static bindings for hide / restore and quit
         self.Bind(wx.EVT_MENU, self.on_toggle_gui        , id=1)
@@ -124,8 +127,8 @@ class AcerRGBGUI_Tray(TaskBarIcon):
         menu.AppendSeparator()
 
         # Add static menu items
-        menu.Append(1, "RGB Config")
-        menu.Append(2, "Close")
+        menu.Append(1, _("RGB Config"))
+        menu.Append(2, _("Close"))
 
         return menu
 
@@ -179,7 +182,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
         self.SetIcon(wx.Icon('./icon.png', wx.BITMAP_TYPE_PNG))
 
         # Set app title
-        self.SetTitle("RGB Config (acer-gkbbl-0) " + VERSION)
+        self.SetTitle(_("RGB Config (acer-gkbbl-0) ") + VERSION)
 
         # Defince color widgets
         self.colorWidgets = [
@@ -244,17 +247,17 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
         # Check RGB Devices available
         # - show error message in log when device not found
         if os.path.exists(RGB_DEVICE):
-            self.appLog("RGB device " + RGB_DEVICE + " detected")
+            self.appLog(_("RGB device %s detected") % RGB_DEVICE)
         else:
-            self.errLog("ERROR: RGB device " + RGB_DEVICE + " not found")
-            self.appLog("Install instructions:")
+            self.errLog(_("ERROR: RGB device %s not found") % RGB_DEVICE)
+            self.appLog(_("Install instructions:"))
             self.urlLog("https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module")
 
         if os.path.exists(RGB_DEVICE_STATIC):
-            self.appLog("Static RGB device " + RGB_DEVICE_STATIC + " detected")
+            self.appLog(_("Static RGB device %s detected") % RGB_DEVICE_STATIC)
         else:
-            self.errLog("ERROR: Static RGB device " + RGB_DEVICE_STATIC + " not found")
-            self.appLog("Install instructions:")
+            self.errLog(_("ERROR: Static RGB device %s not found") % RGB_DEVICE_STATIC)
+            self.appLog(_("Install instructions:"))
             self.urlLog("https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module")
 
 
@@ -405,12 +408,12 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
     def on_menu_extendSpeed(self, event):
         # Confirm speed extension with user
         if self.menuItem_extendSpeed.IsChecked():
-            dlg = wx.MessageDialog(self, "Offical Acer software only allows speed values between 0 and 9.\n\n" \
-                                        "In theory the acer-gkbbl-0 kernel module accepts speed values between 0 and 255. " \
-                                        "Values above the standard limit of 9 might yield undesired results.\n\n" \
-                                        "It is advised to proceed with caution.\n\n" \
-                                        "Are you sure you want to extend the speed limit?"
-                                        , "Extend max speed", wx.YES_NO)
+            dlg = wx.MessageDialog(self, _("Offical Acer software only allows speed values between 0 and 9.\n\n" \
+                                           "In theory the acer-gkbbl-0 kernel module accepts speed values between 0 and 255. " \
+                                           "Values above the standard limit of 9 might yield undesired results.\n\n" \
+                                           "It is advised to proceed with caution.\n\n" \
+                                           "Are you sure you want to extend the speed limit?")
+                                           , _("Extend max speed"), wx.YES_NO)
             res = dlg.ShowModal()
 
             if not res == wx.ID_YES:
@@ -474,7 +477,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
     # Event handler - menu about
     def on_menu_about(self, event):
         self.aboutDlg = AcerRGBGUI_About(self)
-        self.aboutDlg.SetTitle("About RGB Config (acer-gkbbl-0) " + VERSION)
+        self.aboutDlg.SetTitle(_("About RGB Config (acer-gkbbl-0) ") + VERSION)
         self.aboutDlg.ShowModal()
         self.aboutDlg = None
 
@@ -684,7 +687,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
         if self.preferences["extendSpeed"]:
             self.menuItem_extendSpeed.Check()
 
-        self.appLog("Preferences loaded: " + pref_file, (0, 190, 0))
+        self.appLog(_("Preferences loaded: ") + pref_file, (0, 190, 0))
 
 
     ####################
@@ -735,7 +738,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
                 # Sort profiles alphabetically
                 self.profiles.sort(reverse=True)
             
-        self.appLog("Profiles listed")
+        self.appLog(_("Profiles listed"))
 
 
     ####################
@@ -772,7 +775,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
                 with open(f"{profile}", 'rt') as file:
                     self.settings = {**self.settings, **json.load(file)}
 
-                self.appLog("Profile loaded: " + profile, (0, 190, 0))
+                self.appLog(_("Profile loaded: ") + profile, (0, 190, 0))
 
         # Restore RGB settings in dialog
         self.restoreRGBSettings()
@@ -786,7 +789,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
     def deleteProfile(self, profile):
 
         # Confirm profile deletion with user
-        dlg = wx.MessageDialog(self, "Delete \"" + profile + "\"?", "Delete profile", wx.YES_NO)
+        dlg = wx.MessageDialog(self, _("Delete \" %s \"?"), "Delete profile" % profile, wx.YES_NO)
         res = dlg.ShowModal()
 
         if res == wx.ID_YES:
@@ -797,7 +800,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
             if os.path.isfile(profile):
                 os.remove(profile)
 
-            self.appLog("Profile deleted: " + profile, (0, 190, 0))
+            self.appLog(_("Profile deleted: ") + profile, (0, 190, 0))
 
             # Refresh profile list
             self.listProfiles()
@@ -815,7 +818,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
 
         # Ask user for profile name if no name was provided
         if not len(profile):
-            dlg = wx.TextEntryDialog(self, "Profile name", "Save profile")
+            dlg = wx.TextEntryDialog(self, _("Profile name"), _("Save profile"))
             res = dlg.ShowModal()
 
         if res == wx.ID_OK or len(profile):
@@ -828,7 +831,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
                 with open(os.path.join(PROFILE_DIR, profile) + PROFILE_EXTENSION, "w") as file:
                     json.dump(self.settings, file, indent=4)
 
-            self.appLog("Profile saved: " + profile, (0, 190, 0))
+            self.appLog(_("Profile saved: ") + profile, (0, 190, 0))
 
             # Refresh profile list
             self.listProfiles()
@@ -845,7 +848,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
     def apply(self):
         # Check RGB device available
         if not os.path.exists(RGB_DEVICE):
-            self.errLog("RGB Device " + RGB_DEVICE + " not available")
+            self.errLog(_("RGB Device %s not available") % RGB_DEVICE)
             return 
 
         # Get current settings from dialog
@@ -857,7 +860,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
         if self.settings["mode"] == RGB_MODE_STATIC:
             # Check if static device available
             if not os.path.exists(RGB_DEVICE_STATIC):
-                self.errLog("RGB Device " + RGB_DEVICE_STATIC + " not available")
+                self.errLog(_("RGB Device %s not available") % RGB_DEVICE_STATIC)
                 return 
 
             # Write RGB Settings for each zone to static device
@@ -895,7 +898,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
             # Write to RGB device
             self.writePayload(RGB_DEVICE, pload)
 
-        self.appLog("Settings applied", (0, 190, 0))
+        self.appLog(_("Settings applied"), (0, 190, 0))
 
 
     ####################
@@ -907,7 +910,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
     def writePayload(self, device, pload):
         with open(device, "wb") as d:
             d.write(bytes(pload))
-            self.appLog("Payload written to " + device + ": " + str(pload))
+            self.appLog(_("Payload written to %s") % device + ": " + str(pload))
 
 
     #########################################
@@ -997,7 +1000,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
 # Create wxpython application
 class AcerRGBGUI(wx.App):
     def OnInit(self):
-        self.mainFrame = AcerRGBGUI_Frame(None, "Acer RGB Settings")
+        self.mainFrame = AcerRGBGUI_Frame(None, _("Acer RGB Settings"))
         self.SetTopWindow(self.mainFrame)
 
         # Don't show the main windows when preferences set to start minimized
