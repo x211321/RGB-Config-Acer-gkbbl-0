@@ -27,7 +27,7 @@ Make sure you have the **acer-gkbbl-0** kernel module installed before you proce
 ## .deb package
 For Debian based systems (Ubuntu, Mint, etc.) a **.deb** package is provided. Your system's package manager will manage all necessary dependencies.
 
-Download the **RGB_Config_acer-gkbbl-0_deb.deb** file from the [releases page](https://github.com/x211321/RGB-Config-Acer-gkbbl-0/releases). Depending on your system you can install the .deb file by double clicking it in your file manager or alternatively install it via the command line.
+Download the **RGB_Config_acer-gkbbl-0_\<VERSION>_deb.deb** file from the [releases page](https://github.com/x211321/RGB-Config-Acer-gkbbl-0/releases). Depending on your system you can install the .deb file by double clicking it in your file manager or alternatively install it via the command line.
 
 ```
 sudo dpkg -i RGB_Config_acer-gkbbl-0_<VERSION>_deb.deb
