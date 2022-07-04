@@ -18,11 +18,19 @@ for file in file_list:
     if file.endswith(".py"):
         files.append(path+file)
 
+path = "../lib/"
+
+file_list = os.listdir(path)
+
+for file in file_list:
+    if file.endswith(".py"):
+        files.append(path+file)
+
 print("Generating .po for:")
 for file in files:
     print(file)
 
-path = "../locale/"
+path = "../assets/locale/"
 
 if not os.path.exists(path):
     os.makedirs(path)

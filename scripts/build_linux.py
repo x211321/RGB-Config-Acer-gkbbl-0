@@ -7,7 +7,7 @@ from zipfile import ZipFile
 
 sys.path.append("../")
 
-from version import VERSION
+from lib.version import VERSION
 
 BUILD_DIR  = "build"
 BUNDLE_DIR = "RGB_Config_acer-gkbbl-0_" + VERSION + "_script"
@@ -32,13 +32,11 @@ os.chdir(BUILD_DIR)
 os.makedirs(BUNDLE_DIR)
 
 # Copy files to bundle dir
-shutil.copy("../../rgb_config_acer_gkbbl_0.py"   , os.path.join(BUNDLE_DIR, "rgb_config_acer_gkbbl_0.py"))
-shutil.copy("../../rgb_config_acer_gkbbl_0_wx.py", os.path.join(BUNDLE_DIR, "rgb_config_acer_gkbbl_0_wx.py"))
-shutil.copy("../../version.py"                    , os.path.join(BUNDLE_DIR, "version.py"))
-shutil.copy("../../icon.png"                      , os.path.join(BUNDLE_DIR, "icon.png"))
-shutil.copy("../../LICENSE"                       , os.path.join(BUNDLE_DIR, "LICENSE"))
-shutil.copy("../../README.md"                     , os.path.join(BUNDLE_DIR, "README.md"))
-shutil.copytree("../../preview_gif/"              , os.path.join(BUNDLE_DIR, "preview_gif/"))
+shutil.copy("../../rgb_config_acer_gkbbl_0.py", os.path.join(BUNDLE_DIR, "rgb_config_acer_gkbbl_0.py"))
+shutil.copy("../../LICENSE"                   , os.path.join(BUNDLE_DIR, "LICENSE"))
+shutil.copy("../../README.md"                 , os.path.join(BUNDLE_DIR, "README.md"))
+shutil.copytree("../../lib/"                  , os.path.join(BUNDLE_DIR, "lib/"))
+shutil.copytree("../../assets/"               , os.path.join(BUNDLE_DIR, "assets/"))
 
 # Zip bundle
 zip = ZipFile(BUNDLE_DIR + ".zip", "w")

@@ -14,14 +14,35 @@
 ## View the acompaning LICENSE file for additional licensing information
 #################################################################################################
 
+import os
+import json
+import pathlib
+import webbrowser
+import subprocess
+
+import lib.ui as ui
+import lib.var as var
+from lib.prefs import app_preferences
+from lib.version import VERSION
+
+
+# Set app language
+if len(app_preferences["language"]):
+    os.environ["LANGUAGE"]=app_preferences["language"]
+
+# Settup gettext
 import gettext
+gettext.bindtextdomain("rgb_config_acer_gkbbl_0", os.path.join(os.path.abspath(os.path.dirname(__file__)), "assets", "locale"))
+gettext.textdomain("rgb_config_acer_gkbbl_0")
 _ = gettext.gettext
 
+
 # Error message if wxPython is not available
-WXPYTHON_NOT_AVAILABLE = "wxPython not available\n\n" \
-                         "Please install wxPython via your distributions package manager or python3 pip.\n\n" \
-                         "e.g.\napt install python3-wxgtk4.0\n\n" \
-                         "Visit\nhttps://wxpython.org/\nfor more information"
+WXPYTHON_NOT_AVAILABLE = _("wxPython not available\n\n" \
+                           "Please install wxPython via your distributions package manager or python3 pip.\n\n" \
+                           "e.g.\napt install python3-wxgtk4.0\n\n" \
+                           "Visit\nhttps://wxpython.org/\nfor more information")
+
 
 # Try importing wxPython
 # give error message if not available
@@ -29,7 +50,7 @@ try:
     import wx
 except ImportError:
     # Print error to console
-    print("Error", WXPYTHON_NOT_AVAILABLE)
+    print(_("Error"), WXPYTHON_NOT_AVAILABLE)
 
     try:
         # Try importing tkinter to show error messagebox
@@ -37,7 +58,7 @@ except ImportError:
         from tkinter import messagebox
         tk = Tk()
         tk.withdraw()
-        messagebox.showerror("Error", WXPYTHON_NOT_AVAILABLE)
+        messagebox.showerror(_("Error"), WXPYTHON_NOT_AVAILABLE)
         tk.destroy()
     except ImportError:
         # If tkinter is also not available: hope the user
@@ -46,115 +67,17 @@ except ImportError:
 
     exit()
 
-# Imports without external dependencies
-import os
-import json
-import pathlib
-import webbrowser
-import subprocess
-
-# App GUI managed by wxFormBuilder
-import rgb_config_acer_gkbbl_0_wx
-
-# Version
-from version import VERSION
-
-# Advanced wxPython imports
-from wx.adv import TaskBarIcon
-
-# RGB-Mode constants
-RGB_MODE_STATIC   = 0
-RGB_MODE_BREATH   = 1
-RGB_MODE_NEON     = 2
-RGB_MODE_WAVE     = 3
-RGB_MODE_SHIFTING = 4
-RGB_MODE_ZOOM     = 5
-
-# Payload sizes
-RGB_PAYLOAD_SIZE         = 16
-RGB_STATIC_PAYLOAD_SIZE  = 4
-
-# RGB kernel devices
-RGB_DEVICE        = "/dev/acer-gkbbl-0"
-RGB_DEVICE_STATIC = "/dev/acer-gkbbl-static-0"
-
-# Profile directory
-#   profiles are ment to be compatible with the facer_rgb.py script
-#   that comes with JafarAkhondali's kernel module
-#   https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module
-PROFILE_DIR = str(pathlib.Path.home()) + "/.config/predator/saved profiles"
-
-# Miscellaneous constants
-DYNAMIC_TRAY_START = 5
-ACTIVE_PROFILE     = "[ACTIVE]"
-PROFILE_EXTENSION  = ".json"
-PREFERENCE_DIR     = str(pathlib.Path.home()) + "/.config/rgb_config_acer_gkbbl_0"
-PREFERENCE_FILE    = "preferences.json"
-
-
-####################
-# class AcerRGBGUI_Tray
-#-------------------
-# Handles tray icon
-class AcerRGBGUI_Tray(TaskBarIcon):
-    def __init__(self, parent):
-        TaskBarIcon.__init__(self)
-
-        self.parent = parent
-
-        # Set tray icon
-        self.SetIcon(wx.Icon('./icon.png', wx.BITMAP_TYPE_PNG), _("RGB Config"))
-
-        # Static bindings for hide / restore and quit
-        self.Bind(wx.EVT_MENU, self.on_toggle_gui        , id=1)
-        self.Bind(wx.EVT_MENU, self.parent.on_force_close, id=2)
-
-        # Hide / restore main window on left click
-        self.Bind(wx.adv.EVT_TASKBAR_LEFT_DOWN, self.on_toggle_gui)
-
-    def CreatePopupMenu(self):
-        menu   = wx.Menu()
-        menuID = DYNAMIC_TRAY_START
-
-        # Add available profiles dynamically
-        for profile in self.parent.profiles:
-            menu.Append(menuID, profile)
-            self.Bind(wx.EVT_MENU, self.on_quick_profile, id=menuID)
-
-            menuID += 1
-
-        # Separate profiles from static menu items
-        menu.AppendSeparator()
-
-        # Add static menu items
-        menu.Append(1, _("RGB Config"))
-        menu.Append(2, _("Close"))
-
-        return menu
-
-    def on_toggle_gui(self, event):
-        if self.parent.IsShown():
-            self.parent.Hide()
-
-            # Destroy about dialog if open
-            if self.parent.aboutDlg:
-                self.parent.aboutDlg.Destroy()
-                self.parent.aboutDlg = None
-        else:
-            self.parent.Show()
-
-    def on_quick_profile(self, event):
-        self.parent.loadProfile(self.parent.profiles[event.Id-DYNAMIC_TRAY_START])
-        self.parent.apply()
+# Must be importet after wx
+from lib.tray import AcerRGBGUI_Tray
 
 
 ####################
 # class AcerRGBGUI_About
 #-------------------
 # Extend wx wxPython About dialog
-class AcerRGBGUI_About(rgb_config_acer_gkbbl_0_wx.dialog_about):
+class AcerRGBGUI_About(ui.dialog_about):
     def __init__(self, parent):
-        rgb_config_acer_gkbbl_0_wx.dialog_about.__init__(self, parent)
+        ui.dialog_about.__init__(self, parent)
 
     def on_button_about_close_click(self, event):
         self.Destroy()
@@ -164,7 +87,7 @@ class AcerRGBGUI_About(rgb_config_acer_gkbbl_0_wx.dialog_about):
 # class AcerRGBGUI_Frame
 #-------------------
 # Extend wx wxPython Frame
-class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
+class AcerRGBGUI_Frame(ui.frame_main):
 
     #########################################
     ## MAIN WINDOW INIT
@@ -174,12 +97,12 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
     # __init__
     #-------------------
     def __init__(self, parent, title):
-        rgb_config_acer_gkbbl_0_wx.frame_main.__init__(self, parent)
+        ui.frame_main.__init__(self, parent)
 
         self.aboutDlg = None
 
         # Set app icon
-        self.SetIcon(wx.Icon('./icon.png', wx.BITMAP_TYPE_PNG))
+        self.SetIcon(wx.Icon('./assets/icon.png', wx.BITMAP_TYPE_PNG))
 
         # Set app title
         self.SetTitle(_("RGB Config (acer-gkbbl-0) ") + VERSION)
@@ -194,20 +117,17 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
 
         # Define the different widget states in regard to the selected RGB mode
         self.widgetStates = [
-            {"mode": RGB_MODE_STATIC  , "speed": 0, "direction": 0, "colors": (1,1,1,1), "animation": "preview_static"},
-            {"mode": RGB_MODE_BREATH  , "speed": 1, "direction": 0, "colors": (1,0,0,0), "animation": "preview_breath"},
-            {"mode": RGB_MODE_NEON    , "speed": 1, "direction": 0, "colors": (0,0,0,0), "animation": "preview_neon"},
-            {"mode": RGB_MODE_WAVE    , "speed": 1, "direction": 1, "colors": (0,0,0,0), "animation": "preview_wave"},
-            {"mode": RGB_MODE_SHIFTING, "speed": 1, "direction": 1, "colors": (1,0,0,0), "animation": "preview_shifting"},
-            {"mode": RGB_MODE_ZOOM    , "speed": 1, "direction": 0, "colors": (1,0,0,0), "animation": "preview_zoom"}
+            {"mode": var.RGB_MODE_STATIC  , "speed": 0, "direction": 0, "colors": (1,1,1,1), "animation": "preview_static"},
+            {"mode": var.RGB_MODE_BREATH  , "speed": 1, "direction": 0, "colors": (1,0,0,0), "animation": "preview_breath"},
+            {"mode": var.RGB_MODE_NEON    , "speed": 1, "direction": 0, "colors": (0,0,0,0), "animation": "preview_neon"},
+            {"mode": var.RGB_MODE_WAVE    , "speed": 1, "direction": 1, "colors": (0,0,0,0), "animation": "preview_wave"},
+            {"mode": var.RGB_MODE_SHIFTING, "speed": 1, "direction": 1, "colors": (1,0,0,0), "animation": "preview_shifting"},
+            {"mode": var.RGB_MODE_ZOOM    , "speed": 1, "direction": 0, "colors": (1,0,0,0), "animation": "preview_zoom"}
         ]
 
         # Create config directories
-        if not os.path.exists(PROFILE_DIR):
-            os.makedirs(PROFILE_DIR)
-
-        if not os.path.exists(PREFERENCE_DIR):
-            os.makedirs(PREFERENCE_DIR)
+        if not os.path.exists(var.PROFILE_DIR):
+            os.makedirs(var.PROFILE_DIR)
 
         # Load app preferences
         self.preferences = {}
@@ -218,7 +138,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
         self.listProfiles()
 
         # Load last applied settigs
-        self.loadProfile(ACTIVE_PROFILE)
+        self.loadProfile(var.ACTIVE_PROFILE)
 
         # Create tray icon
         if self.preferences["tray"]:
@@ -246,17 +166,17 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
 
         # Check RGB Devices available
         # - show error message in log when device not found
-        if os.path.exists(RGB_DEVICE):
-            self.appLog(_("RGB device %s detected") % RGB_DEVICE)
+        if os.path.exists(var.RGB_DEVICE):
+            self.appLog(_("RGB device %s detected") % var.RGB_DEVICE)
         else:
-            self.errLog(_("ERROR: RGB device %s not found") % RGB_DEVICE)
+            self.errLog(_("ERROR: RGB device %s not found") % var.RGB_DEVICE)
             self.appLog(_("Install instructions:"))
             self.urlLog("https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module")
 
-        if os.path.exists(RGB_DEVICE_STATIC):
-            self.appLog(_("Static RGB device %s detected") % RGB_DEVICE_STATIC)
+        if os.path.exists(var.RGB_DEVICE_STATIC):
+            self.appLog(_("Static RGB device %s detected") % var.RGB_DEVICE_STATIC)
         else:
-            self.errLog(_("ERROR: Static RGB device %s not found") % RGB_DEVICE_STATIC)
+            self.errLog(_("ERROR: Static RGB device %s not found") % var.RGB_DEVICE_STATIC)
             self.appLog(_("Install instructions:"))
             self.urlLog("https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module")
 
@@ -357,7 +277,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
     #-------------------
     # Event handler - open profile folder
     def on_menu_openProfileFolder(self, event):
-        subprocess.Popen(["xdg-open", PROFILE_DIR])
+        subprocess.Popen(["xdg-open", var.PROFILE_DIR])
 
 
     ####################
@@ -501,11 +421,11 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
     # Plays preview animation according to the selected RGB mode
     def setPreviewAnimation(self):
         # Default none-preview
-        file = "./preview_gif/preview_none.gif"
+        file = "./assets/preview_gif/preview_none.gif"
 
         # Set specific preview when previews enabled
         if self.preferences["preview"]:
-            file = os.path.join("./preview_gif/", self.widgetStates[self.choise_mode.GetSelection()]["animation"]) + ".gif"
+            file = os.path.join("./assets/preview_gif/", self.widgetStates[self.choise_mode.GetSelection()]["animation"]) + ".gif"
 
         # Load animation and play
         self.animation_preview.LoadFile(file, wx.adv.ANIMATION_TYPE_GIF)
@@ -640,25 +560,9 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
     #-------------------
     # Load app preferences
     def loadPreferences(self):
-        # Set default preferences
-        self.preferences = {
-            "tray"          : False,
-            "log"           : True,
-            "profiles"      : True,
-            "preview"       : True,
-            "startMinimized": False,
-            "closeToTray"   : False,
-            "applyStart"    : False,
-            "extendSpeed"   : False
-        }
-
-        # Get path to preference file
-        pref_file = os.path.join(PREFERENCE_DIR, PREFERENCE_FILE)
-
-        if os.path.isfile(pref_file):
-            # Read preferences from file and merge with default preferences
-            with open(f"{pref_file}", 'rt') as file:
-                self.preferences = {**self.preferences, **json.load(file)}
+        # Get global app preferences
+        global app_preferences
+        self.preferences = app_preferences
 
         # Restore preferences
         if self.preferences["tray"]:
@@ -687,8 +591,6 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
         if self.preferences["extendSpeed"]:
             self.menuItem_extendSpeed.Check()
 
-        self.appLog(_("Preferences loaded: ") + pref_file, (0, 190, 0))
-
 
     ####################
     # savePreferences
@@ -710,7 +612,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
             self.menuItem_closeToTray.Enable()
 
         # Save preferences to file
-        with open(os.path.join(PREFERENCE_DIR, PREFERENCE_FILE), "w") as file:
+        with open(os.path.join(var.PREFERENCE_DIR, var.PREFERENCE_FILE), "w") as file:
             json.dump(self.preferences, file, indent=4)
 
 
@@ -727,8 +629,8 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
         self.profiles = []
 
         # Search for profiles in profile dir
-        for file in os.listdir(PROFILE_DIR):
-            if os.path.isfile(os.path.join(PROFILE_DIR, file)):
+        for file in os.listdir(var.PROFILE_DIR):
+            if os.path.isfile(os.path.join(var.PROFILE_DIR, file)):
                 # Add profile to listbox
                 self.list_profiles.Append(pathlib.Path(file).stem)
 
@@ -750,7 +652,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
         if len(profile):
             # Generate default RGB settings
             self.settings = {
-                "mode" : RGB_MODE_WAVE,
+                "mode" : var.RGB_MODE_WAVE,
                 "zone" : 1,
                 "speed": 3,
                 "brightness": 100,
@@ -767,7 +669,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
             }
 
             # Get profile path
-            profile = os.path.join(PROFILE_DIR, profile) + PROFILE_EXTENSION
+            profile = os.path.join(var.PROFILE_DIR, profile) + var.PROFILE_EXTENSION
 
             # Check if profile available
             if os.path.isfile(profile):
@@ -789,12 +691,12 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
     def deleteProfile(self, profile):
 
         # Confirm profile deletion with user
-        dlg = wx.MessageDialog(self, _("Delete \" %s \"?"), "Delete profile" % profile, wx.YES_NO)
+        dlg = wx.MessageDialog(self, _("Delete \"%s\"?")  % profile, _("Delete profile"), wx.YES_NO)
         res = dlg.ShowModal()
 
         if res == wx.ID_YES:
             # Get profile path
-            profile = os.path.join(PROFILE_DIR, profile) + PROFILE_EXTENSION
+            profile = os.path.join(var.PROFILE_DIR, profile) + var.PROFILE_EXTENSION
 
             # Delete profile
             if os.path.isfile(profile):
@@ -828,7 +730,7 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
             
             # Save profile to file
             if len(profile):
-                with open(os.path.join(PROFILE_DIR, profile) + PROFILE_EXTENSION, "w") as file:
+                with open(os.path.join(var.PROFILE_DIR, profile) + var.PROFILE_EXTENSION, "w") as file:
                     json.dump(self.settings, file, indent=4)
 
             self.appLog(_("Profile saved: ") + profile, (0, 190, 0))
@@ -847,27 +749,27 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
     # Apply current settings to kernel device
     def apply(self):
         # Check RGB device available
-        if not os.path.exists(RGB_DEVICE):
-            self.errLog(_("RGB Device %s not available") % RGB_DEVICE)
+        if not os.path.exists(var.RGB_DEVICE):
+            self.errLog(_("RGB Device %s not available") % var.RGB_DEVICE)
             return 
 
         # Get current settings from dialog
         self.getRGBSettings()
 
         # Save current settings as [ACTIVE] profile
-        self.saveProfile(ACTIVE_PROFILE)
+        self.saveProfile(var.ACTIVE_PROFILE)
 
-        if self.settings["mode"] == RGB_MODE_STATIC:
+        if self.settings["mode"] == var.RGB_MODE_STATIC:
             # Check if static device available
-            if not os.path.exists(RGB_DEVICE_STATIC):
-                self.errLog(_("RGB Device %s not available") % RGB_DEVICE_STATIC)
+            if not os.path.exists(var.RGB_DEVICE_STATIC):
+                self.errLog(_("RGB Device %s not available") % var.RGB_DEVICE_STATIC)
                 return 
 
             # Write RGB Settings for each zone to static device
             for zone, color in enumerate(self.settings["colors"]):
 
                 # Set zone coloring
-                pload = [0] * RGB_STATIC_PAYLOAD_SIZE
+                pload = [0] * var.RGB_STATIC_PAYLOAD_SIZE
 
                 pload[0] = zone + 1
                 pload[1] = color["red"]
@@ -875,28 +777,28 @@ class AcerRGBGUI_Frame(rgb_config_acer_gkbbl_0_wx.frame_main):
                 pload[3] = color["blue"]
 
                 # Write to Static device
-                self.writePayload(RGB_DEVICE_STATIC, pload)
+                self.writePayload(var.RGB_DEVICE_STATIC, pload)
 
             # Activate Static mode
-            pload = [0] * RGB_PAYLOAD_SIZE
+            pload = [0] * var.RGB_PAYLOAD_SIZE
             pload[2] = self.settings["brightness"]
 
             # Write to RGB device
-            self.writePayload(RGB_DEVICE, pload)
+            self.writePayload(var.RGB_DEVICE, pload)
         else:
             # Dynamic RGB mode
-            pload = [0] * RGB_PAYLOAD_SIZE
+            pload = [0] * var.RGB_PAYLOAD_SIZE
             pload[0] = self.settings["mode"]
             pload[1] = self.settings["speed"]
             pload[2] = self.settings["brightness"]
-            pload[3] = 8 if self.settings["mode"] == RGB_MODE_WAVE else 0
+            pload[3] = 8 if self.settings["mode"] == var.RGB_MODE_WAVE else 0
             pload[4] = self.settings["direction"]
             pload[5] = self.settings["red"]
             pload[6] = self.settings["green"]
             pload[7] = self.settings["blue"]
 
             # Write to RGB device
-            self.writePayload(RGB_DEVICE, pload)
+            self.writePayload(var.RGB_DEVICE, pload)
 
         self.appLog(_("Settings applied"), (0, 190, 0))
 

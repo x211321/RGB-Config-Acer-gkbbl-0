@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2022-07-03 21:10+0200\n"
-"PO-Revision-Date: 2022-07-04 19:54+0200\n"
+"PO-Revision-Date: 2022-07-04 20:59+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -16,27 +16,27 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: Poedit 2.3\n"
 
-#: ../rgb_config_acer_gkbbl_0.py:416 ../rgb_config_acer_gkbbl_0_wx.py:286
+#: ../lib/ui.py:286 ../rgb_config_acer_gkbbl_0.py:336
 msgid "Extend max speed"
 msgstr "Maximale Geschwindigkeit erhöhen"
 
-#: ../rgb_config_acer_gkbbl_0.py:131 ../rgb_config_acer_gkbbl_0_wx.py:436
+#: ../lib/tray.py:45 ../lib/ui.py:436
 msgid "Close"
 msgstr "Schließen"
 
-#: ../rgb_config_acer_gkbbl_0.py:106 ../rgb_config_acer_gkbbl_0.py:130
+#: ../lib/tray.py:20 ../lib/tray.py:44
 msgid "RGB Config"
 msgstr "RGB Konfiguration"
 
-#: ../rgb_config_acer_gkbbl_0.py:185
+#: ../rgb_config_acer_gkbbl_0.py:108
 msgid "RGB Config (acer-gkbbl-0) "
 msgstr "RGB Konfiguration (acer-gkbbl-0) "
 
-#: ../rgb_config_acer_gkbbl_0.py:253 ../rgb_config_acer_gkbbl_0.py:260
+#: ../rgb_config_acer_gkbbl_0.py:173 ../rgb_config_acer_gkbbl_0.py:180
 msgid "Install instructions:"
 msgstr "Installationsanleitung:"
 
-#: ../rgb_config_acer_gkbbl_0.py:411
+#: ../rgb_config_acer_gkbbl_0.py:331
 msgid ""
 "Offical Acer software only allows speed values between 0 and 9.\n"
 "\n"
@@ -54,227 +54,219 @@ msgstr ""
 "\n"
 "Soll die maximale Geschwindigkeit erhöht werden?"
 
-#: ../rgb_config_acer_gkbbl_0.py:480
+#: ../rgb_config_acer_gkbbl_0.py:400
 msgid "About RGB Config (acer-gkbbl-0) "
 msgstr "Über RGB Konfiguration (acer-gkbbl-0) "
 
-#: ../rgb_config_acer_gkbbl_0.py:690
-msgid "Preferences loaded: "
-msgstr "Programmeinstellungen geladen: "
-
-#: ../rgb_config_acer_gkbbl_0.py:741
+#: ../rgb_config_acer_gkbbl_0.py:643
 msgid "Profiles listed"
 msgstr "Profile gelistet"
 
-#: ../rgb_config_acer_gkbbl_0.py:778
+#: ../rgb_config_acer_gkbbl_0.py:680
 msgid "Profile loaded: "
 msgstr "Profil geladen: "
 
-#: ../rgb_config_acer_gkbbl_0.py:803
+#: ../rgb_config_acer_gkbbl_0.py:705
 msgid "Profile deleted: "
 msgstr "Profil gelöscht: "
 
-#: ../rgb_config_acer_gkbbl_0.py:821
+#: ../rgb_config_acer_gkbbl_0.py:723
 msgid "Profile name"
 msgstr "Profilname"
 
-#: ../rgb_config_acer_gkbbl_0.py:821
+#: ../rgb_config_acer_gkbbl_0.py:723
 msgid "Save profile"
 msgstr "Profil speichern"
 
-#: ../rgb_config_acer_gkbbl_0.py:834
+#: ../rgb_config_acer_gkbbl_0.py:736
 msgid "Profile saved: "
 msgstr "Profil gespeichert: "
 
-#: ../rgb_config_acer_gkbbl_0.py:901
+#: ../rgb_config_acer_gkbbl_0.py:803
 msgid "Settings applied"
 msgstr "Einstellungen angewandt"
 
-#: ../rgb_config_acer_gkbbl_0.py:1003
+#: ../rgb_config_acer_gkbbl_0.py:905
 msgid "Acer RGB Settings"
 msgstr "Acer RGB Einstellungen"
 
-#: ../rgb_config_acer_gkbbl_0.py:252
+#: ../rgb_config_acer_gkbbl_0.py:172
 msgid "ERROR: RGB device %s not found"
 msgstr "FEHLER: RGB Gerät %s nicht gefunden"
 
-#: ../rgb_config_acer_gkbbl_0.py:257
+#: ../rgb_config_acer_gkbbl_0.py:177
 msgid "Static RGB device %s detected"
 msgstr "Statisches RGB Gerät %s erkannt"
 
-#: ../rgb_config_acer_gkbbl_0.py:259
+#: ../rgb_config_acer_gkbbl_0.py:179
 msgid "ERROR: Static RGB device %s not found"
 msgstr "FEHLER: Statisches RGB Gerät %s nicht gefunden"
 
-#: ../rgb_config_acer_gkbbl_0.py:792
-msgid "Delete \" %s \"?"
-msgstr "\"%s\" löschen?"
-
-#: ../rgb_config_acer_gkbbl_0.py:851 ../rgb_config_acer_gkbbl_0.py:863
+#: ../rgb_config_acer_gkbbl_0.py:753 ../rgb_config_acer_gkbbl_0.py:765
 msgid "RGB Device %s not available"
 msgstr "RGB Gerät %s nicht verfügbar"
 
-#: ../rgb_config_acer_gkbbl_0.py:913
+#: ../rgb_config_acer_gkbbl_0.py:815
 msgid "Payload written to %s"
 msgstr "Payload nach %s geschrieben"
 
-#: ../rgb_config_acer_gkbbl_0.py:250
+#: ../rgb_config_acer_gkbbl_0.py:170
 msgid "RGB device %s detected"
 msgstr "RGB Gerät %s erkannt"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:25 ../rgb_config_acer_gkbbl_0_wx.py:421
+#: ../lib/ui.py:25 ../lib/ui.py:421
 msgid "RGB Config (acer-gkbbl-0)"
 msgstr "RGB Config (acer-gkbbl-0)"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:48
+#: ../lib/ui.py:48
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:60
+#: ../lib/ui.py:60
 msgid "RGB Mode"
 msgstr "RGB Modus"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:67
+#: ../lib/ui.py:67
 msgid "Breath"
 msgstr "Breath"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:67
+#: ../lib/ui.py:67
 msgid "Neon"
 msgstr "Neon"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:67
+#: ../lib/ui.py:67
 msgid "Shifting"
 msgstr "Shifting"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:67
+#: ../lib/ui.py:67
 msgid "Static"
 msgstr "Static"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:67
+#: ../lib/ui.py:67
 msgid "Wave"
 msgstr "Wave"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:67
+#: ../lib/ui.py:67
 msgid "Zoom"
 msgstr "Zoom"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:83
+#: ../lib/ui.py:83
 msgid "Brightness"
 msgstr "Helligkeit"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:96
+#: ../lib/ui.py:96
 msgid "Speed"
 msgstr "Geschwindigkeit"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:109
+#: ../lib/ui.py:109
 msgid "Direction"
 msgstr "Richtung"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:114
+#: ../lib/ui.py:114
 msgid "Left to Right"
 msgstr "Links nach Rechts"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:117
+#: ../lib/ui.py:117
 msgid "Right to Left"
 msgstr "Rechts nach Links"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:125
+#: ../lib/ui.py:125
 msgid "Color section 1"
 msgstr "Farbe für Abschnitt 1"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:138
+#: ../lib/ui.py:138
 msgid "Color section 2"
 msgstr "Farbe für Abschnitt 2"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:151
+#: ../lib/ui.py:151
 msgid "Color section 3"
 msgstr "Farbe für Abschnitt 3"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:164
+#: ../lib/ui.py:164
 msgid "Color section 4"
 msgstr "Farbe für Abschnitt 4"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:180
+#: ../lib/ui.py:180
 msgid "Save as profile"
 msgstr "Als Profil speichern"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:183
+#: ../lib/ui.py:183
 msgid "Apply"
 msgstr "Anwenden"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:199
+#: ../lib/ui.py:199
 msgid "Profiles"
 msgstr "Profile"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:218
+#: ../lib/ui.py:218
 msgid "Refresh"
 msgstr "Aktualisieren"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:221
+#: ../lib/ui.py:221
 msgid "Delete"
 msgstr "Löschen"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:224
+#: ../lib/ui.py:224
 msgid "Load"
 msgstr "Laden"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:263
+#: ../lib/ui.py:263
 msgid "Open profile folder"
 msgstr "Profilordner öffnen"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:266
+#: ../lib/ui.py:266
 msgid "Quit"
 msgstr "Beenden"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:269
+#: ../lib/ui.py:269
 msgid "File"
 msgstr "Datei"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:272
+#: ../lib/ui.py:272
 msgid "Show tray icon"
 msgstr "Tray icon anzeigen"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:275
+#: ../lib/ui.py:275
 msgid "Start minimized"
 msgstr "Minimiert starten"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:278
+#: ../lib/ui.py:278
 msgid "Close to tray"
 msgstr "Beim schließen in System Tray minimieren"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:283
+#: ../lib/ui.py:283
 msgid "Apply [ACTIVE] on startup"
 msgstr "[ACTIVE] Profil beim Programmstart anwenden"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:289
+#: ../lib/ui.py:289
 msgid "Options"
 msgstr "Optionen"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:292
+#: ../lib/ui.py:292
 msgid "Show log"
 msgstr "Log anzeigen"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:295
+#: ../lib/ui.py:295
 msgid "Show profiles"
 msgstr "Profile anzeigen"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:298
+#: ../lib/ui.py:298
 msgid "Show preview"
 msgstr "Vorschau anzeigen"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:301
+#: ../lib/ui.py:301
 msgid "View"
 msgstr "Anzeige"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:304 ../rgb_config_acer_gkbbl_0_wx.py:415
+#: ../lib/ui.py:304 ../lib/ui.py:415
 msgid "About RGB Config (acer-gkbbl-0)"
 msgstr "Über RGB Config (acer-gkbbl-0)"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:307
+#: ../lib/ui.py:307
 msgid "About"
 msgstr "Über"
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:428
+#: ../lib/ui.py:428
 msgid ""
 "MIT License\n"
 "\n"
@@ -322,6 +314,47 @@ msgstr ""
 "FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR \n"
 "OTHER DEALINGS IN THE SOFTWARE."
 
-#: ../rgb_config_acer_gkbbl_0_wx.py:433
+#: ../lib/ui.py:433
 msgid "RGB Config (acer-gkbbl-0) on GitHub"
 msgstr "RGB Config (acer-gkbbl-0) auf GitHub"
+
+#: ../rgb_config_acer_gkbbl_0.py:41
+msgid ""
+"wxPython not available\n"
+"\n"
+"Please install wxPython via your distributions package manager or python3 pip.\n"
+"\n"
+"e.g.\n"
+"apt install python3-wxgtk4.0\n"
+"\n"
+"Visit\n"
+"https://wxpython.org/\n"
+"for more information"
+msgstr ""
+"wxPython ist nicht verfügbar\n"
+"\n"
+"wxPython kann über die Paketverwaltung Ihres Systems oder via python3 pip installiert werden.\n"
+"\n"
+"z.B.\n"
+"apt install python3-wxgtk4.0\n"
+"\n"
+"https://wxpython.org/\n"
+"für weitere informationen"
+
+#: ../rgb_config_acer_gkbbl_0.py:53 ../rgb_config_acer_gkbbl_0.py:61
+msgid "Error"
+msgstr "Fehler"
+
+#: ../rgb_config_acer_gkbbl_0.py:694
+msgid "Delete \"%s\"?"
+msgstr "\"%s\" löschen?"
+
+#: ../rgb_config_acer_gkbbl_0.py:694
+msgid "Delete profile"
+msgstr "Profil löschen"
+
+#~ msgid "Preferences loaded: "
+#~ msgstr "Programmeinstellungen geladen: "
+
+#~ msgid "Delete \" %s \"?"
+#~ msgstr "\"%s\" löschen?"
