@@ -1,12 +1,12 @@
 #  RGB-Config-Acer-gkbbl-0
-A simple GUI for controlling the RGB settings of the acer-gkbbl-0 RGB device
+A simple GUI for controlling RGB settings of the Acer-WMI kernel module via the acer-gkbbl-0 character device
 
 Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) for information on the kernel module
 
 ![Main window](./img/screenshots/main_window.png)
 
 # Features
- * Configure RGB settings of the acer-gkbbl-0 RGB device
+ * Configure RGB settings of the Acer-WMI kernel module via the acer-gkbbl-0 character device
  * Supports all available RGB modes (Static, Breath, Neon, Wave, Shifting and Zoom)
  * Settings can be saved as profiles
  * Tray icon for quick profile change (on supported systems)
@@ -14,13 +14,13 @@ Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-pre
  * Animated preview for selected RGB mode 
 
 # Restrictions
- * acer-gkbbl-0 RGB device must be installed separately
+ * Compatible Acer-WMI kernel module must be installed separately
  * Compatibility depends on the specific laptop model and its compatibility with the kernel module
  * The **static** RGB mode does not work with my specific laptop and is thus untestet
  * The tray icon only works in desktop environments that are compatible with classic system tray
 
 # Installation
-Make sure you have the **acer-gkbbl-0** RGB device installed before you proceed with the installation of this application, otherwise it will have no effect. Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) for more information on the needed kernel module.
+Make sure you have the **acer-gkbbl-0** RGB device available before you proceed with the installation of this application, otherwise it will have no effect. Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) for more information on the needed kernel module.
 
 **RGB-Config-Acer-gkbbl-0** is written in Python3, using the wxPython framework. Python3 is usually provided by most Linux distributions, wxPython must often be installed separately.
 
@@ -89,7 +89,7 @@ Hide the application to tray instead of closing it when the close button in the 
 Auomatically apply the last used RGB settings when the application is started. See the "Profiles" section for more information regarding profiles.
 
 ## Extend max speed
-Official Acer software only allows animation speeds between 0 and 9. The **acer-gkbbl-0** RGB device actually accepts values between 0 and 255, which depending on your specific system may or may not have an effect. Since speed values above 9 are not officially supported they are hidden by default. The "Extend max speed" option extends the speed range from 0-9 to 0-255. Results may vary.
+Official Acer software only allows animation speeds between 0 and 9. The **acer-gkbbl-0** character device actually accepts values between 0 and 255, which depending on your specific system may or may not have an effect. Since speed values above 9 are not officially supported they are hidden by default. The "Extend max speed" option extends the speed range from 0-9 to 0-255. Results may vary.
 
 # Profiles
 
@@ -97,7 +97,7 @@ Official Acer software only allows animation speeds between 0 and 9. The **acer-
 RGB settings can be saved as profiles. Simply configure your prefered settings and click on the **Save as profile** button. The application will ask for a profile name and store it in the profile directory.
 
 ## Load profiles
-Saved profiles are listed in the profile list on the right side of the application. Click on a profile and press the **Load** button to restore the profile settings. Loaded profiles are **not** automatically applyed to the RGB device and must first be activated via the **Apply** button. 
+Saved profiles are listed in the profile list on the right side of the application. Click on a profile and press the **Load** button to restore the profile settings. Loaded profiles are **not** automatically applyed to the character device and must first be activated via the **Apply** button. 
 
  * Profiles that are selected via the tray icon are directly applied and must not be activated separately.
 
@@ -105,7 +105,7 @@ Saved profiles are listed in the profile list on the right side of the applicati
 Select the profile you want to delete from the profile list and press the **Delete** button. The profile will be removed from the profile directory.
 
 ## The [ACTIVE] profile
-The [ACTIVE] profile is automatically generated whenever settings are applied to the RGB device. The [ACTIVE] profile thus represents the last used settings and is automatically restored whenever the application is started.
+The [ACTIVE] profile is automatically generated whenever settings are written to the character device. The [ACTIVE] profile thus represents the last used settings and is automatically restored whenever the application is started.
 
 ## Compatibility with facer_rgb.py
 The profiles that this application generates are compatible with the **facer_rgb** script that is provided by JafarAkhondali's **acer-predator-turbo-and-rgb-keyboard-linux-module**, with the exeption of static mode for which **RGB-Config-Acer-gkbbl-0** has implemented muliple colors per profile (one for each section of the keyboard). A static mode profile that was generated with **RGB-Config-Acer-gkbbl-0** would only apply the color of the first section when run with **facer_rgb**.
