@@ -82,6 +82,9 @@ Display a tray icon in the notification area where to **RGB-Config-Acer-gkbbl-0*
 ## Start minimized
 Automatically hide application uppon start. Indended for setups where the application is run on bootup (e.g. placed in your desktops auto start).
 
+ * Only activate this option when your system is compatible with the tray icon. Otherwise the application will be permanently hidden. 
+ * Should the need arise, options can be turned off in the config file: **~/.config/rgb_config_acer_gkbbl_0/preferences.json**
+
 ## Close to tray
 Hide the application to tray instead of closing it when the close button in the title bar is pressed. 
 
