@@ -1,12 +1,12 @@
 #  RGB-Config-Acer-gkbbl-0
-A simple GUI for controlling the RGB settings of the acer-gkbbl-0 kernel module
+A simple GUI for controlling the RGB settings of the acer-gkbbl-0 RGB device
 
 Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) for information on the kernel module
 
 ![Main window](./img/screenshots/main_window.png)
 
 # Features
- * Configure RGB settings of the acer-gkbbl-0 kernel module
+ * Configure RGB settings of the acer-gkbbl-0 RGB device
  * Supports all available RGB modes (Static, Breath, Neon, Wave, Shifting and Zoom)
  * Settings can be saved as profiles
  * Tray icon for quick profile change (on supported systems)
@@ -14,13 +14,13 @@ Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-pre
  * Animated preview for selected RGB mode 
 
 # Restrictions
- * acer-gkbbl-0 kernel module must be installed separately
- * Compatibility depends on the specific laptop model and its compatibility with the acer-gkbbl-0 kernel module
+ * acer-gkbbl-0 RGB device must be installed separately
+ * Compatibility depends on the specific laptop model and its compatibility with the kernel module
  * The **static** RGB mode does not work with my specific laptop and is thus untestet
  * The tray icon only works in desktop environments that are compatible with classic system tray
 
 # Installation
-Make sure you have the **acer-gkbbl-0** kernel module installed before you proceed with the installation of this application, otherwise it will have no effect. Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) for more information on the kernel module.
+Make sure you have the **acer-gkbbl-0** RGB device installed before you proceed with the installation of this application, otherwise it will have no effect. Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) for more information on the needed kernel module.
 
 **RGB-Config-Acer-gkbbl-0** is written in Python3, using the wxPython framework. Python3 is usually provided by most Linux distributions, wxPython must often be installed separately.
 
@@ -89,7 +89,7 @@ Hide the application to tray instead of closing it when the close button in the 
 Auomatically apply the last used RGB settings when the application is started. See the "Profiles" section for more information regarding profiles.
 
 ## Extend max speed
-Official Acer software only allows animation speeds between 0 and 9. The **acer-gkbbl-0** kernel module actually accepts values between 0 and 255, which depending on your specific system may or may not have an effect. Since speed values above 9 are not officially supported they are hidden by default. The "Extend max speed" option extends the speed range from 0-9 to 0-255. Results may vary.
+Official Acer software only allows animation speeds between 0 and 9. The **acer-gkbbl-0** RGB device actually accepts values between 0 and 255, which depending on your specific system may or may not have an effect. Since speed values above 9 are not officially supported they are hidden by default. The "Extend max speed" option extends the speed range from 0-9 to 0-255. Results may vary.
 
 # Profiles
 
