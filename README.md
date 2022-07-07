@@ -24,13 +24,19 @@ Make sure you have the **acer-gkbbl-0** RGB device available before you proceed 
 
 **RGB-Config-Acer-gkbbl-0** is written in Python3, using the wxPython framework. Python3 is usually provided by most Linux distributions, wxPython must often be installed separately.
 
-## .deb package
-For Debian based systems (Ubuntu, Mint, etc.) a **.deb** package is provided. Your system's package manager will manage all necessary dependencies.
+## .deb / .rpm package
+.deb (Debian, Ubuntu, Mint, etc.) and .rpm (Red Hat, Fedora, etc.) packages are available. Your system's package manager will manage all necessary dependencies.
 
-Download the **RGB_Config_acer-gkbbl-0_\<VERSION>_deb.deb** file from the [releases page](https://github.com/x211321/RGB-Config-Acer-gkbbl-0/releases). Depending on your system you can install the .deb file by double clicking it in your file manager or alternatively install it via the command line.
+Download the respective file from the [releases page](https://github.com/x211321/RGB-Config-Acer-gkbbl-0/releases). Depending on your system you can install the package by double clicking it in your file manager or alternatively install it via the command line.
 
+**.deb**
 ```
-sudo dpkg -i RGB_Config_acer-gkbbl-0_<VERSION>_deb.deb
+sudo dpkg -i ./RGB_Config_acer-gkbbl-0_v<VERSION>.deb
+```
+
+**.rpm**
+```
+sudo dnf install ./RGB_Config_acer-gkbbl-0_v<VERSION>.rpm
 ```
 
 After installation **RGB Config (acer-gkbbl-0)** should show up in your application launcher under both the **Settings** and **Utils** sections. 
@@ -44,13 +50,18 @@ rgb_config_acer_gkbbl_0
 ## Python script
 Python 3 should already be provided by most Linux distributions.
 
-Download the **RGB_Config_acer-gkbbl-0_\<VERSION>_script.zip** file from the [releases page](https://github.com/x211321/RGB-Config-Acer-gkbbl-0/releases) and extract it somewhere on your hard drive.
+Download the **RGB_Config_acer-gkbbl-0_\<VERSION>_script.tar.gz** file from the [releases page](https://github.com/x211321/RGB-Config-Acer-gkbbl-0/releases) and extract it somewhere on your hard drive.
 
 The required dependencies can be installed via your distributions package manager.
 
 **Debian/Ubuntu/Mint**
 ```
 sudo apt install python3-wxgtk4.0
+```
+
+**Red Hat/Fedora**
+```
+sudo dnf install python3-wxpython4
 ```
 
 **Arch Linux**
