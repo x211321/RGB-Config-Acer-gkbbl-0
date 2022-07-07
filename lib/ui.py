@@ -22,7 +22,7 @@ _ = gettext.gettext
 class frame_main ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"RGB Config (acer-gkbbl-0)"), pos = wx.DefaultPosition, size = wx.Size( 800,600 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"RGB Config (acer-gkbbl-0)"), pos = wx.DefaultPosition, size = wx.Size( 800,650 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 
@@ -231,7 +231,7 @@ class frame_main ( wx.Frame ):
         self.panel_right.SetSizer( vertical_profiles )
         self.panel_right.Layout()
         vertical_profiles.Fit( self.panel_right )
-        self.splitter_main_vertical.SplitVertically( self.panel_left, self.panel_right, 480 )
+        self.splitter_main_vertical.SplitVertically( self.panel_left, self.panel_right, 470 )
         vertical_top.Add( self.splitter_main_vertical, 1, wx.EXPAND, 5 )
 
 
@@ -248,7 +248,7 @@ class frame_main ( wx.Frame ):
         self.panel_bottom.SetSizer( vertical_bottom )
         self.panel_bottom.Layout()
         vertical_bottom.Fit( self.panel_bottom )
-        self.splitter_main_horizonzal.SplitHorizontally( self.panel_top, self.panel_bottom, 460 )
+        self.splitter_main_horizonzal.SplitHorizontally( self.panel_top, self.panel_bottom, 480 )
         vertical_main.Add( self.splitter_main_horizonzal, 1, wx.EXPAND, 5 )
 
 
@@ -400,11 +400,11 @@ class frame_main ( wx.Frame ):
         event.Skip()
 
     def splitter_main_horizonzalOnIdle( self, event ):
-        self.splitter_main_horizonzal.SetSashPosition( 460 )
+        self.splitter_main_horizonzal.SetSashPosition( 480 )
         self.splitter_main_horizonzal.Unbind( wx.EVT_IDLE )
 
     def splitter_main_verticalOnIdle( self, event ):
-        self.splitter_main_vertical.SetSashPosition( 480 )
+        self.splitter_main_vertical.SetSashPosition( 470 )
         self.splitter_main_vertical.Unbind( wx.EVT_IDLE )
 
 
