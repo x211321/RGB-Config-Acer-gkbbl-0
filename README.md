@@ -162,7 +162,7 @@ To add a new language, extend the **languages** list at the top of the **i18n_ge
 assets/locale/<LANGUAGE>/LC_MESSAGES/rgb_config_acer_gkbbl_0.po
 ```
 
-This translation template can be loaded with a compatible software like [Poedit](https://poedit.net/).
+This translation template can be loaded with a compatible software like Poedit.
 
 Once saved in Poedit, the new language will show up in the Options menu of **RGB-Config-Acer-gkbbl-0**. Poedit automatically generates the compiled **.mo** language file that is used by the program code.
 
@@ -176,10 +176,12 @@ Once saved in Poedit, the new language will show up in the Options menu of **RGB
 **Tools**
  * wxFormBuilder
  * Poedit
+ * rpmbuild
+ * dpkg-deb
  
 **Debian/Ubuntu/Mint**
 ```
-sudo apt install python3-wxgtk4.0 python3-polib
+sudo apt install python3-wxgtk4.0 python3-polib rpm 
 ```
 
 
