@@ -34,9 +34,33 @@ Download the respective file from the [releases page](https://github.com/x211321
 sudo dpkg -i ./RGB_Config_acer-gkbbl-0_v<VERSION>.deb
 ```
 
-**.rpm**
+**.rpm / Fedora**
 ```
 sudo dnf install ./RGB_Config_acer-gkbbl-0_v<VERSION>.rpm
+```
+
+**openSUSE**
+
+Under openSUSE the package must be installed from command line because the package is not signed yet.
+
+Because of that **zypper** will show a warning:
+
+```
+Package header is not signed!
+Signature verification failed [6-File is unsigned]
+```
+
+Input **I** (ignore) to continue with the installation.
+ 
+
+**.rpm / openSUSE Leap**
+```
+sudo zypper install ./RGB_Config_acer-gkbbl-0_v<VERSION>_openSUSE_Leap.rpm
+```
+
+**.rpm / openSUSE Tumbleweed**
+```
+sudo zypper install ./RGB_Config_acer-gkbbl-0_v<VERSION>_openSUSE_TW.rpm
 ```
 
 After installation **RGB Config (acer-gkbbl-0)** should show up in your application launcher under both the **Settings** and **Utils** sections. 
