@@ -77,14 +77,14 @@ zip.close()
 
 ##################################################
 # Create file structure for .deb and .rpm packages
-os.makedirs(os.path.join(TMPPGK_DIR, "usr/local/bin"))
+os.makedirs(os.path.join(TMPPGK_DIR, "usr/bin"))
 os.makedirs(os.path.join(TMPPGK_DIR, "usr/share/applications"))
 
 # Copy previously bundled files to file structure / lib
-shutil.copytree(BUNDLE_DIR + "/", os.path.join(TMPPGK_DIR, "usr/local/lib/rgb_config_acer_gkbbl_0/"))
+shutil.copytree(BUNDLE_DIR + "/", os.path.join(TMPPGK_DIR, "usr/lib/rgb_config_acer_gkbbl_0/"))
 
 # Copy start script to file structure / bin
-shutil.copy("../rgb_config_acer_gkbbl_0", os.path.join(TMPPGK_DIR, "usr/local/bin/rgb_config_acer_gkbbl_0"))
+shutil.copy("../rgb_config_acer_gkbbl_0", os.path.join(TMPPGK_DIR, "usr/bin/rgb_config_acer_gkbbl_0"))
 
 # Copy .desktop application file to file structure / applications
 shutil.copy("../rgb_config_acer_gkbbl_0.desktop", os.path.join(TMPPGK_DIR, "usr/share/applications/rgb_config_acer_gkbbl_0.desktop"))

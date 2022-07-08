@@ -47,7 +47,7 @@
             <property name="minimum_size"></property>
             <property name="name">frame_main</property>
             <property name="pos"></property>
-            <property name="size">800,650</property>
+            <property name="size">800,600</property>
             <property name="style">wxDEFAULT_FRAME_STYLE</property>
             <property name="subclass">; ; forward_declare</property>
             <property name="title">RGB Config (acer-gkbbl-0)</property>
@@ -120,7 +120,7 @@
                                 <property name="pos"></property>
                                 <property name="resize">Resizable</property>
                                 <property name="sashgravity">0.0</property>
-                                <property name="sashpos">480</property>
+                                <property name="sashpos">470</property>
                                 <property name="sashsize">-1</property>
                                 <property name="show">1</property>
                                 <property name="size"></property>
