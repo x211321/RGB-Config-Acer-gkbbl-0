@@ -70,7 +70,7 @@ class frame_main ( wx.Frame ):
         bSizer16.Add( self.choise_mode, 3, wx.ALIGN_LEFT|wx.ALL, 5 )
 
         self.animation_preview = wx.adv.AnimationCtrl( self.panel_left, wx.ID_ANY, wx.adv.NullAnimation, wx.DefaultPosition, wx.Size( 60,40 ), wx.adv.AC_DEFAULT_STYLE|wx.adv.AC_NO_AUTORESIZE )
-        bSizer16.Add( self.animation_preview, 0, wx.ALIGN_CENTER_VERTICAL|wx.ALIGN_RIGHT|wx.ALL|wx.EXPAND, 5 )
+        bSizer16.Add( self.animation_preview, 0, wx.ALL|wx.EXPAND, 5 )
 
 
         horizontal_mode.Add( bSizer16, 2, wx.EXPAND, 5 )
@@ -109,7 +109,7 @@ class frame_main ( wx.Frame ):
         self.label_direction = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Direction"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_direction.Wrap( -1 )
 
-        horizontal_direction.Add( self.label_direction, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL|wx.EXPAND, 5 )
+        horizontal_direction.Add( self.label_direction, 1, wx.ALL|wx.EXPAND, 5 )
 
         self.radio_left_right = wx.RadioButton( self.panel_left, wx.ID_ANY, _(u"Left to Right"), wx.DefaultPosition, wx.DefaultSize, wx.RB_GROUP )
         horizontal_direction.Add( self.radio_left_right, 1, wx.ALL|wx.EXPAND, 5 )
@@ -216,13 +216,13 @@ class frame_main ( wx.Frame ):
         grid_profile_buttons = wx.GridSizer( 0, 3, 0, 0 )
 
         self.button_refresh = wx.Button( self.panel_right, wx.ID_ANY, _(u"Refresh"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        grid_profile_buttons.Add( self.button_refresh, 0, wx.ALIGN_LEFT|wx.ALL|wx.EXPAND, 10 )
+        grid_profile_buttons.Add( self.button_refresh, 0, wx.ALIGN_LEFT|wx.ALL, 10 )
 
         self.button_delete = wx.Button( self.panel_right, wx.ID_ANY, _(u"Delete"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        grid_profile_buttons.Add( self.button_delete, 0, wx.ALIGN_CENTER|wx.ALIGN_CENTER_HORIZONTAL|wx.ALL|wx.EXPAND, 10 )
+        grid_profile_buttons.Add( self.button_delete, 0, wx.ALIGN_CENTER|wx.ALL, 10 )
 
         self.button_load = wx.Button( self.panel_right, wx.ID_ANY, _(u"Load"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        grid_profile_buttons.Add( self.button_load, 0, wx.ALIGN_RIGHT|wx.ALL|wx.EXPAND, 10 )
+        grid_profile_buttons.Add( self.button_load, 0, wx.ALIGN_RIGHT|wx.ALL, 10 )
 
 
         vertical_profiles.Add( grid_profile_buttons, 0, wx.EXPAND, 5 )
