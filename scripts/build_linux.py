@@ -49,6 +49,9 @@ def build():
     # Build openSUSE Tumbleweed .rpm package
     build_rpm("python310-wxPython", "openSUSE_TW")
 
+    # Build Arch/PKGBUILD package
+    build_pkgbuild("python-wxpython", "PKGBUILD")
+
 
 
 # Setup build environment
@@ -199,6 +202,51 @@ def build_rpm(dependencies, suffix):
         for f in files:
             shutil.move(os.path.join(root, f), packageDir + ".rpm"), 
 
+
+
+#####################
+# Create PKGBUILD
+def build_pkgbuild(dependencies, suffix):
+    packageDir = BUNDLE_DIR + "_" + suffix
+
+    # Create directory
+    os.makedirs(packageDir)
+
+    # Create src tar bundle
+    with tarfile.open(os.path.join(packageDir, "src") + ".tar.gz", "w:gz") as tar:
+        for f in os.listdir(os.path.join(TMPPGK_DIR)):
+            tar.add(os.path.join(os.path.join(TMPPGK_DIR), f), arcname=f)
+
+    tar.close()
+
+    # Write PKGBUILD
+    pkgbuild =  'pkgname="' + PKG_NAME + '"\n' \
+                'pkgver="' + VERSION + '"\n' \
+                'pkgrel="1"\n' \
+                'pkgdesc="' + PKG_DESC + '"\n' \
+                'arch=("any")\n' \
+                'depends=("' + dependencies + '")\n' \
+                'license=("MIT")\n' \
+                'source=("src.tar.gz")\n' \
+                'sha512sums=("SKIP")\n' \
+                'package() {\n' \
+                '  mkdir -p "${pkgdir}/usr"\n' \
+                '  cp -rf "${srcdir}/usr" "${pkgdir}/"\n' \
+                '  chmod +x "${pkgdir}/usr/bin/' + PKG_DIR + '"\n' \
+                '}\n'
+
+
+    file = open (os.path.join(packageDir, "PKGBUILD"), "w", encoding="utf-8")
+    file.write(pkgbuild)
+    file.close()
+
+    # Create pkgbuild tar bundle
+    with tarfile.open(os.path.join(packageDir) + ".tar.gz", "w:gz") as tar:
+        for root, dirs, files in os.walk(packageDir):
+            for f in files:
+                tar.add(os.path.join(root, f))
+
+    tar.close()
 
 
 ####################
