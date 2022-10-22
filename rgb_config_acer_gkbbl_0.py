@@ -830,7 +830,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
                 # Set zone coloring
                 pload = [0] * var.RGB_STATIC_PAYLOAD_SIZE
 
-                pload[0] = zone + 1
+                pload[0] = 1 << zone
                 pload[1] = color["red"]
                 pload[2] = color["green"]
                 pload[3] = color["blue"]
