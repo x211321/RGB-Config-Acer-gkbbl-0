@@ -172,7 +172,7 @@ def build_rpm(dependencies, suffix):
     # Write .rpm spec
     rpmspec = "Name:      " + PKG_NAME + "\n" \
               "Version:   " + VERSION + "\n" \
-              "Release:   1%{?dist}\n" \
+              "Release:   1\n" \
               "Summary:   Control RGB settings of the Acer-WMI kernel module\n" \
               "BuildArch: noarch\n" \
               "\n" \
