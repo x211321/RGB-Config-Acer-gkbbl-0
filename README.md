@@ -16,7 +16,6 @@ Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-pre
 # Restrictions
  * Compatible Acer-WMI kernel module **must be installed separately**
  * Compatibility depends on the specific laptop model and its compatibility with the kernel module
- * The **static RGB mode** does not work with my specific laptop and is thus untested
  * The tray icon only works in desktop environments that are compatible with classic system tray
 
 # Installation
@@ -168,7 +167,7 @@ Display a tray icon in the notification area where to **RGB-Config-Acer-gkbbl-0*
  * Right click to show the tray menu
  * The tray icon only works in desktop environments that are compatible with classic system tray (it does **not** work on a stock Gnome 3 installation).
  * The tray icon has been tested to work on the following desktop environments:
-   * KDE, LXQT, LXDE, XFCE, MATE, Cinnamon, Gnome Flashback, Gnome3 Pop!_OS
+   * KDE (X11), LXQT, LXDE, XFCE, MATE, Cinnamon, Gnome Flashback, Gnome3 Pop!_OS
 
 ![Tray menu](./img/screenshots/tray_menu.png)
 
