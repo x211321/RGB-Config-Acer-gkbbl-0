@@ -16,7 +16,8 @@ app_preferences = {
     "closeToTray"   : False,
     "applyStart"    : False,
     "extendSpeed"   : False,
-    "language"      : ""
+    "language"      : "",
+    "trayIconStyle" : "color"
 }
 
 # Get path to preference file

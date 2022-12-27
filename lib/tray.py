@@ -17,7 +17,7 @@ class AcerRGBGUI_Tray(TaskBarIcon):
         self.parent = parent
 
         # Set tray icon
-        self.SetIcon(wx.Icon('./assets/icon.png', wx.BITMAP_TYPE_PNG), _("RGB Config"))
+        self.UpdateIcon()
 
         # Static bindings for hide / restore and quit
         self.Bind(wx.EVT_MENU, self.on_toggle_gui        , id=1)
@@ -45,6 +45,9 @@ class AcerRGBGUI_Tray(TaskBarIcon):
         menu.Append(2, _("Close"))
 
         return menu
+
+    def UpdateIcon(self):
+        self.SetIcon(wx.Icon('./assets/tray/%s.png' % self.parent.preferences["trayIconStyle"], wx.BITMAP_TYPE_PNG), _("RGB Config"))
 
     def on_toggle_gui(self, event):
         if self.parent.IsShown():

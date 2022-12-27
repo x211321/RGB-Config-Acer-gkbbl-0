@@ -2591,6 +2591,12 @@
                         <property name="unchecked_bitmap"></property>
                         <event name="OnMenuSelection">on_menu_closeToTray</event>
                     </object>
+                    <object class="submenu" expanded="1">
+                        <property name="bitmap"></property>
+                        <property name="label">Tray icon style</property>
+                        <property name="name">subMenu_trayIconStyle</property>
+                        <property name="permission">protected</property>
+                    </object>
                     <object class="separator" expanded="0">
                         <property name="name">menuSeparator_options1</property>
                         <property name="permission">none</property>

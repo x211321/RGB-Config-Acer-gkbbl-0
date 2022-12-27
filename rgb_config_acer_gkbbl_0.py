@@ -147,6 +147,9 @@ class AcerRGBGUI_Frame(ui.frame_main):
         # Generate language menu
         self.generateLanguageMenu()
 
+        # Generate tray icon style menu
+        self.generateTrayIconStyleMenu()
+
         # List profiles
         self.profiles = []
         self.listProfiles()
@@ -441,6 +444,29 @@ class AcerRGBGUI_Frame(ui.frame_main):
             os.execv(sys.executable, ['python3'] + sys.argv)
 
 
+    ####################
+    # on_menu_change_trayIconStyle
+    #-------------------
+    # Event handler - menu change tray icon style
+    def on_menu_change_trayIconStyle(self, event):
+
+        # Get menu item of event
+        menuItem = event.GetEventObject().MenuItems[event.Id]
+
+        # Get style from item label
+        trayIconStyle = menuItem.GetItemLabel().replace(" ", "_")
+
+        # Save new preferences
+        self.preferences["trayIconStyle"] = trayIconStyle
+        self.savePreferences()
+
+        # Apply new icon style
+        if self.preferences["tray"]:
+            self.trayIcon.UpdateIcon()
+
+        
+
+
     #########################################
     ## DIALOG INTERACTION
     #########################################
@@ -607,6 +633,29 @@ class AcerRGBGUI_Frame(ui.frame_main):
 
                 # Check active language
                 if language == ACTIVE_LANG:
+                    item.Check()
+
+
+    ####################
+    # generateTrayIconStyleMenu
+    #-------------------
+    # Searches for tray icon styles 
+    # and lists them in the options menu
+    def generateTrayIconStyleMenu(self):
+        menuID = 0
+
+        for trayIconStyle in os.listdir(var.TRAY_ICON_STYLE_DIR):
+            if os.path.isfile(os.path.join(var.TRAY_ICON_STYLE_DIR, trayIconStyle)):
+
+                trayIconStyle = pathlib.Path(trayIconStyle).stem.replace("_", " ")
+
+                item = self.subMenu_trayIconStyle.AppendRadioItem(menuID, trayIconStyle)
+                self.Bind(wx.EVT_MENU, self.on_menu_change_trayIconStyle, id=menuID)
+
+                menuID += 1
+
+                # Check active style
+                if trayIconStyle == self.preferences["trayIconStyle"].replace("_", " "):
                     item.Check()
 
 

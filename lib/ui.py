@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ###########################################################################
-## Python code generated with wxFormBuilder (version 3.10.1-0-g8feb16b)
+## Python code generated with wxFormBuilder (version 3.10.1-0-g8feb16b3)
 ## http://www.wxformbuilder.org/
 ##
 ## PLEASE DO *NOT* EDIT THIS FILE!
@@ -48,7 +48,7 @@ class frame_main ( wx.Frame ):
         self.label_settings = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Settings"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_settings.Wrap( -1 )
 
-        self.label_settings.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+        self.label_settings.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
 
         vertical_settings.Add( self.label_settings, 0, wx.EXPAND|wx.LEFT|wx.TOP, 5 )
 
@@ -199,7 +199,7 @@ class frame_main ( wx.Frame ):
         self.label_profiles = wx.StaticText( self.panel_right, wx.ID_ANY, _(u"Profiles"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_profiles.Wrap( -1 )
 
-        self.label_profiles.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+        self.label_profiles.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
 
         vertical_profiles.Add( self.label_profiles, 0, wx.EXPAND|wx.LEFT|wx.TOP, 5 )
 
@@ -277,6 +277,9 @@ class frame_main ( wx.Frame ):
 
         self.menuItem_closeToTray = wx.MenuItem( self.menu_options, wx.ID_ANY, _(u"Close to tray"), wx.EmptyString, wx.ITEM_CHECK )
         self.menu_options.Append( self.menuItem_closeToTray )
+
+        self.subMenu_trayIconStyle = wx.Menu()
+        self.menu_options.AppendSubMenu( self.subMenu_trayIconStyle, _(u"Tray icon style") )
 
         self.menu_options.AppendSeparator()
 
@@ -424,7 +427,7 @@ class dialog_about ( wx.Dialog ):
         self.label_about_header = wx.StaticText( self, wx.ID_ANY, _(u"RGB Config (acer-gkbbl-0)"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_about_header.Wrap( -1 )
 
-        self.label_about_header.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+        self.label_about_header.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
 
         vertical_about.Add( self.label_about_header, 0, wx.ALL|wx.EXPAND, 5 )
 
