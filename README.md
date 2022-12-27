@@ -181,6 +181,9 @@ Automatically hide application upton start. Intended for setups where the applic
 ## Close to tray
 Hide the application to tray instead of closing it when the close button in the title bar is pressed. 
 
+## Tray icon style
+Select between different styles for the tray icon. 
+
 ## Apply [ACTIVE] on startup
 Automatically apply the last used RGB settings when the application is started. See the "Profiles" section for more information regarding profiles.
 
