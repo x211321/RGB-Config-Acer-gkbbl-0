@@ -30,7 +30,7 @@ For systems that use the **apt package manager** a **.deb** package is provided.
 
 **Alternatively install the application from the command line:**
 ```
-sudo dpkg -i ./RGB_Config_acer-gkbbl-0_v<VERSION>.deb
+sudo dpkg -i ./RGB_Config_acer-gkbbl-0_v<VERSION>_deb.deb
 ```
 
 ---
@@ -40,7 +40,7 @@ A Fedora specific **.rpm** package can be found on the [releases page](https://g
 
 **Alternatively install the application from the command line:**
 ```
-sudo dnf install ./RGB_Config_acer-gkbbl-0_v<VERSION>.rpm
+sudo dnf install ./RGB_Config_acer-gkbbl-0_v<VERSION>_fedora.rpm
 ```
 
 ---
