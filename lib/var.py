@@ -5,7 +5,8 @@ PREFERENCE_DIR  = str(pathlib.Path.home()) + "/.config/rgb_config_acer_gkbbl_0"
 PREFERENCE_FILE = "preferences.json"
 
 # Tray icon styles
-TRAY_ICON_STYLE_DIR = "./assets/tray"
+TRAY_ICON_STYLE_DIR         = "./assets/tray"
+TRAY_ICON_STYLE_MENU_OFFSET = 300
 
 # RGB-Mode constants
 RGB_MODE_STATIC   = 0

@@ -451,7 +451,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
     def on_menu_change_trayIconStyle(self, event):
 
         # Get menu item of event
-        menuItem = event.GetEventObject().MenuItems[event.Id]
+        menuItem = event.GetEventObject().MenuItems[event.Id-var.TRAY_ICON_STYLE_MENU_OFFSET]
 
         # Get style from item label
         trayIconStyle = menuItem.GetItemLabel().replace(" ", "_")
@@ -642,7 +642,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
     # Searches for tray icon styles 
     # and lists them in the options menu
     def generateTrayIconStyleMenu(self):
-        menuID = 0
+        menuID = var.TRAY_ICON_STYLE_MENU_OFFSET
 
         for trayIconStyle in os.listdir(var.TRAY_ICON_STYLE_DIR):
             if os.path.isfile(os.path.join(var.TRAY_ICON_STYLE_DIR, trayIconStyle)):

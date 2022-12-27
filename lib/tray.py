@@ -1,4 +1,5 @@
 import wx
+import os
 from wx.adv import TaskBarIcon
 
 import gettext
@@ -47,7 +48,12 @@ class AcerRGBGUI_Tray(TaskBarIcon):
         return menu
 
     def UpdateIcon(self):
-        self.SetIcon(wx.Icon('./assets/tray/%s.png' % self.parent.preferences["trayIconStyle"], wx.BITMAP_TYPE_PNG), _("RGB Config"))
+        icon = './assets/tray/%s.png' % self.parent.preferences["trayIconStyle"]
+
+        if not os.path.exists(icon):
+            icon = './assets/icon.png'
+
+        self.SetIcon(wx.Icon(icon, wx.BITMAP_TYPE_PNG), _("RGB Config"))
 
     def on_toggle_gui(self, event):
         if self.parent.IsShown():
