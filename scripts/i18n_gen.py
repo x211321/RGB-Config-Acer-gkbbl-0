@@ -35,7 +35,7 @@ path = "../assets/locale/"
 if not os.path.exists(path):
     os.makedirs(path)
 
-os.system("pygettext3 -d " + LANG_DOMAIN + " -o " + path + LANG_DOMAIN + ".pot " + " ".join(files))
+os.system("pygettext3.py -d " + LANG_DOMAIN + " -o " + path + LANG_DOMAIN + ".pot " + " ".join(files))
 
 for language in languages:
 
