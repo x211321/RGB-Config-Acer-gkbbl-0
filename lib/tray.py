@@ -55,6 +55,19 @@ class AcerRGBGUI_Tray(TaskBarIcon):
 
         self.SetIcon(wx.Icon(icon, wx.BITMAP_TYPE_PNG), _("RGB Config"))
 
+        # Test code for tray icon via wx.BitmapBundle
+        #
+        # bitmaps = [ wx.Bitmap('./assets/tray/%s/16x16.png' % self.parent.preferences["trayIconStyle"]),  
+        #             wx.Bitmap('./assets/tray/%s/22x22.png' % self.parent.preferences["trayIconStyle"]), 
+        #             wx.Bitmap('./assets/tray/%s/24x24.png' % self.parent.preferences["trayIconStyle"]), 
+        #             wx.Bitmap('./assets/tray/%s/32x32.png' % self.parent.preferences["trayIconStyle"]), 
+        #             wx.Bitmap('./assets/tray/%s/64x64.png' % self.parent.preferences["trayIconStyle"]), 
+        #             wx.Bitmap('./assets/tray/%s/128x128.png' % self.parent.preferences["trayIconStyle"]), 
+        #             wx.Bitmap('./assets/tray/%s/256x256.png' % self.parent.preferences["trayIconStyle"]), 
+        #         ]
+        #
+        # self.SetIcon(wx.BitmapBundle.FromBitmaps(bitmaps), _("RGB Config"))
+
     def on_toggle_gui(self, event):
         if self.parent.IsShown():
             self.parent.Hide()
