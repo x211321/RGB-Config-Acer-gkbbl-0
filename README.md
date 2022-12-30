@@ -1,7 +1,7 @@
 #  RGB-Config-Acer-gkbbl-0
-A simple GUI for controlling RGB settings of the **Acer-WMI kernel module** via the **acer-gkbbl-0** character device
+A simple GUI for controlling RGB settings of the **Acer-WMI kernel module** via the **acer-gkbbl-0** character device (4 zone RGB keyboards)
 
-Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) for information on the kernel module
+Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) for information on the required kernel module
 
 ![Main window](./img/screenshots/main_window.png)
 
@@ -19,7 +19,7 @@ Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-pre
  * The tray icon only works in desktop environments that are compatible with classic system tray
 
 # Installation
-> ⚠ Make sure you have the **acer-gkbbl-0** RGB device available before you proceed with the installation of this application, otherwise it will have no effect. Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) for more information on the needed kernel module.
+> ⚠ Make sure you have the **acer-gkbbl-0** RGB device available before you proceed with the installation of this application, otherwise it will have no effect. Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) for more information on the required kernel module.
 
 > **RGB-Config-Acer-gkbbl-0** is written in Python3, using the wxPython framework. Python3 is usually provided by most Linux distributions, wxPython must often be installed separately.
 
