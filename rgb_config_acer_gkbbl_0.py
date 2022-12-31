@@ -3,8 +3,10 @@
 #################################################################################################
 ## RGB Config (acer-gkbbl-0) - https://github.com/x211321/RGB-Config-Acer-gkbbl-0     
 ##
-## A graphical user interface to interact with the RGB controls of the acer-gkbbl-0 Kernel module 
-## by JafarAkhondali. The kernel module must be installed seperatly for this application to work 
+## A graphical user interface to interact with the RGB controls of the acer-gkbbl-0 character device 
+## provided by JafarAkhondali's kernel module.
+## 
+## The kernel module must be installed seperatly for this application to work 
 ##
 ## Visit https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module
 ## for additional information regarding the kernel module
@@ -346,7 +348,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
         # Confirm speed extension with user
         if self.menuItem_extendSpeed.IsChecked():
             dlg = wx.MessageDialog(self, _("Offical Acer software only allows speed values between 0 and 9.\n\n" \
-                                           "In theory the acer-gkbbl-0 kernel module accepts speed values between 0 and 255. " \
+                                           "In theory the acer-gkbbl-0 character device accepts speed values between 0 and 255. " \
                                            "Values above the standard limit of 9 might yield undesired results.\n\n" \
                                            "It is advised to proceed with caution.\n\n" \
                                            "Are you sure you want to extend the speed limit?")
@@ -848,13 +850,13 @@ class AcerRGBGUI_Frame(ui.frame_main):
 
 
     #########################################
-    ## COMMUNICATION WITH KERNEL MODULE
+    ## COMMUNICATION WITH CHARACTER DEVICE
     #########################################
 
     ####################
     # apply
     #-------------------
-    # Apply current settings to kernel device
+    # Apply current settings to character device
     def apply(self):
         # Check RGB device available
         if not os.path.exists(var.RGB_DEVICE):
@@ -914,8 +916,8 @@ class AcerRGBGUI_Frame(ui.frame_main):
     ####################
     # writePayload
     #-------------------
-    # Write given payload to kernel device
-    # - arg device: string - path to kernel device
+    # Write given payload to character device
+    # - arg device: string - path to character device
     # - arg pload: bytearray - payload
     def writePayload(self, device, pload):
         with open(device, "wb") as d:
