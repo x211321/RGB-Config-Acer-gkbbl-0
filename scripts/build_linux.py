@@ -47,7 +47,7 @@ def build():
     build_rpm("python3-wxPython", "openSUSE_Leap")
 
     # Build openSUSE Tumbleweed .rpm package
-    build_rpm("python310-wxPython", "openSUSE_TW")
+    build_rpm("python311-wxPython", "openSUSE_TW")
 
     # Build Arch/PKGBUILD package
     build_pkgbuild("python-wxpython", "PKGBUILD")
