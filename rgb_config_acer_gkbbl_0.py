@@ -222,7 +222,8 @@ class AcerRGBGUI_Frame(ui.frame_main):
     # Event handler - force close
     # ignores "close to tray" preference
     def on_force_close(self, event):
-        self.trayIcon.Destroy()
+        if hasattr(self, 'trayIcon'):
+            self.trayIcon.Destroy()
         self.Destroy()
 
 
