@@ -28,10 +28,11 @@ import lib.var as var
 from lib.prefs import app_preferences
 from lib.version import VERSION
 
-APP_NAME = "rgb_config_acer_gkbbl_0"
 
+APP_NAME = "rgb_config_acer_gkbbl_0"
 APP_DIR  = os.path.abspath(os.path.dirname(__file__))
 LANG_DIR = os.path.join(APP_DIR, "assets", "locale")
+
 
 # Set app language
 if len(app_preferences["language"]):
@@ -80,8 +81,10 @@ except ImportError:
 
     exit()
 
+
 # Must be importet after wx
 from lib.tray import AcerRGBGUI_Tray
+from lib.install import AcerRGBGUI_Install_Module
 
 
 ####################
@@ -185,24 +188,37 @@ class AcerRGBGUI_Frame(ui.frame_main):
 
         # Check RGB Devices available
         # - show error message in log when device not found
-        if os.path.exists(var.RGB_DEVICE):
-            self.appLog(_("RGB device %s detected") % var.RGB_DEVICE)
-        else:
-            self.errLog(_("ERROR: RGB device %s not found") % var.RGB_DEVICE)
-            self.appLog(_("Install instructions:"))
-            self.urlLog("https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module")
-
-        if os.path.exists(var.RGB_DEVICE_STATIC):
-            self.appLog(_("Static RGB device %s detected") % var.RGB_DEVICE_STATIC)
-        else:
-            self.errLog(_("ERROR: Static RGB device %s not found") % var.RGB_DEVICE_STATIC)
-            self.appLog(_("Install instructions:"))
-            self.urlLog("https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module")
+        self.checkDeviceAvailable()
 
 
     #########################################
     ## Event handler
     #########################################
+
+
+    ####################
+    # on_show
+    #-------------------
+    # Event handler - show
+    def on_show(self, event):
+        # Show instructions when RGB device not available
+        if not self.devices_available:
+            dlg = wx.MessageDialog(self, _("The RGB device is not available.\n\n" \
+                                           "RGB Config (acer-gkbbl-0) can try to install the required kernel module for you (requires root privileges).\n\n" \
+                                           "Do you want to continue?")
+                                           , _("RGB device not available"), wx.YES_NO)
+            dlg.Center()
+            res = dlg.ShowModal()
+
+            if res == wx.ID_YES:
+                self.showInstallKernelModule()
+            else:
+                dlg = wx.MessageDialog(self, _("The kernel module will not be automatically installed.\n\n" \
+                                               "Please check\n\n https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module\n\n for manual installation instructions")
+                                               , _("RGB device not available"), wx.OK)
+                dlg.Center()
+                dlg.ShowModal()
+
 
     ####################
     # on_close
@@ -233,6 +249,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
     # Event handler - RGB mode select
     def on_rgb_mode_select(self, event):
         self.setWidgetState()
+
 
     ####################
     # on_direction_select
@@ -301,6 +318,14 @@ class AcerRGBGUI_Frame(ui.frame_main):
 
 
     ####################
+    # on_menu_installKernelModule
+    #-------------------
+    # Event handler - install kernel module
+    def on_menu_installKernelModule(self, event):
+        self.showInstallKernelModule()
+
+
+    ####################
     # on_menu_tray
     #-------------------
     # Event handler - show tray
@@ -348,7 +373,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
     def on_menu_extendSpeed(self, event):
         # Confirm speed extension with user
         if self.menuItem_extendSpeed.IsChecked():
-            dlg = wx.MessageDialog(self, _("Offical Acer software only allows speed values between 0 and 9.\n\n" \
+            dlg = wx.MessageDialog(self, _("Offical Acer software only takes speed values between 0 and 9.\n\n" \
                                            "In theory the acer-gkbbl-0 character device accepts speed values between 0 and 255. " \
                                            "Values above the standard limit of 9 might yield undesired results.\n\n" \
                                            "It is advised to proceed with caution.\n\n" \
@@ -366,6 +391,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
             self.slider_speed.SetRange(0, 255)
         else:
             self.slider_speed.SetRange(0, 9)
+
 
     ####################
     # on_menu_log
@@ -471,7 +497,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
 
 
     #########################################
-    ## DIALOG INTERACTION
+    ## Dialog interaction
     #########################################
 
     ####################
@@ -660,6 +686,49 @@ class AcerRGBGUI_Frame(ui.frame_main):
                 # Check active style
                 if trayIconStyle == self.preferences["trayIconStyle"].replace("_", " "):
                     item.Check()
+
+
+    ####################
+    # showInstallKernelModule
+    #-------------------
+    # Show the install kernel module dialog
+    def showInstallKernelModule(self):
+        self.installModuleDlg = AcerRGBGUI_Install_Module(self)
+        self.installModuleDlg.SetTitle(_("Install kernel module"))
+        self.installModuleDlg.ShowModal()
+
+        for entry in self.installModuleDlg.log:
+            self.appLog(entry, noPrint = True)
+
+        self.installModuleDlg = None
+
+        self.checkDeviceAvailable()
+
+
+    ####################
+    # checkDeviceAvailable
+    #-------------------
+    # Check if RGB devices are available
+    def checkDeviceAvailable(self):
+        self.devices_available = True
+
+        if os.path.exists(var.RGB_DEVICE):
+            self.appLog(_("RGB device %s detected") % var.RGB_DEVICE)
+        else:
+            self.errLog(_("ERROR: RGB device %s not found") % var.RGB_DEVICE)
+            self.appLog(_("Install instructions:"))
+            self.urlLog("https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module")
+
+            self.devices_available = False
+
+        if os.path.exists(var.RGB_DEVICE_STATIC):
+            self.appLog(_("Static RGB device %s detected") % var.RGB_DEVICE_STATIC)
+        else:
+            self.errLog(_("ERROR: Static RGB device %s not found") % var.RGB_DEVICE_STATIC)
+            self.appLog(_("Install instructions:"))
+            self.urlLog("https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module")
+
+            self.devices_available = False
 
 
     #########################################
@@ -936,9 +1005,10 @@ class AcerRGBGUI_Frame(ui.frame_main):
     # Output message in log widget
     # - arg message: string - message to output in log widget
     # - arg color (optional): byte tuple (r, g, b) (0-255)
-    def appLog(self, message, color = False):
+    def appLog(self, message, color = False, noPrint = False):
         # Print log message to console
-        print(message)
+        if not noPrint:
+            print(message)
 
         # Append log message to log widget
         self.rich_log.AppendText(message + "\n")

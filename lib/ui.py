@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ###########################################################################
-## Python code generated with wxFormBuilder (version 3.10.1-0-g8feb16b3)
+## Python code generated with wxFormBuilder (version 3.10.1)
 ## http://www.wxformbuilder.org/
 ##
 ## PLEASE DO *NOT* EDIT THIS FILE!
@@ -257,11 +257,13 @@ class frame_main ( wx.Frame ):
 
         self.SetSizer( horizontal_main )
         self.Layout()
-        self.status_status = self.CreateStatusBar( 1, wx.STB_SIZEGRIP|wx.BORDER_THEME, wx.ID_ANY )
         self.menubar_main = wx.MenuBar( 0 )
         self.menu_file = wx.Menu()
         self.menuItem_openProfileFolder = wx.MenuItem( self.menu_file, wx.ID_ANY, _(u"Open profile folder"), wx.EmptyString, wx.ITEM_NORMAL )
         self.menu_file.Append( self.menuItem_openProfileFolder )
+
+        self.menuItem_installKernelModule = wx.MenuItem( self.menu_file, wx.ID_ANY, _(u"Install kernel module"), wx.EmptyString, wx.ITEM_NORMAL )
+        self.menu_file.Append( self.menuItem_installKernelModule )
 
         self.menuItem_quit = wx.MenuItem( self.menu_file, wx.ID_ANY, _(u"Quit"), wx.EmptyString, wx.ITEM_NORMAL )
         self.menu_file.Append( self.menuItem_quit )
@@ -318,6 +320,7 @@ class frame_main ( wx.Frame ):
         self.Centre( wx.BOTH )
 
         # Connect Events
+        self.Bind( wx.EVT_SHOW, self.on_show )
         self.choise_mode.Bind( wx.EVT_CHOICE, self.on_rgb_mode_select )
         self.radio_left_right.Bind( wx.EVT_RADIOBUTTON, self.on_direction_select )
         self.radio_right_left.Bind( wx.EVT_RADIOBUTTON, self.on_direction_select )
@@ -328,6 +331,7 @@ class frame_main ( wx.Frame ):
         self.button_load.Bind( wx.EVT_BUTTON, self.on_load_click )
         self.rich_log.Bind( wx.EVT_TEXT_URL, self.on_log_url_click )
         self.Bind( wx.EVT_MENU, self.on_menu_openProfileFolder, id = self.menuItem_openProfileFolder.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_installKernelModule, id = self.menuItem_installKernelModule.GetId() )
         self.Bind( wx.EVT_MENU, self.on_force_close, id = self.menuItem_quit.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_tray, id = self.menuItem_tray.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_startMinimized, id = self.menuItem_startMinimized.GetId() )
@@ -344,6 +348,9 @@ class frame_main ( wx.Frame ):
 
 
     # Virtual event handlers, override them in your derived class
+    def on_show( self, event ):
+        event.Skip()
+
     def on_rgb_mode_select( self, event ):
         event.Skip()
 
@@ -370,6 +377,9 @@ class frame_main ( wx.Frame ):
         event.Skip()
 
     def on_menu_openProfileFolder( self, event ):
+        event.Skip()
+
+    def on_menu_installKernelModule( self, event ):
         event.Skip()
 
     def on_force_close( self, event ):
@@ -458,6 +468,369 @@ class dialog_about ( wx.Dialog ):
 
     # Virtual event handlers, override them in your derived class
     def on_button_about_close_click( self, event ):
+        event.Skip()
+
+
+###########################################################################
+## Class dialog_install_module
+###########################################################################
+
+class dialog_install_module ( wx.Dialog ):
+
+    def __init__( self, parent ):
+        wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.DefaultSize, style = wx.DEFAULT_DIALOG_STYLE )
+
+        self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+
+        flex_install_module = wx.FlexGridSizer( 2, 1, 0, 0 )
+        flex_install_module.SetFlexibleDirection( wx.BOTH )
+        flex_install_module.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
+
+        self.panel_install_module = wx.Panel( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
+        vertical_install_module = wx.BoxSizer( wx.VERTICAL )
+
+        horizontal_install_module_explanation = wx.BoxSizer( wx.HORIZONTAL )
+
+        self.label_install_module_explanation = wx.StaticText( self.panel_install_module, wx.ID_ANY, _(u"RGB Config (acer-gkbbl-0) will perform the steps listed below."), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_explanation.Wrap( -1 )
+
+        self.label_install_module_explanation.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+
+        horizontal_install_module_explanation.Add( self.label_install_module_explanation, 0, wx.ALL|wx.EXPAND, 5 )
+
+
+        vertical_install_module.Add( horizontal_install_module_explanation, 1, wx.EXPAND, 5 )
+
+        self.line_install_module_step1_system_requirements = wx.StaticLine( self.panel_install_module, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
+        vertical_install_module.Add( self.line_install_module_step1_system_requirements, 0, wx.EXPAND |wx.ALL, 5 )
+
+        horizontal_install_module_step1_system_requirements = wx.BoxSizer( wx.HORIZONTAL )
+
+        self.label_install_module_step1_system_requirements = wx.StaticText( self.panel_install_module, wx.ID_ANY, _(u"Step 1 - Check system requirements"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step1_system_requirements.Wrap( -1 )
+
+        self.label_install_module_step1_system_requirements.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+
+        horizontal_install_module_step1_system_requirements.Add( self.label_install_module_step1_system_requirements, 0, wx.ALL, 5 )
+
+
+        horizontal_install_module_step1_system_requirements.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+        self.label_install_module_step1_system_requirements_result = wx.StaticText( self.panel_install_module, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step1_system_requirements_result.Wrap( -1 )
+
+        self.label_install_module_step1_system_requirements_result.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step1_system_requirements.Add( self.label_install_module_step1_system_requirements_result, 0, wx.ALL|wx.EXPAND, 5 )
+
+
+        vertical_install_module.Add( horizontal_install_module_step1_system_requirements, 1, wx.EXPAND, 5 )
+
+        horizontal_install_module_step1_system_requirements_manufacturer = wx.BoxSizer( wx.HORIZONTAL )
+
+        self.label_install_module_step1_system_requirements_manufacturer = wx.StaticText( self.panel_install_module, wx.ID_ANY, _(u"Manufacturer"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step1_system_requirements_manufacturer.Wrap( -1 )
+
+        self.label_install_module_step1_system_requirements_manufacturer.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step1_system_requirements_manufacturer.Add( self.label_install_module_step1_system_requirements_manufacturer, 0, wx.ALIGN_CENTER_VERTICAL|wx.LEFT, 20 )
+
+
+        horizontal_install_module_step1_system_requirements_manufacturer.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+        self.label_install_module_step1_system_requirements_manufacturer_result = wx.StaticText( self.panel_install_module, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step1_system_requirements_manufacturer_result.Wrap( -1 )
+
+        self.label_install_module_step1_system_requirements_manufacturer_result.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step1_system_requirements_manufacturer.Add( self.label_install_module_step1_system_requirements_manufacturer_result, 0, wx.ALL|wx.EXPAND, 5 )
+
+
+        vertical_install_module.Add( horizontal_install_module_step1_system_requirements_manufacturer, 1, wx.EXPAND, 5 )
+
+        horizontal_install_module_step1_system_requirements_model = wx.BoxSizer( wx.HORIZONTAL )
+
+        self.label_install_module_step1_system_requirements_model = wx.StaticText( self.panel_install_module, wx.ID_ANY, _(u"Device"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step1_system_requirements_model.Wrap( -1 )
+
+        self.label_install_module_step1_system_requirements_model.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step1_system_requirements_model.Add( self.label_install_module_step1_system_requirements_model, 0, wx.ALIGN_CENTER_VERTICAL|wx.LEFT, 20 )
+
+
+        horizontal_install_module_step1_system_requirements_model.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+        self.label_install_module_step1_system_requirements_model_result = wx.StaticText( self.panel_install_module, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step1_system_requirements_model_result.Wrap( -1 )
+
+        self.label_install_module_step1_system_requirements_model_result.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step1_system_requirements_model.Add( self.label_install_module_step1_system_requirements_model_result, 0, wx.ALL|wx.EXPAND, 5 )
+
+
+        vertical_install_module.Add( horizontal_install_module_step1_system_requirements_model, 1, wx.EXPAND, 5 )
+
+        horizontal_install_module_step1_system_requirements_secureboot = wx.BoxSizer( wx.HORIZONTAL )
+
+        self.label_install_module_step1_system_requirements_secureboot = wx.StaticText( self.panel_install_module, wx.ID_ANY, _(u"Secure boot"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step1_system_requirements_secureboot.Wrap( -1 )
+
+        self.label_install_module_step1_system_requirements_secureboot.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step1_system_requirements_secureboot.Add( self.label_install_module_step1_system_requirements_secureboot, 0, wx.ALIGN_CENTER_VERTICAL|wx.LEFT, 20 )
+
+
+        horizontal_install_module_step1_system_requirements_secureboot.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+        self.label_install_module_step1_system_requirements_secureboot_result = wx.StaticText( self.panel_install_module, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step1_system_requirements_secureboot_result.Wrap( -1 )
+
+        self.label_install_module_step1_system_requirements_secureboot_result.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step1_system_requirements_secureboot.Add( self.label_install_module_step1_system_requirements_secureboot_result, 0, wx.ALL|wx.EXPAND, 5 )
+
+
+        vertical_install_module.Add( horizontal_install_module_step1_system_requirements_secureboot, 1, wx.EXPAND, 5 )
+
+        horizontal_install_module_step1_system_requirements_initsystem = wx.BoxSizer( wx.HORIZONTAL )
+
+        self.label_install_module_step1_system_requirements_initsystem = wx.StaticText( self.panel_install_module, wx.ID_ANY, _(u"Init system"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step1_system_requirements_initsystem.Wrap( -1 )
+
+        self.label_install_module_step1_system_requirements_initsystem.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step1_system_requirements_initsystem.Add( self.label_install_module_step1_system_requirements_initsystem, 0, wx.ALIGN_CENTER_VERTICAL|wx.LEFT, 20 )
+
+
+        horizontal_install_module_step1_system_requirements_initsystem.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+        self.label_install_module_step1_system_requirements_initsystem_result = wx.StaticText( self.panel_install_module, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step1_system_requirements_initsystem_result.Wrap( -1 )
+
+        self.label_install_module_step1_system_requirements_initsystem_result.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step1_system_requirements_initsystem.Add( self.label_install_module_step1_system_requirements_initsystem_result, 0, wx.ALL|wx.EXPAND, 5 )
+
+
+        vertical_install_module.Add( horizontal_install_module_step1_system_requirements_initsystem, 1, wx.EXPAND, 5 )
+
+        self.line_install_module_step2_download = wx.StaticLine( self.panel_install_module, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
+        vertical_install_module.Add( self.line_install_module_step2_download, 0, wx.EXPAND |wx.ALL, 5 )
+
+        horizontal_install_module_step2_download = wx.BoxSizer( wx.HORIZONTAL )
+
+        self.label_install_module_step2_download = wx.StaticText( self.panel_install_module, wx.ID_ANY, _(u"Step 2 - Download installation files"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step2_download.Wrap( -1 )
+
+        self.label_install_module_step2_download.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+
+        horizontal_install_module_step2_download.Add( self.label_install_module_step2_download, 0, wx.ALL, 5 )
+
+
+        horizontal_install_module_step2_download.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+        self.label_install_module_step2_download_result = wx.StaticText( self.panel_install_module, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step2_download_result.Wrap( -1 )
+
+        self.label_install_module_step2_download_result.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step2_download.Add( self.label_install_module_step2_download_result, 0, wx.ALL|wx.EXPAND, 5 )
+
+
+        vertical_install_module.Add( horizontal_install_module_step2_download, 1, wx.EXPAND, 5 )
+
+        horizontal_install_module_step2_download_progress = wx.BoxSizer( wx.HORIZONTAL )
+
+        self.hyperlink_install_module_step2_download_website = wx.adv.HyperlinkCtrl( self.panel_install_module, wx.ID_ANY, _(u"Kernel module Github"), wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.adv.HL_DEFAULT_STYLE )
+        horizontal_install_module_step2_download_progress.Add( self.hyperlink_install_module_step2_download_website, 0, wx.EXPAND|wx.LEFT, 20 )
+
+        self.hyperlink_install_module_step2_download_url = wx.adv.HyperlinkCtrl( self.panel_install_module, wx.ID_ANY, _(u"[source]"), wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.adv.HL_DEFAULT_STYLE )
+        horizontal_install_module_step2_download_progress.Add( self.hyperlink_install_module_step2_download_url, 0, wx.ALL, 5 )
+
+
+        horizontal_install_module_step2_download_progress.Add( ( 5, 0), 1, wx.EXPAND, 5 )
+
+        self.label_install_module_step2_download_state = wx.StaticText( self.panel_install_module, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step2_download_state.Wrap( -1 )
+
+        self.label_install_module_step2_download_state.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step2_download_progress.Add( self.label_install_module_step2_download_state, 0, wx.ALL|wx.EXPAND, 5 )
+
+
+        vertical_install_module.Add( horizontal_install_module_step2_download_progress, 1, wx.EXPAND, 5 )
+
+        self.line_install_module_step3_extract = wx.StaticLine( self.panel_install_module, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
+        vertical_install_module.Add( self.line_install_module_step3_extract, 0, wx.EXPAND |wx.ALL, 5 )
+
+        horizontal_install_module_step3_extract = wx.BoxSizer( wx.HORIZONTAL )
+
+        self.label_install_module_step3_extract = wx.StaticText( self.panel_install_module, wx.ID_ANY, _(u"Step 3 - Extract installation files"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step3_extract.Wrap( -1 )
+
+        self.label_install_module_step3_extract.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+
+        horizontal_install_module_step3_extract.Add( self.label_install_module_step3_extract, 0, wx.ALL, 5 )
+
+
+        horizontal_install_module_step3_extract.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+        self.label_install_module_step3_extract_result = wx.StaticText( self.panel_install_module, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step3_extract_result.Wrap( -1 )
+
+        self.label_install_module_step3_extract_result.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step3_extract.Add( self.label_install_module_step3_extract_result, 0, wx.ALL|wx.EXPAND, 5 )
+
+
+        vertical_install_module.Add( horizontal_install_module_step3_extract, 1, wx.EXPAND, 5 )
+
+        self.line_install_module_step4_install = wx.StaticLine( self.panel_install_module, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
+        vertical_install_module.Add( self.line_install_module_step4_install, 0, wx.EXPAND |wx.ALL, 5 )
+
+        horizontal_install_module_step4_install = wx.BoxSizer( wx.HORIZONTAL )
+
+        self.label_install_module_step4_install = wx.StaticText( self.panel_install_module, wx.ID_ANY, _(u"Step 4 - Run install script"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step4_install.Wrap( -1 )
+
+        self.label_install_module_step4_install.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+
+        horizontal_install_module_step4_install.Add( self.label_install_module_step4_install, 0, wx.ALL, 5 )
+
+
+        horizontal_install_module_step4_install.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+        self.label_install_module_step4_install_result = wx.StaticText( self.panel_install_module, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step4_install_result.Wrap( -1 )
+
+        self.label_install_module_step4_install_result.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step4_install.Add( self.label_install_module_step4_install_result, 0, wx.ALL|wx.EXPAND, 5 )
+
+
+        vertical_install_module.Add( horizontal_install_module_step4_install, 1, wx.EXPAND, 5 )
+
+        self.line_install_module_step5_verify = wx.StaticLine( self.panel_install_module, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
+        vertical_install_module.Add( self.line_install_module_step5_verify, 0, wx.EXPAND |wx.ALL, 5 )
+
+        horizontal_install_module_step5_verify = wx.BoxSizer( wx.HORIZONTAL )
+
+        self.label_install_module_step5_verify = wx.StaticText( self.panel_install_module, wx.ID_ANY, _(u"Step 5 - Verify installation"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step5_verify.Wrap( -1 )
+
+        self.label_install_module_step5_verify.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+
+        horizontal_install_module_step5_verify.Add( self.label_install_module_step5_verify, 0, wx.ALL, 5 )
+
+
+        horizontal_install_module_step5_verify.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+        self.label_install_module_step5_verify_result = wx.StaticText( self.panel_install_module, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step5_verify_result.Wrap( -1 )
+
+        self.label_install_module_step5_verify_result.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step5_verify.Add( self.label_install_module_step5_verify_result, 0, wx.ALL|wx.EXPAND, 5 )
+
+
+        vertical_install_module.Add( horizontal_install_module_step5_verify, 1, wx.EXPAND, 5 )
+
+        horizontal_install_module_step5_verify_rgb = wx.BoxSizer( wx.HORIZONTAL )
+
+        self.label_install_module_step5_verify_rgb = wx.StaticText( self.panel_install_module, wx.ID_ANY, _(u"RGB device"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step5_verify_rgb.Wrap( -1 )
+
+        self.label_install_module_step5_verify_rgb.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step5_verify_rgb.Add( self.label_install_module_step5_verify_rgb, 0, wx.ALIGN_CENTER_VERTICAL|wx.LEFT, 20 )
+
+
+        horizontal_install_module_step5_verify_rgb.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+        self.label_install_module_step5_verify_rgb_result = wx.StaticText( self.panel_install_module, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step5_verify_rgb_result.Wrap( -1 )
+
+        self.label_install_module_step5_verify_rgb_result.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step5_verify_rgb.Add( self.label_install_module_step5_verify_rgb_result, 0, wx.ALL|wx.EXPAND, 5 )
+
+
+        vertical_install_module.Add( horizontal_install_module_step5_verify_rgb, 1, wx.EXPAND, 5 )
+
+        horizontal_install_module_step5_verify_rgbstatic = wx.BoxSizer( wx.HORIZONTAL )
+
+        self.label_install_module_step5_verify_rgbstatic = wx.StaticText( self.panel_install_module, wx.ID_ANY, _(u"Static RGB device"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step5_verify_rgbstatic.Wrap( -1 )
+
+        self.label_install_module_step5_verify_rgbstatic.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step5_verify_rgbstatic.Add( self.label_install_module_step5_verify_rgbstatic, 0, wx.ALIGN_CENTER_VERTICAL|wx.LEFT, 20 )
+
+
+        horizontal_install_module_step5_verify_rgbstatic.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+        self.label_install_module_step5_verify_rgbstatic_result = wx.StaticText( self.panel_install_module, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_install_module_step5_verify_rgbstatic_result.Wrap( -1 )
+
+        self.label_install_module_step5_verify_rgbstatic_result.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+
+        horizontal_install_module_step5_verify_rgbstatic.Add( self.label_install_module_step5_verify_rgbstatic_result, 0, wx.ALL|wx.EXPAND, 5 )
+
+
+        vertical_install_module.Add( horizontal_install_module_step5_verify_rgbstatic, 1, wx.EXPAND, 5 )
+
+
+        self.panel_install_module.SetSizer( vertical_install_module )
+        self.panel_install_module.Layout()
+        vertical_install_module.Fit( self.panel_install_module )
+        flex_install_module.Add( self.panel_install_module, 1, wx.EXPAND |wx.ALL, 10 )
+
+        self.panel_install_module_buttons = wx.Panel( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
+        horizontal_install_module_buttons = wx.BoxSizer( wx.HORIZONTAL )
+
+        self.button_install_module_exit = wx.Button( self.panel_install_module_buttons, wx.ID_ANY, _(u"Exit"), wx.DefaultPosition, wx.Size( 150,-1 ), 0 )
+        horizontal_install_module_buttons.Add( self.button_install_module_exit, 0, wx.ALL, 15 )
+
+
+        horizontal_install_module_buttons.Add( ( 100, 0), 1, wx.EXPAND, 5 )
+
+        self.button_install_module_start = wx.Button( self.panel_install_module_buttons, wx.ID_ANY, _(u"Begin installation"), wx.DefaultPosition, wx.Size( 150,-1 ), 0 )
+        horizontal_install_module_buttons.Add( self.button_install_module_start, 0, wx.ALL, 15 )
+
+
+        self.panel_install_module_buttons.SetSizer( horizontal_install_module_buttons )
+        self.panel_install_module_buttons.Layout()
+        horizontal_install_module_buttons.Fit( self.panel_install_module_buttons )
+        flex_install_module.Add( self.panel_install_module_buttons, 1, wx.EXPAND |wx.ALL, 5 )
+
+
+        self.SetSizer( flex_install_module )
+        self.Layout()
+        flex_install_module.Fit( self )
+
+        self.Centre( wx.BOTH )
+
+        # Connect Events
+        self.Bind( wx.EVT_CLOSE, self.on_close )
+        self.Bind( wx.EVT_SHOW, self.on_show )
+        self.button_install_module_exit.Bind( wx.EVT_BUTTON, self.on_exit )
+        self.button_install_module_start.Bind( wx.EVT_BUTTON, self.on_install )
+
+    def __del__( self ):
+        pass
+
+
+    # Virtual event handlers, override them in your derived class
+    def on_close( self, event ):
+        event.Skip()
+
+    def on_show( self, event ):
+        event.Skip()
+
+    def on_exit( self, event ):
+        event.Skip()
+
+    def on_install( self, event ):
         event.Skip()
 
 

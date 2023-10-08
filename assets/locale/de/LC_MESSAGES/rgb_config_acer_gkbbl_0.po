@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2022-07-03 21:10+0200\n"
-"PO-Revision-Date: 2022-12-27 13:04+0100\n"
+"PO-Revision-Date: 2023-10-08 00:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -14,107 +14,95 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4\n"
 
-#: ../lib/ui.py:289 ../rgb_config_acer_gkbbl_0.py:353
+#: ../rgb_config_acer_gkbbl_0.py:381 ../lib/ui.py:291
 msgid "Extend max speed"
 msgstr "Maximale Geschwindigkeit erhöhen"
 
-#: ../lib/tray.py:45 ../lib/ui.py:442
+#: ../lib/tray.py:46 ../lib/ui.py:452
 msgid "Close"
 msgstr "Schließen"
 
-#: ../lib/tray.py:44 ../lib/tray.py:50
+#: ../lib/tray.py:45 ../lib/tray.py:56
 msgid "RGB Config"
 msgstr "RGB Konfiguration"
 
-#: ../rgb_config_acer_gkbbl_0.py:119
+#: ../rgb_config_acer_gkbbl_0.py:124
 msgid "RGB Config (acer-gkbbl-0) "
 msgstr "RGB Konfiguration (acer-gkbbl-0) "
 
-#: ../rgb_config_acer_gkbbl_0.py:190 ../rgb_config_acer_gkbbl_0.py:197
+#: ../rgb_config_acer_gkbbl_0.py:719 ../rgb_config_acer_gkbbl_0.py:728
 msgid "Install instructions:"
 msgstr "Installationsanleitung:"
 
-#: ../rgb_config_acer_gkbbl_0.py:348
-msgid ""
-"Offical Acer software only allows speed values between 0 and 9.\n"
-"\n"
-"In theory the acer-gkbbl-0 kernel module accepts speed values between 0 and 255. Values above the standard limit of 9 might yield undesired results.\n"
-"\n"
-"It is advised to proceed with caution.\n"
-"\n"
-"Are you sure you want to extend the speed limit?"
-msgstr ""
-"Offizielle Acer Software erlaubt Geschwindigkeiten zwischen 0 und 9.\n"
-"\n"
-"Der acer-gkbbl-0 Kernel Treiber akzeptiert jedoch Werte zwischen 0 und 255. Werte über 9 werden nicht offiziell unterstützt und können zu unerwünschten Ergebnissen führen\n"
-"\n"
-"Diese Funktion sollte mit Bedacht verwendet werden.\n"
-"\n"
-"Soll die maximale Geschwindigkeit erhöht werden?"
-
-#: ../rgb_config_acer_gkbbl_0.py:417
+#: ../rgb_config_acer_gkbbl_0.py:446
 msgid "About RGB Config (acer-gkbbl-0) "
 msgstr "Über RGB Konfiguration (acer-gkbbl-0) "
 
-#: ../rgb_config_acer_gkbbl_0.py:751
+#: ../rgb_config_acer_gkbbl_0.py:823
 msgid "Profiles listed"
 msgstr "Profile gelistet"
 
-#: ../rgb_config_acer_gkbbl_0.py:788
+#: ../rgb_config_acer_gkbbl_0.py:860
 msgid "Profile loaded: "
 msgstr "Profil geladen: "
 
-#: ../rgb_config_acer_gkbbl_0.py:813
+#: ../rgb_config_acer_gkbbl_0.py:885
 msgid "Profile deleted: "
 msgstr "Profil gelöscht: "
 
-#: ../rgb_config_acer_gkbbl_0.py:831
+#: ../rgb_config_acer_gkbbl_0.py:903
 msgid "Profile name"
 msgstr "Profilname"
 
-#: ../rgb_config_acer_gkbbl_0.py:831
+#: ../rgb_config_acer_gkbbl_0.py:903
 msgid "Save profile"
 msgstr "Profil speichern"
 
-#: ../rgb_config_acer_gkbbl_0.py:844
+#: ../rgb_config_acer_gkbbl_0.py:916
 msgid "Profile saved: "
 msgstr "Profil gespeichert: "
 
-#: ../rgb_config_acer_gkbbl_0.py:911
+#: ../rgb_config_acer_gkbbl_0.py:983
 msgid "Settings applied"
 msgstr "Einstellungen angewandt"
 
-#: ../rgb_config_acer_gkbbl_0.py:1013
+#: ../rgb_config_acer_gkbbl_0.py:1086
 msgid "Acer RGB Settings"
 msgstr "Acer RGB Einstellungen"
 
-#: ../rgb_config_acer_gkbbl_0.py:189
+#: ../rgb_config_acer_gkbbl_0.py:718
+#, python-format
 msgid "ERROR: RGB device %s not found"
 msgstr "FEHLER: RGB Gerät %s nicht gefunden"
 
-#: ../rgb_config_acer_gkbbl_0.py:194
+#: ../rgb_config_acer_gkbbl_0.py:725
+#, python-format
 msgid "Static RGB device %s detected"
 msgstr "Statisches RGB Gerät %s erkannt"
 
-#: ../rgb_config_acer_gkbbl_0.py:196
+#: ../rgb_config_acer_gkbbl_0.py:727
+#, python-format
 msgid "ERROR: Static RGB device %s not found"
 msgstr "FEHLER: Statisches RGB Gerät %s nicht gefunden"
 
-#: ../rgb_config_acer_gkbbl_0.py:861 ../rgb_config_acer_gkbbl_0.py:873
+#: ../rgb_config_acer_gkbbl_0.py:933 ../rgb_config_acer_gkbbl_0.py:945
+#, python-format
 msgid "RGB Device %s not available"
 msgstr "RGB Gerät %s nicht verfügbar"
 
-#: ../rgb_config_acer_gkbbl_0.py:923
+#: ../rgb_config_acer_gkbbl_0.py:995
+#, python-format
 msgid "Payload written to %s"
 msgstr "Payload nach %s geschrieben"
 
-#: ../rgb_config_acer_gkbbl_0.py:187
+#: ../rgb_config_acer_gkbbl_0.py:716
+#, python-format
 msgid "RGB device %s detected"
 msgstr "RGB Gerät %s erkannt"
 
-#: ../lib/ui.py:25 ../lib/ui.py:427
+#: ../lib/ui.py:25 ../lib/ui.py:437
 msgid "RGB Config (acer-gkbbl-0)"
 msgstr "RGB Config (acer-gkbbl-0)"
 
@@ -210,63 +198,63 @@ msgstr "Löschen"
 msgid "Load"
 msgstr "Laden"
 
-#: ../lib/ui.py:263
+#: ../lib/ui.py:262
 msgid "Open profile folder"
 msgstr "Profilordner öffnen"
 
-#: ../lib/ui.py:266
+#: ../lib/ui.py:268
 msgid "Quit"
 msgstr "Beenden"
 
-#: ../lib/ui.py:269
+#: ../lib/ui.py:271
 msgid "File"
 msgstr "Datei"
 
-#: ../lib/ui.py:272
+#: ../lib/ui.py:274
 msgid "Show tray icon"
 msgstr "Tray icon anzeigen"
 
-#: ../lib/ui.py:275
+#: ../lib/ui.py:277
 msgid "Start minimized"
 msgstr "Minimiert starten"
 
-#: ../lib/ui.py:278
+#: ../lib/ui.py:280
 msgid "Close to tray"
 msgstr "Beim schließen in System Tray minimieren"
 
-#: ../lib/ui.py:286
+#: ../lib/ui.py:288
 msgid "Apply [ACTIVE] on startup"
 msgstr "[ACTIVE] Profil beim Programmstart anwenden"
 
-#: ../lib/ui.py:295
+#: ../lib/ui.py:297
 msgid "Options"
 msgstr "Optionen"
 
-#: ../lib/ui.py:298
+#: ../lib/ui.py:300
 msgid "Show log"
 msgstr "Log anzeigen"
 
-#: ../lib/ui.py:301
+#: ../lib/ui.py:303
 msgid "Show profiles"
 msgstr "Profile anzeigen"
 
-#: ../lib/ui.py:304
+#: ../lib/ui.py:306
 msgid "Show preview"
 msgstr "Vorschau anzeigen"
 
-#: ../lib/ui.py:307
+#: ../lib/ui.py:309
 msgid "View"
 msgstr "Anzeige"
 
-#: ../lib/ui.py:310 ../lib/ui.py:421
+#: ../lib/ui.py:312 ../lib/ui.py:431
 msgid "About RGB Config (acer-gkbbl-0)"
 msgstr "Über RGB Config (acer-gkbbl-0)"
 
-#: ../lib/ui.py:313
+#: ../lib/ui.py:315
 msgid "About"
 msgstr "Über"
 
-#: ../lib/ui.py:434
+#: ../lib/ui.py:444
 msgid ""
 "MIT License\n"
 "\n"
@@ -314,11 +302,11 @@ msgstr ""
 "FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR \n"
 "OTHER DEALINGS IN THE SOFTWARE."
 
-#: ../lib/ui.py:439
+#: ../lib/ui.py:449
 msgid "RGB Config (acer-gkbbl-0) on GitHub"
 msgstr "RGB Config (acer-gkbbl-0) auf GitHub"
 
-#: ../rgb_config_acer_gkbbl_0.py:52
+#: ../rgb_config_acer_gkbbl_0.py:55
 msgid ""
 "wxPython not available\n"
 "\n"
@@ -333,7 +321,8 @@ msgid ""
 msgstr ""
 "wxPython ist nicht verfügbar\n"
 "\n"
-"wxPython kann über die Paketverwaltung Ihres Systems oder via python3 pip installiert werden.\n"
+"wxPython kann über die Paketverwaltung Ihres Systems oder via python3 pip installiert "
+"werden.\n"
 "\n"
 "z.B.\n"
 "apt install python3-wxgtk4.0\n"
@@ -341,23 +330,24 @@ msgstr ""
 "https://wxpython.org/\n"
 "für weitere informationen"
 
-#: ../rgb_config_acer_gkbbl_0.py:64 ../rgb_config_acer_gkbbl_0.py:72
+#: ../rgb_config_acer_gkbbl_0.py:67 ../rgb_config_acer_gkbbl_0.py:75
 msgid "Error"
 msgstr "Fehler"
 
-#: ../rgb_config_acer_gkbbl_0.py:802
+#: ../rgb_config_acer_gkbbl_0.py:874
+#, python-format
 msgid "Delete \"%s\"?"
 msgstr "\"%s\" löschen?"
 
-#: ../rgb_config_acer_gkbbl_0.py:802
+#: ../rgb_config_acer_gkbbl_0.py:874
 msgid "Delete profile"
 msgstr "Profil löschen"
 
-#: ../lib/ui.py:293
+#: ../lib/ui.py:295
 msgid "Language"
 msgstr "Sprache"
 
-#: ../rgb_config_acer_gkbbl_0.py:439
+#: ../rgb_config_acer_gkbbl_0.py:468
 msgid ""
 "The application must be restartet to apply the language change.\n"
 "\n"
@@ -367,13 +357,447 @@ msgstr ""
 "\n"
 "Soll jetzt neu gestartet werden?"
 
-#: ../rgb_config_acer_gkbbl_0.py:440
+#: ../rgb_config_acer_gkbbl_0.py:469
 msgid "Change language"
 msgstr "Sprache ändern"
 
-#: ../lib/ui.py:282
+#: ../lib/ui.py:284
 msgid "Tray icon style"
 msgstr "Tray icon Stil"
+
+#: ../rgb_config_acer_gkbbl_0.py:206
+msgid ""
+"The RGB device is not available.\n"
+"\n"
+"RGB Config (acer-gkbbl-0) can try to install the required kernel module for you (requires "
+"root privileges).\n"
+"\n"
+"Do you want to continue?"
+msgstr ""
+"Das RGB-Gerät ist nicht verfügbar\n"
+"\n"
+"RGB Config (acer-gkbbl-0) kann versuchen das benötigte Kernel Modul zu installieren "
+"(erfordert Root Rechte).\n"
+"\n"
+"Modul installieren?"
+
+#: ../rgb_config_acer_gkbbl_0.py:209 ../rgb_config_acer_gkbbl_0.py:218
+msgid "RGB device not available"
+msgstr "RGB-Gerät nicht verfügbar"
+
+#: ../rgb_config_acer_gkbbl_0.py:216
+msgid ""
+"The kernel module will not be automatically installed.\n"
+"\n"
+"Please check\n"
+"\n"
+" https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module\n"
+"\n"
+" for manual installation instructions"
+msgstr ""
+"Das Kernel-Modul wird nicht automatisch installiert.\n"
+"\n"
+"Siehe\n"
+"\n"
+" https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module\n"
+"\n"
+"für Installationsanweisungen"
+
+#: ../rgb_config_acer_gkbbl_0.py:376
+msgid ""
+"Offical Acer software only takes speed values between 0 and 9.\n"
+"\n"
+"In theory the acer-gkbbl-0 character device accepts speed values between 0 and 255. Values "
+"above the standard limit of 9 might yield undesired results.\n"
+"\n"
+"It is advised to proceed with caution.\n"
+"\n"
+"Are you sure you want to extend the speed limit?"
+msgstr ""
+"Offizielle Acer Software erlaubt Geschwindigkeiten zwischen 0 und 9.\n"
+"\n"
+"Der acer-gkbbl-0 Kernel Treiber akzeptiert jedoch Werte zwischen 0 und 255. Werte über 9 "
+"werden nicht offiziell unterstützt und können zu unerwünschten Ergebnissen führen\\n\"\n"
+"\n"
+"Diese Funktion sollte mit Bedacht verwendet werden.\n"
+"\n"
+"Soll die maximale Geschwindigkeit erhöht werden?"
+
+#: ../rgb_config_acer_gkbbl_0.py:697 ../lib/ui.py:265
+msgid "Install kernel module"
+msgstr "Kernel-Modul installieren"
+
+#: ../lib/ui.py:494
+msgid "RGB Config (acer-gkbbl-0) will perform the steps listed below."
+msgstr "RGB Config (acer-gkbbl-0) wird folgende Schritte durchführen."
+
+#: ../lib/ui.py:509
+msgid "Step 1 - Check system requirements"
+msgstr "Schritt 1 - Systemanforderungen überprüfen"
+
+#: ../lib/ui.py:531
+msgid "Manufacturer"
+msgstr "Hersteller"
+
+#: ../lib/ui.py:553
+msgid "Device"
+msgstr "Gerät"
+
+#: ../lib/ui.py:575
+msgid "Secure boot"
+msgstr "Secure boot"
+
+#: ../lib/ui.py:597
+msgid "Init system"
+msgstr "Init System"
+
+#: ../lib/ui.py:622
+msgid "Step 2 - Download installation files"
+msgstr "Schritt 2 - Installationsdaten herunterladen"
+
+#: ../lib/ui.py:644
+msgid "Kernel module Github"
+msgstr "Kernel-Modul Github"
+
+#: ../lib/ui.py:647
+msgid "[source]"
+msgstr "[Quelle]"
+
+#: ../lib/ui.py:668
+msgid "Step 3 - Extract installation files"
+msgstr "Schritt 3 - Installationsdaten entpacken"
+
+#: ../lib/ui.py:693
+msgid "Step 4 - Run install script"
+msgstr "Schritt 4 - Installations-Script ausführen"
+
+#: ../lib/ui.py:718
+msgid "Step 5 - Verify installation"
+msgstr "Installation überprüfen"
+
+#: ../lib/ui.py:740
+msgid "RGB device"
+msgstr "RGB-Gerät"
+
+#: ../lib/ui.py:762
+msgid "Static RGB device"
+msgstr "Statisches RGB-Gerät"
+
+#: ../lib/ui.py:791
+msgid "Exit"
+msgstr "Schließen"
+
+#: ../lib/ui.py:797
+msgid "Begin installation"
+msgstr "Installation starten"
+
+#: ../lib/install.py:99
+msgid ""
+"\n"
+"\n"
+"Beginning installation process"
+msgstr ""
+"\n"
+"\n"
+"Starte Installationsprozess"
+
+#: ../lib/install.py:100 ../lib/install.py:104 ../lib/install.py:117 ../lib/install.py:128
+#: ../lib/install.py:139 ../lib/install.py:150
+msgid "------------------------------\n"
+msgstr "------------------------------\n"
+
+#: ../lib/install.py:103
+msgid ""
+"\n"
+"\n"
+"Step 1 - Check system requirements"
+msgstr ""
+"\n"
+"\n"
+"Schritt 1 - Systemanforderungen überprüfen"
+
+#: ../lib/install.py:116
+msgid ""
+"\n"
+"\n"
+"Step 2 - Download installation files"
+msgstr ""
+"\n"
+"\n"
+"Schritt 2 - Installationsdaten herunterladen"
+
+#: ../lib/install.py:120
+msgid ""
+"Installation files could not be downloaded.\n"
+"\n"
+"Installation aborted."
+msgstr "Installationsdaten konnten nicht heruntergeladen werden. Installation abgebrochen."
+
+#: ../lib/install.py:121 ../lib/install.py:478 ../lib/install.py:484
+msgid "Download failed"
+msgstr "Download fehlgeschlagen"
+
+#: ../lib/install.py:127
+msgid ""
+"\n"
+"\n"
+"Step 3 - Extract installation files"
+msgstr ""
+"\n"
+"\n"
+"Schritt 3 - Installationsdaten entpacken"
+
+#: ../lib/install.py:131
+msgid ""
+"Installation files could not be extracted.\n"
+"\n"
+"Installation aborted."
+msgstr "Installationsdaten konnten nicht entpackt werden. Installation abgebrochen."
+
+#: ../lib/install.py:132 ../lib/install.py:511 ../lib/install.py:518
+msgid "Extract failed"
+msgstr "Entpacken fehlgeschlagen"
+
+#: ../lib/install.py:138
+msgid ""
+"\n"
+"\n"
+"Step 4 - Install installation files"
+msgstr ""
+"\n"
+"\n"
+"Schritt 4 - Installationsdaten installieren"
+
+#: ../lib/install.py:142
+msgid ""
+"The install script could not be executed.\n"
+"\n"
+"Installation aborted."
+msgstr "Das Installations-Script konnte nicht ausgeführt werden. Installation abgebrochen."
+
+#: ../lib/install.py:143 ../lib/install.py:562 ../lib/install.py:569
+msgid "Install failed"
+msgstr "Installation fehlgeschlagen"
+
+#: ../lib/install.py:149
+msgid ""
+"\n"
+"\n"
+"Step 5 - Verify installation"
+msgstr ""
+"\n"
+"\n"
+"Schritt 5 - Installation überprüfen"
+
+#: ../lib/install.py:153
+msgid ""
+"One or more RGB devices unavailable.\n"
+"\n"
+"Either the installation has failed or the kernel module could not be loaded.\n"
+"\n"
+"Sometime the kernel module cannot be loaded until the device was restarted."
+msgstr ""
+"Mindestens ein RGB-Gerät ist nicht verfügbar.\n"
+"\n"
+"Entweder ist die Installation fehlgeschlagen oder das Kernel-Modul konnte nicht geladen "
+"werden.\n"
+"\n"
+"Gelegentlich kann das Kernel-Modul erst nach einem Neustart geladen werden."
+
+#: ../lib/install.py:156
+msgid "Verification failed"
+msgstr "Überprüfung fehlgeschlagen"
+
+#: ../lib/install.py:198
+msgid ""
+"Authentication required.\n"
+"\n"
+"RGB Config (acer-gkbbl-0) must perform an action that requires\n"
+"root privileges."
+msgstr ""
+"Authentifizierung erforderlich.\n"
+"\n"
+"RGB Config (acer-gkbbl-0) muss eine Aktion durchführen die\n"
+"Root-Rechte benötigt."
+
+#: ../lib/install.py:200
+msgid "Authentication required"
+msgstr "Authentifizierung erforderlich"
+
+#: ../lib/install.py:251
+msgid "Manufacturers other than Acer are most likely not compatible with this module"
+msgstr "Andere Hersteller als Acer sind vermutlich mit diesem Modul nicht kompatibel"
+
+#: ../lib/install.py:255 ../lib/install.py:317 ../lib/install.py:350 ../lib/install.py:409
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: ../lib/install.py:256
+msgid "The device manufacturer could not be detected"
+msgstr "Der Gerätehersteller konnte nicht ermittelt werden"
+
+#: ../lib/install.py:312
+msgid "The compatibility list could not be retrieved"
+msgstr "Die Kompatibilitätsliste konnte nicht abgerufen werden"
+
+#: ../lib/install.py:318
+msgid "The device model could not be detected"
+msgstr "Das Gerätemodell konnte nicht ermittelt werden"
+
+#: ../lib/install.py:324
+msgid "The model number does not appear on the list of supported devices"
+msgstr "Das Gerät steht nicht auf der Liste unterstützter Geräte"
+
+#: ../lib/install.py:342
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+#: ../lib/install.py:344
+msgid "Enabled"
+msgstr "Aktiviert"
+
+#: ../lib/install.py:345
+msgid ""
+"Secure boot should be disabled. The module will probably not work with secure boot enabled"
+msgstr ""
+"Secure boot muss deaktiviert sein. Das Modul funktioniert wahrscheinlich nicht wenn Secure "
+"boot aktiv ist"
+
+#: ../lib/install.py:351
+msgid "Secure boot state could not be detected"
+msgstr "Secure boot Status konnte nicht ermittelt werden"
+
+#: ../lib/install.py:378 ../lib/install.py:399
+msgid "The init system seems to be unsupported"
+msgstr "Das Init-System scheint nicht unterstützt zu werden"
+
+#: ../lib/install.py:379 ../lib/install.py:400 ../lib/install.py:412
+msgid "No service will be installed, the module will only work until shutdown"
+msgstr "Es wird kein Dienst installiert, das Modul funktioniert nur bis zum Herunterfahren"
+
+#: ../lib/install.py:411
+msgid "The init system could not be detected"
+msgstr "Das Init-System konnte nicht ermittelt werden"
+
+#: ../lib/install.py:423
+msgid "System might not meet all requirements.\n"
+msgstr "Das System entspricht nicht allen Anforderungen\n"
+
+#: ../lib/install.py:426
+msgid ""
+"\n"
+"Warnings\n"
+"---------\n"
+msgstr ""
+"\n"
+"Warnungen\n"
+"---------\n"
+
+#: ../lib/install.py:432
+msgid ""
+"\n"
+"Potential errors\n"
+"---------\n"
+msgstr ""
+"\n"
+"Mögliche Fehler\n"
+"---------\n"
+
+#: ../lib/install.py:437
+msgid ""
+"\n"
+"You can still try to continue the installation but the module might not work with your setup."
+msgstr ""
+"\n"
+"Die Installation kann fortgeführt werden aber das Modul wird eventuell nicht funktionieren."
+
+#: ../lib/install.py:440
+msgid "System check"
+msgstr "Systemüberprüfung"
+
+#: ../lib/install.py:458
+msgid "Downloading..."
+msgstr "Herunterladen..."
+
+#: ../lib/install.py:462
+msgid "Removing old file: "
+msgstr "Entferne alte Daten: "
+
+#: ../lib/install.py:469
+msgid "Downloading installation file: "
+msgstr "Lade Installationsdaten herunter: "
+
+#: ../lib/install.py:474
+msgid "Download successful file: "
+msgstr "Download erfolgreich, Datei: "
+
+#: ../lib/install.py:475 ../lib/install.py:508 ../lib/install.py:559
+msgid "Success"
+msgstr "Erfolgreich"
+
+#: ../lib/install.py:479 ../lib/install.py:485 ../lib/install.py:512 ../lib/install.py:519
+#: ../lib/install.py:563 ../lib/install.py:570
+msgid "Failed"
+msgstr "Fehlgeschlagen"
+
+#: ../lib/install.py:495
+msgid "Extracting..."
+msgstr "Entpacke..."
+
+#: ../lib/install.py:499
+msgid "Removing old installation files: "
+msgstr "Entferne alte Installationsdaten: "
+
+#: ../lib/install.py:502
+msgid "Extracting installation files: "
+msgstr "Entpacke Installationsdaten: "
+
+#: ../lib/install.py:507
+msgid "Installation files extracted to: "
+msgstr "Installationsdaten entpackt nach: "
+
+#: ../lib/install.py:529
+msgid "Installing..."
+msgstr "Installiere..."
+
+#: ../lib/install.py:544
+msgid "Setting execute permissions on install files"
+msgstr "Setze Ausführberechtigungen für Installationsdaten"
+
+#: ../lib/install.py:547
+msgid "Running install script: "
+msgstr "Führe Installations-Script aus: "
+
+#: ../lib/install.py:558
+msgid "Install successful: "
+msgstr "Installation erfolgreich: "
+
+#: ../lib/install.py:582 ../lib/install.py:588
+msgid "Available"
+msgstr "Verfügbar"
+
+#: ../lib/install.py:584 ../lib/install.py:590
+msgid "Unavailable"
+msgstr "Nicht verfügbar"
+
+#~ msgid ""
+#~ "Offical Acer software only allows speed values between 0 and 9.\n"
+#~ "\n"
+#~ "In theory the acer-gkbbl-0 kernel module accepts speed values between 0 and 255. Values "
+#~ "above the standard limit of 9 might yield undesired results.\n"
+#~ "\n"
+#~ "It is advised to proceed with caution.\n"
+#~ "\n"
+#~ "Are you sure you want to extend the speed limit?"
+#~ msgstr ""
+#~ "Offizielle Acer Software erlaubt Geschwindigkeiten zwischen 0 und 9.\n"
+#~ "\n"
+#~ "Der acer-gkbbl-0 Kernel Treiber akzeptiert jedoch Werte zwischen 0 und 255. Werte über 9 "
+#~ "werden nicht offiziell unterstützt und können zu unerwünschten Ergebnissen führen\n"
+#~ "\n"
+#~ "Diese Funktion sollte mit Bedacht verwendet werden.\n"
+#~ "\n"
+#~ "Soll die maximale Geschwindigkeit erhöht werden?"
 
 #~ msgid "Preferences loaded: "
 #~ msgstr "Programmeinstellungen geladen: "

@@ -16,6 +16,7 @@ app_preferences = {
     "closeToTray"   : False,
     "applyStart"    : False,
     "extendSpeed"   : False,
+    "debug"         : False,
     "language"      : "",
     "trayIconStyle" : "color"
 }
