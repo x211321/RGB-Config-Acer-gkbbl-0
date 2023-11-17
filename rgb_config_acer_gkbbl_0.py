@@ -204,6 +204,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
     ## Event handler
     #########################################
 
+
     ####################
     # on_close
     #-------------------
@@ -539,9 +540,17 @@ class AcerRGBGUI_Frame(ui.frame_main):
             if enabled[index]:
                 self.colorWidgets[index]["widget"].Enable()
                 self.colorWidgets[index]["label"].Enable()
+
+                self.colorWidgets[index]["widget"].Show()
+                self.colorWidgets[index]["label"].Show()
             else:
                 self.colorWidgets[index]["widget"].Disable()
                 self.colorWidgets[index]["label"].Disable()
+
+                self.colorWidgets[index]["widget"].Hide()
+                self.colorWidgets[index]["label"].Hide()
+
+            self.colorWidgets[index]["label"].GetParent().Layout()
 
 
     ####################
