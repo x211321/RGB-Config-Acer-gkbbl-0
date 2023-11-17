@@ -893,6 +893,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
             # Activate Static mode
             pload = [0] * var.RGB_PAYLOAD_SIZE
             pload[2] = self.settings["brightness"]
+            pload[9] = 1
 
             # Write to RGB device
             self.writePayload(var.RGB_DEVICE, pload)
@@ -907,6 +908,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
             pload[5] = self.settings["red"]
             pload[6] = self.settings["green"]
             pload[7] = self.settings["blue"]
+            pload[9] = 1
 
             # Write to RGB device
             self.writePayload(var.RGB_DEVICE, pload)
