@@ -57,6 +57,7 @@ class frame_main ( wx.Frame ):
 
         horizontal_mode = wx.BoxSizer( wx.HORIZONTAL )
 
+        horizontal_mode.SetMinSize( wx.Size( -1,50 ) )
         self.label_mode = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"RGB Mode"), wx.DefaultPosition, wx.DefaultSize, wx.ALIGN_LEFT )
         self.label_mode.Wrap( -1 )
 
@@ -80,6 +81,7 @@ class frame_main ( wx.Frame ):
 
         horizontal_brightness = wx.BoxSizer( wx.HORIZONTAL )
 
+        horizontal_brightness.SetMinSize( wx.Size( -1,50 ) )
         self.label_brightness = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Brightness"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_brightness.Wrap( -1 )
 
@@ -93,6 +95,7 @@ class frame_main ( wx.Frame ):
 
         horizontal_speed = wx.BoxSizer( wx.HORIZONTAL )
 
+        horizontal_speed.SetMinSize( wx.Size( -1,50 ) )
         self.label_speed = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Speed"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_speed.Wrap( -1 )
 
@@ -106,10 +109,11 @@ class frame_main ( wx.Frame ):
 
         horizontal_direction = wx.BoxSizer( wx.HORIZONTAL )
 
+        horizontal_direction.SetMinSize( wx.Size( -1,50 ) )
         self.label_direction = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Direction"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_direction.Wrap( -1 )
 
-        horizontal_direction.Add( self.label_direction, 1, wx.ALL|wx.EXPAND, 5 )
+        horizontal_direction.Add( self.label_direction, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 
         self.radio_left_right = wx.RadioButton( self.panel_left, wx.ID_ANY, _(u"Left to Right"), wx.DefaultPosition, wx.DefaultSize, wx.RB_GROUP )
         horizontal_direction.Add( self.radio_left_right, 1, wx.ALL|wx.EXPAND, 5 )
@@ -122,6 +126,7 @@ class frame_main ( wx.Frame ):
 
         horizontal_colors = wx.BoxSizer( wx.HORIZONTAL )
 
+        horizontal_colors.SetMinSize( wx.Size( -1,50 ) )
         self.label_colors = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Colors"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_colors.Wrap( -1 )
 

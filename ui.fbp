@@ -447,8 +447,8 @@
                                   <property name="border">5</property>
                                   <property name="flag">wxEXPAND</property>
                                   <property name="proportion">0</property>
-                                  <object class="wxBoxSizer" expanded="true">
-                                    <property name="minimum_size"></property>
+                                  <object class="wxBoxSizer" expanded="false">
+                                    <property name="minimum_size">-1,50</property>
                                     <property name="name">horizontal_mode</property>
                                     <property name="orient">wxHORIZONTAL</property>
                                     <property name="permission">none</property>
@@ -514,11 +514,11 @@
                                         <property name="wrap">-1</property>
                                       </object>
                                     </object>
-                                    <object class="sizeritem" expanded="true">
+                                    <object class="sizeritem" expanded="false">
                                       <property name="border">5</property>
                                       <property name="flag">wxEXPAND</property>
                                       <property name="proportion">2</property>
-                                      <object class="wxBoxSizer" expanded="true">
+                                      <object class="wxBoxSizer" expanded="false">
                                         <property name="minimum_size"></property>
                                         <property name="name">bSizer16</property>
                                         <property name="orient">wxHORIZONTAL</property>
@@ -660,7 +660,7 @@
                                   <property name="flag">wxEXPAND</property>
                                   <property name="proportion">0</property>
                                   <object class="wxBoxSizer" expanded="false">
-                                    <property name="minimum_size"></property>
+                                    <property name="minimum_size">-1,50</property>
                                     <property name="name">horizontal_brightness</property>
                                     <property name="orient">wxHORIZONTAL</property>
                                     <property name="permission">none</property>
@@ -766,7 +766,7 @@
                                         <property name="minValue">0</property>
                                         <property name="min_size"></property>
                                         <property name="minimize_button">0</property>
-                                        <property name="minimum_size"></property>
+                                        <property name="minimum_size">-1,-1</property>
                                         <property name="moveable">1</property>
                                         <property name="name">slider_brightness</property>
                                         <property name="pane_border">1</property>
@@ -799,7 +799,7 @@
                                   <property name="flag">wxEXPAND</property>
                                   <property name="proportion">0</property>
                                   <object class="wxBoxSizer" expanded="false">
-                                    <property name="minimum_size"></property>
+                                    <property name="minimum_size">-1,50</property>
                                     <property name="name">horizontal_speed</property>
                                     <property name="orient">wxHORIZONTAL</property>
                                     <property name="permission">none</property>
@@ -933,18 +933,18 @@
                                     </object>
                                   </object>
                                 </object>
-                                <object class="sizeritem" expanded="false">
+                                <object class="sizeritem" expanded="true">
                                   <property name="border">5</property>
                                   <property name="flag">wxEXPAND</property>
                                   <property name="proportion">0</property>
-                                  <object class="wxBoxSizer" expanded="false">
-                                    <property name="minimum_size"></property>
+                                  <object class="wxBoxSizer" expanded="true">
+                                    <property name="minimum_size">-1,50</property>
                                     <property name="name">horizontal_direction</property>
                                     <property name="orient">wxHORIZONTAL</property>
                                     <property name="permission">none</property>
                                     <object class="sizeritem" expanded="false">
                                       <property name="border">5</property>
-                                      <property name="flag">wxALL|wxEXPAND</property>
+                                      <property name="flag">wxALIGN_CENTER_VERTICAL|wxALL</property>
                                       <property name="proportion">1</property>
                                       <object class="wxStaticText" expanded="false">
                                         <property name="BottomDockable">1</property>
@@ -1142,8 +1142,8 @@
                                   <property name="border">5</property>
                                   <property name="flag">wxEXPAND</property>
                                   <property name="proportion">0</property>
-                                  <object class="wxBoxSizer" expanded="false">
-                                    <property name="minimum_size"></property>
+                                  <object class="wxBoxSizer" expanded="true">
+                                    <property name="minimum_size">-1,50</property>
                                     <property name="name">horizontal_colors</property>
                                     <property name="orient">wxHORIZONTAL</property>
                                     <property name="permission">none</property>
