@@ -22,7 +22,7 @@ _ = gettext.gettext
 class frame_main ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"RGB Config (acer-gkbbl-0)"), pos = wx.DefaultPosition, size = wx.Size( 900,600 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = _(u"RGB Config (acer-gkbbl-0)"), pos = wx.DefaultPosition, size = wx.Size( 900,550 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 
@@ -120,60 +120,48 @@ class frame_main ( wx.Frame ):
 
         vertical_settings.Add( horizontal_direction, 0, wx.EXPAND, 5 )
 
-        horizontal_color1 = wx.BoxSizer( wx.HORIZONTAL )
+        horizontal_colors = wx.BoxSizer( wx.HORIZONTAL )
 
-        self.label_color0 = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Color section 1"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        self.label_color0.Wrap( -1 )
+        self.label_colors = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Colors"), wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_colors.Wrap( -1 )
 
-        horizontal_color1.Add( self.label_color0, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+        horizontal_colors.Add( self.label_colors, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+
+        horizontal_color_sections = wx.BoxSizer( wx.HORIZONTAL )
 
         self.color_color0 = wx.ColourPickerCtrl( self.panel_left, wx.ID_ANY, wx.BLACK, wx.DefaultPosition, wx.DefaultSize, wx.CLRP_DEFAULT_STYLE )
-        horizontal_color1.Add( self.color_color0, 2, wx.ALL|wx.EXPAND, 5 )
+        self.color_color0.SetMaxSize( wx.Size( 80,-1 ) )
 
-
-        vertical_settings.Add( horizontal_color1, 0, wx.EXPAND, 5 )
-
-        horizontal_color2 = wx.BoxSizer( wx.HORIZONTAL )
-
-        self.label_color1 = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Color section 2"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        self.label_color1.Wrap( -1 )
-
-        horizontal_color2.Add( self.label_color1, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+        horizontal_color_sections.Add( self.color_color0, 2, wx.ALL|wx.EXPAND, 5 )
 
         self.color_color1 = wx.ColourPickerCtrl( self.panel_left, wx.ID_ANY, wx.BLACK, wx.DefaultPosition, wx.DefaultSize, wx.CLRP_DEFAULT_STYLE )
-        horizontal_color2.Add( self.color_color1, 2, wx.ALL|wx.EXPAND, 5 )
+        self.color_color1.SetMaxSize( wx.Size( 80,-1 ) )
 
-
-        vertical_settings.Add( horizontal_color2, 0, wx.EXPAND, 5 )
-
-        horizontal_color3 = wx.BoxSizer( wx.HORIZONTAL )
-
-        self.label_color2 = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Color section 3"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        self.label_color2.Wrap( -1 )
-
-        horizontal_color3.Add( self.label_color2, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+        horizontal_color_sections.Add( self.color_color1, 2, wx.ALL|wx.EXPAND, 5 )
 
         self.color_color2 = wx.ColourPickerCtrl( self.panel_left, wx.ID_ANY, wx.BLACK, wx.DefaultPosition, wx.DefaultSize, wx.CLRP_DEFAULT_STYLE )
-        horizontal_color3.Add( self.color_color2, 2, wx.ALL|wx.EXPAND, 5 )
+        self.color_color2.SetMaxSize( wx.Size( 80,-1 ) )
 
-
-        vertical_settings.Add( horizontal_color3, 0, wx.EXPAND, 5 )
-
-        horizontal_color4 = wx.BoxSizer( wx.HORIZONTAL )
-
-        self.label_color3 = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Color section 4"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        self.label_color3.Wrap( -1 )
-
-        horizontal_color4.Add( self.label_color3, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+        horizontal_color_sections.Add( self.color_color2, 2, wx.ALL|wx.EXPAND, 5 )
 
         self.color_color3 = wx.ColourPickerCtrl( self.panel_left, wx.ID_ANY, wx.BLACK, wx.DefaultPosition, wx.DefaultSize, wx.CLRP_DEFAULT_STYLE )
-        horizontal_color4.Add( self.color_color3, 2, wx.ALL|wx.EXPAND, 5 )
+        self.color_color3.SetMaxSize( wx.Size( 80,-1 ) )
+
+        horizontal_color_sections.Add( self.color_color3, 2, wx.ALL|wx.EXPAND, 5 )
 
 
-        vertical_settings.Add( horizontal_color4, 0, wx.EXPAND, 5 )
+        horizontal_colors.Add( horizontal_color_sections, 2, wx.EXPAND, 5 )
 
 
-        vertical_settings.Add( ( 0, 10), 1, wx.EXPAND, 5 )
+        vertical_settings.Add( horizontal_colors, 0, wx.EXPAND, 5 )
+
+        horizontal_spacer = wx.BoxSizer( wx.VERTICAL )
+
+
+        horizontal_spacer.Add( ( 0, 10), 1, wx.EXPAND, 5 )
+
+
+        vertical_settings.Add( horizontal_spacer, 1, wx.EXPAND, 5 )
 
         grid_settings_buttons = wx.GridSizer( 0, 2, 0, 0 )
 
@@ -248,7 +236,7 @@ class frame_main ( wx.Frame ):
         self.panel_bottom.SetSizer( vertical_bottom )
         self.panel_bottom.Layout()
         vertical_bottom.Fit( self.panel_bottom )
-        self.splitter_main_horizonzal.SplitHorizontally( self.panel_top, self.panel_bottom, 470 )
+        self.splitter_main_horizonzal.SplitHorizontally( self.panel_top, self.panel_bottom, 400 )
         vertical_main.Add( self.splitter_main_horizonzal, 1, wx.EXPAND, 5 )
 
 
@@ -403,7 +391,7 @@ class frame_main ( wx.Frame ):
         event.Skip()
 
     def splitter_main_horizonzalOnIdle( self, event ):
-        self.splitter_main_horizonzal.SetSashPosition( 470 )
+        self.splitter_main_horizonzal.SetSashPosition( 400 )
         self.splitter_main_horizonzal.Unbind( wx.EVT_IDLE )
 
     def splitter_main_verticalOnIdle( self, event ):

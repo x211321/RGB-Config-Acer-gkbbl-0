@@ -122,10 +122,10 @@ class AcerRGBGUI_Frame(ui.frame_main):
 
         # Defince color widgets
         self.colorWidgets = [
-            {"widget": self.color_color0, "label": self.label_color0},
-            {"widget": self.color_color1, "label": self.label_color1},
-            {"widget": self.color_color2, "label": self.label_color2},
-            {"widget": self.color_color3, "label": self.label_color3}
+            {"widget": self.color_color0, "label": self.label_colors},
+            {"widget": self.color_color1},
+            {"widget": self.color_color2},
+            {"widget": self.color_color3}
         ]
 
         # Define the different widget states in regard to the selected RGB mode
@@ -376,7 +376,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
         if self.menuItem_log.IsChecked():
             self.panel_bottom.Show()
             self.splitter_main_horizonzal.SplitHorizontally(self.panel_top, self.panel_bottom)
-            self.splitter_main_horizonzal.SetSashPosition(460)
+            self.splitter_main_horizonzal.SetSashPosition(400)
         else:
             self.panel_bottom.Hide()
             self.splitter_main_horizonzal.Unsplit()
@@ -539,18 +539,21 @@ class AcerRGBGUI_Frame(ui.frame_main):
         for index in range(4):
             if enabled[index]:
                 self.colorWidgets[index]["widget"].Enable()
-                self.colorWidgets[index]["label"].Enable()
-
                 self.colorWidgets[index]["widget"].Show()
-                self.colorWidgets[index]["label"].Show()
+
+                if "label" in self.colorWidgets[index]:
+                    self.colorWidgets[index]["label"].Enable()
+                    self.colorWidgets[index]["label"].Show()
+
             else:
                 self.colorWidgets[index]["widget"].Disable()
-                self.colorWidgets[index]["label"].Disable()
-
                 self.colorWidgets[index]["widget"].Hide()
-                self.colorWidgets[index]["label"].Hide()
+                
+                if "label" in self.colorWidgets[index]:
+                    self.colorWidgets[index]["label"].Disable()
+                    self.colorWidgets[index]["label"].Hide()
 
-            self.colorWidgets[index]["label"].GetParent().Layout()
+            self.colorWidgets[index]["widget"].GetParent().Layout()
 
 
     ####################
