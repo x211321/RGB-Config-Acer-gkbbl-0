@@ -393,7 +393,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
         if self.menuItem_profiles.IsChecked():
             self.panel_right.Show()
             self.splitter_main_vertical.SplitVertically(self.panel_left, self.panel_right)
-            self.splitter_main_vertical.SetSashPosition(500)
+            self.splitter_main_vertical.SetSashPosition(580)
         else:
             self.panel_right.Hide()
             self.splitter_main_vertical.Unsplit()
