@@ -772,7 +772,11 @@ class AcerRGBGUI_Frame(ui.frame_main):
 
 
         # Restore window position and size
-        display     = wx.Display(self) # Get the display the application is shown on
+        if int(wx.__version__.replace(".", "")) >= 420:
+            display = wx.Display(self) # Get the display the application is shown on
+        else:
+            display = wx.Display()
+
         displayRect = display.GetClientArea()
         x = wx.DefaultCoord
         y = wx.DefaultCoord
@@ -834,8 +838,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
         else:
             self.menubar_main.Hide()
 
-            icon = wx.Image("./assets/menu.png")
-            icon = icon.Scale(32, 32, wx.IMAGE_QUALITY_HIGH)
+            icon = wx.Bitmap("./assets/menu.png")
             self.button_menu_left.SetBitmap(icon)
             self.button_menu_right.SetBitmap(icon)
 
