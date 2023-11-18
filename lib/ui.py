@@ -74,7 +74,7 @@ class frame_main ( wx.Frame ):
         horizontal_settings_header.Add( self.button_menu_left, 0, wx.ALL, 0 )
 
 
-        vertical_settings.Add( horizontal_settings_header, 0, wx.EXPAND, 5 )
+        vertical_settings.Add( horizontal_settings_header, 0, wx.EXPAND|wx.LEFT|wx.RIGHT, 5 )
 
         self.m_staticline1 = wx.StaticLine( self.panel_left, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
         vertical_settings.Add( self.m_staticline1, 0, wx.EXPAND |wx.ALL, 5 )
@@ -101,7 +101,7 @@ class frame_main ( wx.Frame ):
         horizontal_mode.Add( bSizer16, 2, wx.EXPAND, 5 )
 
 
-        vertical_settings.Add( horizontal_mode, 0, wx.EXPAND, 5 )
+        vertical_settings.Add( horizontal_mode, 0, wx.EXPAND|wx.LEFT|wx.RIGHT, 5 )
 
         horizontal_brightness = wx.BoxSizer( wx.HORIZONTAL )
 
@@ -112,10 +112,10 @@ class frame_main ( wx.Frame ):
         horizontal_brightness.Add( self.label_brightness, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 
         self.slider_brightness = wx.Slider( self.panel_left, wx.ID_ANY, 100, 0, 100, wx.DefaultPosition, wx.Size( -1,-1 ), wx.SL_HORIZONTAL|wx.SL_VALUE_LABEL )
-        horizontal_brightness.Add( self.slider_brightness, 2, wx.ALL|wx.EXPAND, 5 )
+        horizontal_brightness.Add( self.slider_brightness, 2, wx.BOTTOM|wx.EXPAND|wx.RIGHT|wx.TOP, 5 )
 
 
-        vertical_settings.Add( horizontal_brightness, 0, wx.EXPAND, 5 )
+        vertical_settings.Add( horizontal_brightness, 0, wx.EXPAND|wx.LEFT|wx.RIGHT, 5 )
 
         horizontal_speed = wx.BoxSizer( wx.HORIZONTAL )
 
@@ -126,10 +126,10 @@ class frame_main ( wx.Frame ):
         horizontal_speed.Add( self.label_speed, 1, wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
 
         self.slider_speed = wx.Slider( self.panel_left, wx.ID_ANY, 3, 0, 9, wx.DefaultPosition, wx.DefaultSize, wx.SL_HORIZONTAL|wx.SL_VALUE_LABEL )
-        horizontal_speed.Add( self.slider_speed, 2, wx.ALL|wx.EXPAND, 5 )
+        horizontal_speed.Add( self.slider_speed, 2, wx.BOTTOM|wx.EXPAND|wx.RIGHT|wx.TOP, 5 )
 
 
-        vertical_settings.Add( horizontal_speed, 0, wx.EXPAND, 5 )
+        vertical_settings.Add( horizontal_speed, 0, wx.EXPAND|wx.LEFT|wx.RIGHT, 5 )
 
         horizontal_direction = wx.BoxSizer( wx.HORIZONTAL )
 
@@ -146,7 +146,7 @@ class frame_main ( wx.Frame ):
         horizontal_direction.Add( self.radio_right_left, 1, wx.ALL|wx.EXPAND, 5 )
 
 
-        vertical_settings.Add( horizontal_direction, 0, wx.EXPAND, 5 )
+        vertical_settings.Add( horizontal_direction, 0, wx.EXPAND|wx.LEFT|wx.RIGHT, 5 )
 
         horizontal_colors = wx.BoxSizer( wx.HORIZONTAL )
 
@@ -182,7 +182,7 @@ class frame_main ( wx.Frame ):
         horizontal_colors.Add( horizontal_color_sections, 2, wx.EXPAND, 5 )
 
 
-        vertical_settings.Add( horizontal_colors, 0, wx.EXPAND, 5 )
+        vertical_settings.Add( horizontal_colors, 0, wx.EXPAND|wx.LEFT|wx.RIGHT, 5 )
 
         horizontal_spacer = wx.BoxSizer( wx.VERTICAL )
 
@@ -232,14 +232,14 @@ class frame_main ( wx.Frame ):
         horizontal_profiles_header.Add( self.button_menu_right, 0, wx.ALL, 0 )
 
 
-        vertical_profiles.Add( horizontal_profiles_header, 0, wx.EXPAND, 5 )
+        vertical_profiles.Add( horizontal_profiles_header, 0, wx.EXPAND|wx.LEFT|wx.RIGHT, 5 )
 
         self.m_staticline2 = wx.StaticLine( self.panel_right, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
         vertical_profiles.Add( self.m_staticline2, 0, wx.EXPAND |wx.ALL, 5 )
 
         list_profilesChoices = []
         self.list_profiles = wx.ListBox( self.panel_right, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, list_profilesChoices, wx.LB_SINGLE|wx.LB_SORT )
-        vertical_profiles.Add( self.list_profiles, 1, wx.ALL|wx.EXPAND, 5 )
+        vertical_profiles.Add( self.list_profiles, 1, wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, 10 )
 
 
         vertical_profiles.Add( ( 0, 4), 0, wx.EXPAND, 5 )
