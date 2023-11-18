@@ -183,6 +183,13 @@ class AcerRGBGUI_Frame(ui.frame_main):
         if self.preferences["extendSpeed"]:
             self.slider_speed.SetRange(0, 255)
 
+        # Set button icons
+        self.button_save.SetBitmap(wx.ArtProvider.GetBitmap("document-save", wx.ART_MENU))
+        self.button_apply.SetBitmap(wx.ArtProvider.GetBitmap("input-keyboard", wx.ART_MENU))
+        self.button_refresh.SetBitmap(wx.ArtProvider.GetBitmap("view-refresh", wx.ART_MENU))
+        self.button_delete.SetBitmap(wx.ArtProvider.GetBitmap("edit-delete", wx.ART_MENU))
+        self.button_load.SetBitmap(wx.ArtProvider.GetBitmap("document-open", wx.ART_MENU))
+
         # Check RGB Devices available
         # - show error message in log when device not found
         if os.path.exists(var.RGB_DEVICE):
