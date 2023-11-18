@@ -264,6 +264,14 @@ class AcerRGBGUI_Frame(ui.frame_main):
 
 
     ####################
+    # on_menu_click
+    #-------------------
+    # Event handler - open button menu
+    def on_menu_click(self, event):
+        self.PopupMenu(self.button_Menu)
+
+
+    ####################
     # on_apply_click
     #-------------------
     # Event handler - apply RGB settings click
@@ -434,9 +442,16 @@ class AcerRGBGUI_Frame(ui.frame_main):
             self.panel_right.Show()
             self.splitter_main_vertical.SplitVertically(self.panel_left, self.panel_right)
             self.splitter_main_vertical.SetSashPosition(600)
+            self.button_menu_left.Hide()
+            self.button_menu_right.Show()
         else:
             self.panel_right.Hide()
             self.splitter_main_vertical.Unsplit()
+            self.button_menu_left.Show()
+            self.button_menu_right.Hide()
+
+        self.button_menu_left.GetParent().Layout()
+        self.button_menu_right.GetParent().Layout()
 
         self.preferences["profiles"] = self.menuItem_profiles.IsChecked()
         self.savePreferences()
@@ -726,6 +741,9 @@ class AcerRGBGUI_Frame(ui.frame_main):
         global app_preferences
         self.preferences = app_preferences
 
+        # Create menu
+        self.createMenu()
+
         # Restore preferences
         if self.preferences["tray"]:
             self.menuItem_tray.Check()
@@ -752,6 +770,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
             self.menuItem_applyStart.Check()
         if self.preferences["extendSpeed"]:
             self.menuItem_extendSpeed.Check()
+
 
         # Restore window position and size
         display     = wx.Display(self) # Get the display the application is shown on
@@ -802,6 +821,146 @@ class AcerRGBGUI_Frame(ui.frame_main):
 
             # Bind to custom idle event to set sash pos after sizing
             self.splitter_main_vertical.Bind(wx.EVT_IDLE, self.on_idle_set_vertical_sash_pos)
+
+
+    ####################
+    # createMenu
+    #-------------------
+    # Create submenus and menu entries
+    def createMenu(self):
+        # Show menu
+        if self.preferences["menu"]:
+            self.button_menu_left.Hide()
+            self.button_menu_right.Hide()
+        else:
+            self.menubar_main.Hide()
+
+            icon = wx.Image("./assets/menu.png")
+            icon = icon.Scale(32, 32, wx.IMAGE_QUALITY_HIGH)
+            self.button_menu_left.SetBitmap(icon)
+            self.button_menu_right.SetBitmap(icon)
+
+            self.button_menu_left.SetLabelText("")
+            self.button_menu_right.SetLabelText("")
+
+            if self.preferences["profiles"]:
+                self.button_menu_left.Hide()
+            else:
+                self.button_menu_right.Hide()
+
+
+        # Create submenus
+        self.button_Menu = wx.Menu()
+
+        # "File" menu
+        self.menu_file = wx.Menu()
+        self.menuItem_openProfileFolder = wx.MenuItem( self.menu_file, wx.ID_ANY, 
+                                                       _(u"Open profile folder"), 
+                                                       wx.EmptyString, wx.ITEM_NORMAL )
+
+        
+        self.menuItem_refreshProfileList = wx.MenuItem( self.menu_file, wx.ID_ANY, 
+                                                        _(u"Refresh profile list"), 
+                                                        wx.EmptyString, wx.ITEM_NORMAL )
+        
+        self.menuItem_quit = wx.MenuItem( self.menu_file, wx.ID_ANY, 
+                                          _(u"Quit"), 
+                                          wx.EmptyString, wx.ITEM_NORMAL )
+
+        self.menu_file.Append( self.menuItem_openProfileFolder )
+        self.menu_file.Append( self.menuItem_refreshProfileList )
+        self.menu_file.Append( self.menuItem_quit )
+
+        
+        # "Options" menu
+        self.menu_options = wx.Menu()
+        self.menuItem_tray = wx.MenuItem( self.menu_options, wx.ID_ANY, 
+                                          _(u"Show tray icon"), 
+                                          wx.EmptyString, wx.ITEM_CHECK )
+
+        self.menuItem_startMinimized = wx.MenuItem( self.menu_options, wx.ID_ANY, 
+                                                    _(u"Start minimized"), 
+                                                    wx.EmptyString, wx.ITEM_CHECK )
+
+        self.menuItem_closeToTray = wx.MenuItem( self.menu_options, wx.ID_ANY, 
+                                                 _(u"Close to tray"), 
+                                                 wx.EmptyString, wx.ITEM_CHECK )
+        
+        self.menuItem_applyStart = wx.MenuItem( self.menu_options, wx.ID_ANY, 
+                                                _(u"Apply [ACTIVE] on startup"), 
+                                                wx.EmptyString, wx.ITEM_CHECK )
+        
+        self.menuItem_extendSpeed = wx.MenuItem( self.menu_options, wx.ID_ANY, 
+                                                 _(u"Extend max speed"), 
+                                                 wx.EmptyString, wx.ITEM_CHECK )
+        
+        self.subMenu_trayIconStyle = wx.Menu()
+        self.subMenu_language = wx.Menu()
+
+        self.menu_options.Append( self.menuItem_tray )
+        self.menu_options.Append( self.menuItem_startMinimized )
+        self.menu_options.Append( self.menuItem_closeToTray )
+        self.menu_options.AppendSubMenu( self.subMenu_trayIconStyle, _(u"Tray icon style") )
+        self.menu_options.AppendSeparator()
+        self.menu_options.Append( self.menuItem_applyStart )
+        self.menu_options.Append( self.menuItem_extendSpeed )
+        self.menu_options.AppendSubMenu( self.subMenu_language, _(u"Language") )
+
+
+        # "View" menu
+        self.menu_view = wx.Menu()
+        self.menuItem_log = wx.MenuItem( self.menu_view, wx.ID_ANY, 
+                                         _(u"Show log"), 
+                                         wx.EmptyString, wx.ITEM_CHECK )
+
+        self.menuItem_profiles = wx.MenuItem( self.menu_view, wx.ID_ANY, 
+                                              _(u"Show profiles"), 
+                                              wx.EmptyString, wx.ITEM_CHECK )
+        
+
+        self.menuItem_preview = wx.MenuItem( self.menu_view, wx.ID_ANY, 
+                                             _(u"Show preview"), 
+                                             wx.EmptyString, wx.ITEM_CHECK )
+
+        self.menu_view.Append( self.menuItem_log )
+        self.menu_view.Append( self.menuItem_profiles )
+        self.menu_view.Append( self.menuItem_preview )
+
+        
+        # "About" menu
+        self.menu_about = wx.Menu()
+        self.menuItem_about = wx.MenuItem( self.menu_about, wx.ID_ANY, 
+                                           _(u"About RGB Config (acer-gkbbl-0)"), 
+                                           wx.EmptyString, wx.ITEM_NORMAL )
+
+        self.menu_about.Append( self.menuItem_about )
+
+
+        # Bind menu events
+        self.Bind( wx.EVT_MENU, self.on_menu_openProfileFolder, id = self.menuItem_openProfileFolder.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_refreshProfileList, id = self.menuItem_refreshProfileList.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_force_close, id = self.menuItem_quit.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_tray, id = self.menuItem_tray.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_startMinimized, id = self.menuItem_startMinimized.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_closeToTray, id = self.menuItem_closeToTray.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_applyStart, id = self.menuItem_applyStart.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_extendSpeed, id = self.menuItem_extendSpeed.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_log, id = self.menuItem_log.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_profiles, id = self.menuItem_profiles.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_preview, id = self.menuItem_preview.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_about, id = self.menuItem_about.GetId() )
+
+
+        if self.preferences["menu"]:
+            self.menubar_main.Append( self.menu_file, _(u"File") )
+            self.menubar_main.Append( self.menu_options, _(u"Options") )
+            self.menubar_main.Append( self.menu_view, _(u"View") )
+            self.menubar_main.Append( self.menu_about, _(u"About") )
+        else:
+            self.button_Menu.AppendSubMenu( self.menu_file, _(u"File") )
+            self.button_Menu.AppendSubMenu( self.menu_options, _(u"Options") )
+            self.button_Menu.AppendSubMenu( self.menu_view, _(u"View") )
+            self.button_Menu.AppendSubMenu( self.menu_about, _(u"About") )
 
 
     ####################

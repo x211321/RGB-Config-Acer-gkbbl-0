@@ -9,6 +9,7 @@ if not os.path.exists(var.PREFERENCE_DIR):
 # Set default preferences
 app_preferences = {
     "tray"          : False,
+    "menu"          : False,
     "log"           : True,
     "profiles"      : True,
     "preview"       : True,

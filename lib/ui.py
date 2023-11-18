@@ -45,14 +45,36 @@ class frame_main ( wx.Frame ):
         vertical_settings = wx.BoxSizer( wx.VERTICAL )
 
 
-        vertical_settings.Add( ( 0, 10), 0, wx.EXPAND, 5 )
+        vertical_settings.Add( ( 0, 5), 0, wx.EXPAND, 5 )
+
+        horizontal_settings_header = wx.BoxSizer( wx.HORIZONTAL )
 
         self.label_settings = wx.StaticText( self.panel_left, wx.ID_ANY, _(u"Settings"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_settings.Wrap( -1 )
 
         self.label_settings.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
 
-        vertical_settings.Add( self.label_settings, 0, wx.EXPAND|wx.LEFT|wx.TOP, 5 )
+        horizontal_settings_header.Add( self.label_settings, 0, wx.ALIGN_CENTER_VERTICAL|wx.LEFT|wx.TOP, 5 )
+
+        self.label_settings_spacer = wx.StaticText( self.panel_left, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_settings_spacer.Wrap( -1 )
+
+        self.label_settings_spacer.SetMinSize( wx.Size( -1,36 ) )
+        self.label_settings_spacer.SetMaxSize( wx.Size( -1,36 ) )
+
+        horizontal_settings_header.Add( self.label_settings_spacer, 0, wx.ALL, 0 )
+
+
+        horizontal_settings_header.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+        self.button_menu_left = wx.Button( self.panel_left, wx.ID_ANY, _(u"M"), wx.DefaultPosition, wx.DefaultSize, wx.BORDER_NONE )
+        self.button_menu_left.SetMinSize( wx.Size( 36,36 ) )
+        self.button_menu_left.SetMaxSize( wx.Size( 36,36 ) )
+
+        horizontal_settings_header.Add( self.button_menu_left, 0, wx.ALL, 0 )
+
+
+        vertical_settings.Add( horizontal_settings_header, 0, wx.EXPAND, 5 )
 
         self.m_staticline1 = wx.StaticLine( self.panel_left, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
         vertical_settings.Add( self.m_staticline1, 0, wx.EXPAND |wx.ALL, 5 )
@@ -189,14 +211,28 @@ class frame_main ( wx.Frame ):
         vertical_profiles = wx.BoxSizer( wx.VERTICAL )
 
 
-        vertical_profiles.Add( ( 0, 10), 0, wx.EXPAND, 5 )
+        vertical_profiles.Add( ( 0, 5), 0, wx.EXPAND, 5 )
+
+        horizontal_profiles_header = wx.BoxSizer( wx.HORIZONTAL )
 
         self.label_profiles = wx.StaticText( self.panel_right, wx.ID_ANY, _(u"Profiles"), wx.DefaultPosition, wx.DefaultSize, 0 )
         self.label_profiles.Wrap( -1 )
 
         self.label_profiles.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
 
-        vertical_profiles.Add( self.label_profiles, 0, wx.EXPAND|wx.LEFT|wx.TOP, 5 )
+        horizontal_profiles_header.Add( self.label_profiles, 0, wx.ALIGN_CENTER_VERTICAL|wx.LEFT|wx.TOP, 5 )
+
+
+        horizontal_profiles_header.Add( ( 0, 0), 1, wx.EXPAND, 5 )
+
+        self.button_menu_right = wx.Button( self.panel_right, wx.ID_ANY, _(u"M"), wx.DefaultPosition, wx.DefaultSize, wx.BORDER_NONE )
+        self.button_menu_right.SetMinSize( wx.Size( 36,36 ) )
+        self.button_menu_right.SetMaxSize( wx.Size( 36,36 ) )
+
+        horizontal_profiles_header.Add( self.button_menu_right, 0, wx.ALL, 0 )
+
+
+        vertical_profiles.Add( horizontal_profiles_header, 0, wx.EXPAND, 5 )
 
         self.m_staticline2 = wx.StaticLine( self.panel_right, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
         vertical_profiles.Add( self.m_staticline2, 0, wx.EXPAND |wx.ALL, 5 )
@@ -254,62 +290,6 @@ class frame_main ( wx.Frame ):
         self.Layout()
         self.status_status = self.CreateStatusBar( 1, wx.STB_SIZEGRIP|wx.BORDER_THEME, wx.ID_ANY )
         self.menubar_main = wx.MenuBar( 0 )
-        self.menu_file = wx.Menu()
-        self.menuItem_openProfileFolder = wx.MenuItem( self.menu_file, wx.ID_ANY, _(u"Open profile folder"), wx.EmptyString, wx.ITEM_NORMAL )
-        self.menu_file.Append( self.menuItem_openProfileFolder )
-
-        self.menuItem_refreshProfileList = wx.MenuItem( self.menu_file, wx.ID_ANY, _(u"Refresh profile list"), wx.EmptyString, wx.ITEM_NORMAL )
-        self.menu_file.Append( self.menuItem_refreshProfileList )
-
-        self.menuItem_quit = wx.MenuItem( self.menu_file, wx.ID_ANY, _(u"Quit"), wx.EmptyString, wx.ITEM_NORMAL )
-        self.menu_file.Append( self.menuItem_quit )
-
-        self.menubar_main.Append( self.menu_file, _(u"File") )
-
-        self.menu_options = wx.Menu()
-        self.menuItem_tray = wx.MenuItem( self.menu_options, wx.ID_ANY, _(u"Show tray icon"), wx.EmptyString, wx.ITEM_CHECK )
-        self.menu_options.Append( self.menuItem_tray )
-
-        self.menuItem_startMinimized = wx.MenuItem( self.menu_options, wx.ID_ANY, _(u"Start minimized"), wx.EmptyString, wx.ITEM_CHECK )
-        self.menu_options.Append( self.menuItem_startMinimized )
-
-        self.menuItem_closeToTray = wx.MenuItem( self.menu_options, wx.ID_ANY, _(u"Close to tray"), wx.EmptyString, wx.ITEM_CHECK )
-        self.menu_options.Append( self.menuItem_closeToTray )
-
-        self.subMenu_trayIconStyle = wx.Menu()
-        self.menu_options.AppendSubMenu( self.subMenu_trayIconStyle, _(u"Tray icon style") )
-
-        self.menu_options.AppendSeparator()
-
-        self.menuItem_applyStart = wx.MenuItem( self.menu_options, wx.ID_ANY, _(u"Apply [ACTIVE] on startup"), wx.EmptyString, wx.ITEM_CHECK )
-        self.menu_options.Append( self.menuItem_applyStart )
-
-        self.menuItem_extendSpeed = wx.MenuItem( self.menu_options, wx.ID_ANY, _(u"Extend max speed"), wx.EmptyString, wx.ITEM_CHECK )
-        self.menu_options.Append( self.menuItem_extendSpeed )
-
-        self.subMenu_language = wx.Menu()
-        self.menu_options.AppendSubMenu( self.subMenu_language, _(u"Language") )
-
-        self.menubar_main.Append( self.menu_options, _(u"Options") )
-
-        self.menu_view = wx.Menu()
-        self.menuItem_log = wx.MenuItem( self.menu_view, wx.ID_ANY, _(u"Show log"), wx.EmptyString, wx.ITEM_CHECK )
-        self.menu_view.Append( self.menuItem_log )
-
-        self.menuItem_profiles = wx.MenuItem( self.menu_view, wx.ID_ANY, _(u"Show profiles"), wx.EmptyString, wx.ITEM_CHECK )
-        self.menu_view.Append( self.menuItem_profiles )
-
-        self.menuItem_preview = wx.MenuItem( self.menu_view, wx.ID_ANY, _(u"Show preview"), wx.EmptyString, wx.ITEM_CHECK )
-        self.menu_view.Append( self.menuItem_preview )
-
-        self.menubar_main.Append( self.menu_view, _(u"View") )
-
-        self.menu_about = wx.Menu()
-        self.menuItem_about = wx.MenuItem( self.menu_about, wx.ID_ANY, _(u"About RGB Config (acer-gkbbl-0)"), wx.EmptyString, wx.ITEM_NORMAL )
-        self.menu_about.Append( self.menuItem_about )
-
-        self.menubar_main.Append( self.menu_about, _(u"About") )
-
         self.SetMenuBar( self.menubar_main )
 
 
@@ -317,26 +297,16 @@ class frame_main ( wx.Frame ):
 
         # Connect Events
         self.Bind( wx.EVT_CLOSE, self.on_close )
+        self.button_menu_left.Bind( wx.EVT_BUTTON, self.on_menu_click )
         self.choise_mode.Bind( wx.EVT_CHOICE, self.on_rgb_mode_select )
         self.radio_left_right.Bind( wx.EVT_RADIOBUTTON, self.on_direction_select )
         self.radio_right_left.Bind( wx.EVT_RADIOBUTTON, self.on_direction_select )
         self.button_save.Bind( wx.EVT_BUTTON, self.on_save_click )
         self.button_apply.Bind( wx.EVT_BUTTON, self.on_apply_click )
+        self.button_menu_right.Bind( wx.EVT_BUTTON, self.on_menu_click )
         self.button_delete.Bind( wx.EVT_BUTTON, self.on_delete_click )
         self.button_load.Bind( wx.EVT_BUTTON, self.on_load_click )
         self.rich_log.Bind( wx.EVT_TEXT_URL, self.on_log_url_click )
-        self.Bind( wx.EVT_MENU, self.on_menu_openProfileFolder, id = self.menuItem_openProfileFolder.GetId() )
-        self.Bind( wx.EVT_MENU, self.on_menu_refreshProfileList, id = self.menuItem_refreshProfileList.GetId() )
-        self.Bind( wx.EVT_MENU, self.on_force_close, id = self.menuItem_quit.GetId() )
-        self.Bind( wx.EVT_MENU, self.on_menu_tray, id = self.menuItem_tray.GetId() )
-        self.Bind( wx.EVT_MENU, self.on_menu_startMinimized, id = self.menuItem_startMinimized.GetId() )
-        self.Bind( wx.EVT_MENU, self.on_menu_closeToTray, id = self.menuItem_closeToTray.GetId() )
-        self.Bind( wx.EVT_MENU, self.on_menu_applyStart, id = self.menuItem_applyStart.GetId() )
-        self.Bind( wx.EVT_MENU, self.on_menu_extendSpeed, id = self.menuItem_extendSpeed.GetId() )
-        self.Bind( wx.EVT_MENU, self.on_menu_log, id = self.menuItem_log.GetId() )
-        self.Bind( wx.EVT_MENU, self.on_menu_profiles, id = self.menuItem_profiles.GetId() )
-        self.Bind( wx.EVT_MENU, self.on_menu_preview, id = self.menuItem_preview.GetId() )
-        self.Bind( wx.EVT_MENU, self.on_menu_about, id = self.menuItem_about.GetId() )
 
     def __del__( self ):
         pass
@@ -344,6 +314,9 @@ class frame_main ( wx.Frame ):
 
     # Virtual event handlers, override them in your derived class
     def on_close( self, event ):
+        event.Skip()
+
+    def on_menu_click( self, event ):
         event.Skip()
 
     def on_rgb_mode_select( self, event ):
@@ -359,6 +332,7 @@ class frame_main ( wx.Frame ):
     def on_apply_click( self, event ):
         event.Skip()
 
+
     def on_delete_click( self, event ):
         event.Skip()
 
@@ -366,42 +340,6 @@ class frame_main ( wx.Frame ):
         event.Skip()
 
     def on_log_url_click( self, event ):
-        event.Skip()
-
-    def on_menu_openProfileFolder( self, event ):
-        event.Skip()
-
-    def on_menu_refreshProfileList( self, event ):
-        event.Skip()
-
-    def on_force_close( self, event ):
-        event.Skip()
-
-    def on_menu_tray( self, event ):
-        event.Skip()
-
-    def on_menu_startMinimized( self, event ):
-        event.Skip()
-
-    def on_menu_closeToTray( self, event ):
-        event.Skip()
-
-    def on_menu_applyStart( self, event ):
-        event.Skip()
-
-    def on_menu_extendSpeed( self, event ):
-        event.Skip()
-
-    def on_menu_log( self, event ):
-        event.Skip()
-
-    def on_menu_profiles( self, event ):
-        event.Skip()
-
-    def on_menu_preview( self, event ):
-        event.Skip()
-
-    def on_menu_about( self, event ):
         event.Skip()
 
     def splitter_main_horizonzalOnIdle( self, event ):
