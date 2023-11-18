@@ -185,7 +185,6 @@ class AcerRGBGUI_Frame(ui.frame_main):
 
         # Set button icons
         self.button_save.SetBitmap(wx.ArtProvider.GetBitmap("document-save", wx.ART_MENU))
-        self.button_apply.SetBitmap(wx.ArtProvider.GetBitmap("input-keyboard", wx.ART_MENU))
         self.button_delete.SetBitmap(wx.ArtProvider.GetBitmap("edit-delete", wx.ART_MENU))
         self.button_load.SetBitmap(wx.ArtProvider.GetBitmap("document-open", wx.ART_MENU))
 
