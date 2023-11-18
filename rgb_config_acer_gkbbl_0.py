@@ -313,26 +313,6 @@ class AcerRGBGUI_Frame(ui.frame_main):
 
 
     ####################
-    # on_idle_set_sash_pos
-    #-------------------
-    # Workaround to set sash position after sizing
-    def on_idle_set_horizontal_sash_pos(self, event):
-        if "sashPosHorizontal" in self.preferences:
-            self.splitter_main_horizonzal.SetSashPosition(self.preferences["sashPosHorizontal"])
-            self.splitter_main_horizonzal.Unbind(wx.EVT_IDLE)
-
-
-    ####################
-    # on_idle_set_vertical_sash_pos
-    #-------------------
-    # Workaround to set sash position after sizing
-    def on_idle_set_vertical_sash_pos(self, event):
-        if "sashPosVertical" in self.preferences:
-            self.splitter_main_vertical.SetSashPosition(self.preferences["sashPosVertical"])
-            self.splitter_main_vertical.Unbind(wx.EVT_IDLE) 
-
-
-    ####################
     # on_menu_openProfileFolder
     #-------------------
     # Event handler - open profile folder
@@ -814,16 +794,30 @@ class AcerRGBGUI_Frame(ui.frame_main):
             # Unbind from default wxFormBuilder idle event that would overwrite the position
             self.splitter_main_horizonzal.Unbind(wx.EVT_IDLE)
 
-            # Bind to custom idle event to set sash pos after sizing
-            self.splitter_main_horizonzal.Bind(wx.EVT_IDLE, self.on_idle_set_horizontal_sash_pos)
+            # Set sash position after GUI is fully drawn
+            wx.CallAfter(self.setSashPos)
 
         # Restore sash positions
         if "sashPosVertical" in self.preferences:
             # Unbind from default wxFormBuilder idle event that would overwrite the position
             self.splitter_main_vertical.Unbind(wx.EVT_IDLE) 
 
-            # Bind to custom idle event to set sash pos after sizing
-            self.splitter_main_vertical.Bind(wx.EVT_IDLE, self.on_idle_set_vertical_sash_pos)
+            # Set sash position after GUI is fully drawn
+            wx.CallAfter(self.setSashPos)
+
+
+    ####################
+    # setSashPos
+    #-------------------
+    # Set sash positions
+    def setSashPos(self):
+        if "sashPosHorizontal" in self.preferences:
+            self.splitter_main_horizonzal.SetSashPosition(self.preferences["sashPosHorizontal"])
+            self.splitter_main_horizonzal.GetParent().Layout()
+
+        if "sashPosVertical" in self.preferences:
+            self.splitter_main_vertical.SetSashPosition(self.preferences["sashPosVertical"])
+            self.splitter_main_horizonzal.GetParent().Layout()
 
 
     ####################
