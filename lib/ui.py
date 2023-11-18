@@ -30,13 +30,15 @@ class frame_main ( wx.Frame ):
 
         vertical_main = wx.BoxSizer( wx.VERTICAL )
 
-        self.splitter_main_horizonzal = wx.SplitterWindow( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.SP_3D|wx.SP_LIVE_UPDATE )
+        self.splitter_main_horizonzal = wx.SplitterWindow( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.SP_3D|wx.SP_LIVE_UPDATE|wx.SP_NOBORDER|wx.SP_THIN_SASH )
+        self.splitter_main_horizonzal.SetSashGravity( 1 )
         self.splitter_main_horizonzal.Bind( wx.EVT_IDLE, self.splitter_main_horizonzalOnIdle )
 
         self.panel_top = wx.Panel( self.splitter_main_horizonzal, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
         vertical_top = wx.BoxSizer( wx.VERTICAL )
 
         self.splitter_main_vertical = wx.SplitterWindow( self.panel_top, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.SP_LIVE_UPDATE|wx.SP_NOBORDER|wx.SP_THIN_SASH )
+        self.splitter_main_vertical.SetSashGravity( 1 )
         self.splitter_main_vertical.Bind( wx.EVT_IDLE, self.splitter_main_verticalOnIdle )
 
         self.panel_left = wx.Panel( self.splitter_main_vertical, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
@@ -311,6 +313,7 @@ class frame_main ( wx.Frame ):
         self.Centre( wx.BOTH )
 
         # Connect Events
+        self.Bind( wx.EVT_CLOSE, self.on_close )
         self.choise_mode.Bind( wx.EVT_CHOICE, self.on_rgb_mode_select )
         self.radio_left_right.Bind( wx.EVT_RADIOBUTTON, self.on_direction_select )
         self.radio_right_left.Bind( wx.EVT_RADIOBUTTON, self.on_direction_select )
@@ -337,6 +340,9 @@ class frame_main ( wx.Frame ):
 
 
     # Virtual event handlers, override them in your derived class
+    def on_close( self, event ):
+        event.Skip()
+
     def on_rgb_mode_select( self, event ):
         event.Skip()
 

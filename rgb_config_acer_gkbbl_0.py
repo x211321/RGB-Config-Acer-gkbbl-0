@@ -232,6 +232,19 @@ class AcerRGBGUI_Frame(ui.frame_main):
     def on_force_close(self, event):
         if hasattr(self, 'trayIcon'):
             self.trayIcon.Destroy()
+
+        # Remember window position and size
+        self.preferences["windowWidth"]  = self.GetSize().GetWidth()
+        self.preferences["windowHeight"] = self.GetSize().GetHeight()
+        self.preferences["windowPosX"]   = self.GetPosition().x
+        self.preferences["windowPosY"]   = self.GetPosition().y
+
+        # Remember sash positions
+        self.preferences["sashPosVertical"]   = self.splitter_main_vertical.GetSashPosition()
+        self.preferences["sashPosHorizontal"] = self.splitter_main_horizonzal.GetSashPosition()
+
+        self.savePreferences()
+
         self.Destroy()
 
 
@@ -488,7 +501,6 @@ class AcerRGBGUI_Frame(ui.frame_main):
     # Create the tray icon
     def createTrayIcon(self):
         self.trayIcon = AcerRGBGUI_Tray(self)
-        self.Bind(wx.EVT_CLOSE, self.on_close)
 
 
     ####################
@@ -720,6 +732,54 @@ class AcerRGBGUI_Frame(ui.frame_main):
             self.menuItem_applyStart.Check()
         if self.preferences["extendSpeed"]:
             self.menuItem_extendSpeed.Check()
+
+        # Restore window position and size
+        display     = wx.Display(self) # Get the display the application is shown on
+        displayRect = display.GetClientArea()
+        x = wx.DefaultCoord
+        y = wx.DefaultCoord
+        w = wx.DefaultSize.GetWidth()
+        h = wx.DefaultSize.GetHeight()
+
+        if "windowWidth" in self.preferences:
+            if self.preferences["windowWidth"] > displayRect.Width:
+                w = displayRect.Width
+            else:
+                w = self.preferences["windowWidth"]
+
+        if "windowHeight" in self.preferences:
+            if self.preferences["windowHeight"] > displayRect.Height:
+                h = displayRect.Height
+            else:
+                h = self.preferences["windowHeight"]
+
+        if "windowPosX" in self.preferences:
+            # Not yet implemented because of 
+            # concerns with multi monitor setups
+            x = wx.DefaultCoord
+
+        if "windowPosY" in self.preferences:
+            # Not yet implemented because of 
+            # concerns with multi monitor setups
+            y = wx.DefaultCoord
+
+
+        self.SetSize(x, y, w, h)
+
+
+        # Restore sash positions
+        if "sashPosHorizontal" in self.preferences:
+            self.splitter_main_horizonzal.SetSashPosition(self.preferences["sashPosHorizontal"])
+
+            # Unbind from default wxFormBuilder IDLE event that would overwrite the size
+            self.splitter_main_horizonzal.Unbind(wx.EVT_IDLE)
+
+        # Restore sash positions
+        if "sashPosVertical" in self.preferences:
+            self.splitter_main_vertical.SetSashPosition(self.preferences["sashPosVertical"])
+            
+            # Unbind from default wxFormBuilder IDLE event that would overwrite the size
+            self.splitter_main_vertical.Unbind(wx.EVT_IDLE) 
 
 
     ####################

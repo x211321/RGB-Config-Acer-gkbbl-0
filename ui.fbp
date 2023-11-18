@@ -58,6 +58,7 @@
       <property name="window_name"></property>
       <property name="window_style">wxTAB_TRAVERSAL</property>
       <property name="xrc_skip_sizer">1</property>
+      <event name="OnClose">on_close</event>
       <object class="wxBoxSizer" expanded="true">
         <property name="minimum_size"></property>
         <property name="name">horizontal_main</property>
@@ -121,13 +122,13 @@
                 <property name="pin_button">1</property>
                 <property name="pos"></property>
                 <property name="resize">Resizable</property>
-                <property name="sashgravity">0.0</property>
+                <property name="sashgravity">1</property>
                 <property name="sashpos">400</property>
                 <property name="sashsize">-1</property>
                 <property name="show">1</property>
                 <property name="size"></property>
                 <property name="splitmode">wxSPLIT_HORIZONTAL</property>
-                <property name="style">wxSP_3D|wxSP_LIVE_UPDATE</property>
+                <property name="style">wxSP_3D|wxSP_LIVE_UPDATE|wxSP_NOBORDER|wxSP_THIN_SASH</property>
                 <property name="subclass">; ; forward_declare</property>
                 <property name="toolbar_pane">0</property>
                 <property name="tooltip"></property>
@@ -241,7 +242,7 @@
                           <property name="pin_button">1</property>
                           <property name="pos"></property>
                           <property name="resize">Resizable</property>
-                          <property name="sashgravity">0.0</property>
+                          <property name="sashgravity">1</property>
                           <property name="sashpos">580</property>
                           <property name="sashsize">-1</property>
                           <property name="show">1</property>
