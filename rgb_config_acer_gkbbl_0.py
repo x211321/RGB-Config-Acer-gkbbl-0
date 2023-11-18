@@ -284,7 +284,8 @@ class AcerRGBGUI_Frame(ui.frame_main):
     # Event handler - profile delete button click
     def on_delete_click(self, event):
         profile = self.list_profiles.GetStringSelection()
-        self.deleteProfile(profile)
+        if len(profile):
+            self.deleteProfile(profile)
 
 
     ####################
