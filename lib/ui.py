@@ -222,6 +222,14 @@ class frame_main ( wx.Frame ):
 
         horizontal_profiles_header.Add( self.label_profiles, 0, wx.ALIGN_CENTER_VERTICAL|wx.LEFT|wx.TOP, 5 )
 
+        self.label_profiles_spacer = wx.StaticText( self.panel_right, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.label_profiles_spacer.Wrap( -1 )
+
+        self.label_profiles_spacer.SetMinSize( wx.Size( -1,36 ) )
+        self.label_profiles_spacer.SetMaxSize( wx.Size( -1,36 ) )
+
+        horizontal_profiles_header.Add( self.label_profiles_spacer, 0, wx.ALL, 0 )
+
 
         horizontal_profiles_header.Add( ( 0, 0), 1, wx.EXPAND, 5 )
 

@@ -422,13 +422,17 @@ class AcerRGBGUI_Frame(ui.frame_main):
             self.panel_right.Show()
             self.splitter_main_vertical.SplitVertically(self.panel_left, self.panel_right)
             self.splitter_main_vertical.SetSashPosition(600)
-            self.button_menu_left.Hide()
-            self.button_menu_right.Show()
+
+            if not self.preferences["menu"] and int(wx.__version__.replace(".", "")) >= 420:
+                self.button_menu_left.Hide()
+                self.button_menu_right.Show()
         else:
             self.panel_right.Hide()
             self.splitter_main_vertical.Unsplit()
-            self.button_menu_left.Show()
-            self.button_menu_right.Hide()
+
+            if not self.preferences["menu"] and int(wx.__version__.replace(".", "")) >= 420:
+                self.button_menu_left.Show()
+                self.button_menu_right.Hide()
 
         self.button_menu_left.GetParent().Layout()
         self.button_menu_right.GetParent().Layout()
@@ -955,7 +959,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
         self.Bind( wx.EVT_MENU, self.on_menu_about, id = self.menuItem_about.GetId() )
 
 
-        if self.preferences["menu"]:
+        if self.preferences["menu"] or int(wx.__version__.replace(".", "")) < 420:
             self.menubar_main.Append( self.menu_file, _(u"File") )
             self.menubar_main.Append( self.menu_options, _(u"Options") )
             self.menubar_main.Append( self.menu_view, _(u"View") )
