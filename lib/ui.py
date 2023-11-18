@@ -210,9 +210,6 @@ class frame_main ( wx.Frame ):
 
         horizontal_profile_buttons = wx.BoxSizer( wx.HORIZONTAL )
 
-        self.button_refresh = wx.Button( self.panel_right, wx.ID_ANY, _(u"Refresh"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        horizontal_profile_buttons.Add( self.button_refresh, 0, wx.ALL, 10 )
-
         self.button_delete = wx.Button( self.panel_right, wx.ID_ANY, _(u"Delete"), wx.DefaultPosition, wx.DefaultSize, 0 )
         horizontal_profile_buttons.Add( self.button_delete, 0, wx.ALL, 10 )
 
@@ -229,7 +226,7 @@ class frame_main ( wx.Frame ):
         self.panel_right.SetSizer( vertical_profiles )
         self.panel_right.Layout()
         vertical_profiles.Fit( self.panel_right )
-        self.splitter_main_vertical.SplitVertically( self.panel_left, self.panel_right, 580 )
+        self.splitter_main_vertical.SplitVertically( self.panel_left, self.panel_right, 600 )
         vertical_top.Add( self.splitter_main_vertical, 1, wx.EXPAND, 5 )
 
 
@@ -240,7 +237,7 @@ class frame_main ( wx.Frame ):
         vertical_bottom = wx.BoxSizer( wx.VERTICAL )
 
         self.rich_log = wx.richtext.RichTextCtrl( self.panel_bottom, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_READONLY|wx.BORDER_SIMPLE|wx.VSCROLL|wx.WANTS_CHARS )
-        vertical_bottom.Add( self.rich_log, 1, wx.EXPAND |wx.ALL, 5 )
+        vertical_bottom.Add( self.rich_log, 1, wx.ALL|wx.EXPAND, 5 )
 
 
         self.panel_bottom.SetSizer( vertical_bottom )
@@ -260,6 +257,9 @@ class frame_main ( wx.Frame ):
         self.menu_file = wx.Menu()
         self.menuItem_openProfileFolder = wx.MenuItem( self.menu_file, wx.ID_ANY, _(u"Open profile folder"), wx.EmptyString, wx.ITEM_NORMAL )
         self.menu_file.Append( self.menuItem_openProfileFolder )
+
+        self.menuItem_refreshProfileList = wx.MenuItem( self.menu_file, wx.ID_ANY, _(u"Refresh profile list"), wx.EmptyString, wx.ITEM_NORMAL )
+        self.menu_file.Append( self.menuItem_refreshProfileList )
 
         self.menuItem_quit = wx.MenuItem( self.menu_file, wx.ID_ANY, _(u"Quit"), wx.EmptyString, wx.ITEM_NORMAL )
         self.menu_file.Append( self.menuItem_quit )
@@ -322,11 +322,11 @@ class frame_main ( wx.Frame ):
         self.radio_right_left.Bind( wx.EVT_RADIOBUTTON, self.on_direction_select )
         self.button_save.Bind( wx.EVT_BUTTON, self.on_save_click )
         self.button_apply.Bind( wx.EVT_BUTTON, self.on_apply_click )
-        self.button_refresh.Bind( wx.EVT_BUTTON, self.on_refresh_click )
         self.button_delete.Bind( wx.EVT_BUTTON, self.on_delete_click )
         self.button_load.Bind( wx.EVT_BUTTON, self.on_load_click )
         self.rich_log.Bind( wx.EVT_TEXT_URL, self.on_log_url_click )
         self.Bind( wx.EVT_MENU, self.on_menu_openProfileFolder, id = self.menuItem_openProfileFolder.GetId() )
+        self.Bind( wx.EVT_MENU, self.on_menu_refreshProfileList, id = self.menuItem_refreshProfileList.GetId() )
         self.Bind( wx.EVT_MENU, self.on_force_close, id = self.menuItem_quit.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_tray, id = self.menuItem_tray.GetId() )
         self.Bind( wx.EVT_MENU, self.on_menu_startMinimized, id = self.menuItem_startMinimized.GetId() )
@@ -359,9 +359,6 @@ class frame_main ( wx.Frame ):
     def on_apply_click( self, event ):
         event.Skip()
 
-    def on_refresh_click( self, event ):
-        event.Skip()
-
     def on_delete_click( self, event ):
         event.Skip()
 
@@ -372,6 +369,9 @@ class frame_main ( wx.Frame ):
         event.Skip()
 
     def on_menu_openProfileFolder( self, event ):
+        event.Skip()
+
+    def on_menu_refreshProfileList( self, event ):
         event.Skip()
 
     def on_force_close( self, event ):
@@ -409,7 +409,7 @@ class frame_main ( wx.Frame ):
         self.splitter_main_horizonzal.Unbind( wx.EVT_IDLE )
 
     def splitter_main_verticalOnIdle( self, event ):
-        self.splitter_main_vertical.SetSashPosition( 580 )
+        self.splitter_main_vertical.SetSashPosition( 600 )
         self.splitter_main_vertical.Unbind( wx.EVT_IDLE )
 
 

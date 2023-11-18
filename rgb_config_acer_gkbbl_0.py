@@ -186,7 +186,6 @@ class AcerRGBGUI_Frame(ui.frame_main):
         # Set button icons
         self.button_save.SetBitmap(wx.ArtProvider.GetBitmap("document-save", wx.ART_MENU))
         self.button_apply.SetBitmap(wx.ArtProvider.GetBitmap("input-keyboard", wx.ART_MENU))
-        self.button_refresh.SetBitmap(wx.ArtProvider.GetBitmap("view-refresh", wx.ART_MENU))
         self.button_delete.SetBitmap(wx.ArtProvider.GetBitmap("edit-delete", wx.ART_MENU))
         self.button_load.SetBitmap(wx.ArtProvider.GetBitmap("document-open", wx.ART_MENU))
 
@@ -255,6 +254,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
     def on_rgb_mode_select(self, event):
         self.setWidgetState()
 
+
     ####################
     # on_direction_select
     #-------------------
@@ -269,14 +269,6 @@ class AcerRGBGUI_Frame(ui.frame_main):
     # Event handler - apply RGB settings click
     def on_apply_click(self, event):
         self.apply()
-
-
-    ####################
-    # on_refresh_click
-    #-------------------
-    # Event handler - profiles refresh button click
-    def on_refresh_click(self, event):
-        self.listProfiles()
 
 
     ####################
@@ -314,11 +306,39 @@ class AcerRGBGUI_Frame(ui.frame_main):
 
 
     ####################
+    # on_idle_set_sash_pos
+    #-------------------
+    # Workaround to set sash position after sizing
+    def on_idle_set_horizontal_sash_pos(self, event):
+        if "sashPosHorizontal" in self.preferences:
+            self.splitter_main_horizonzal.SetSashPosition(self.preferences["sashPosHorizontal"])
+            self.splitter_main_horizonzal.Unbind(wx.EVT_IDLE)
+
+
+    ####################
+    # on_idle_set_vertical_sash_pos
+    #-------------------
+    # Workaround to set sash position after sizing
+    def on_idle_set_vertical_sash_pos(self, event):
+        if "sashPosVertical" in self.preferences:
+            self.splitter_main_vertical.SetSashPosition(self.preferences["sashPosVertical"])
+            self.splitter_main_vertical.Unbind(wx.EVT_IDLE) 
+
+
+    ####################
     # on_menu_openProfileFolder
     #-------------------
     # Event handler - open profile folder
     def on_menu_openProfileFolder(self, event):
         subprocess.Popen(["xdg-open", var.PROFILE_DIR])
+
+
+    ####################
+    # on_menu_refreshProfileList
+    #-------------------
+    # Event handler - refresh profile list
+    def on_menu_refreshProfileList(self, event):
+        self.listProfiles()
 
 
     ####################
@@ -413,7 +433,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
         if self.menuItem_profiles.IsChecked():
             self.panel_right.Show()
             self.splitter_main_vertical.SplitVertically(self.panel_left, self.panel_right)
-            self.splitter_main_vertical.SetSashPosition(580)
+            self.splitter_main_vertical.SetSashPosition(600)
         else:
             self.panel_right.Hide()
             self.splitter_main_vertical.Unsplit()
@@ -769,17 +789,19 @@ class AcerRGBGUI_Frame(ui.frame_main):
 
         # Restore sash positions
         if "sashPosHorizontal" in self.preferences:
-            self.splitter_main_horizonzal.SetSashPosition(self.preferences["sashPosHorizontal"])
-
-            # Unbind from default wxFormBuilder IDLE event that would overwrite the size
+            # Unbind from default wxFormBuilder idle event that would overwrite the position
             self.splitter_main_horizonzal.Unbind(wx.EVT_IDLE)
+
+            # Bind to custom idle event to set sash pos after sizing
+            self.splitter_main_horizonzal.Bind(wx.EVT_IDLE, self.on_idle_set_horizontal_sash_pos)
 
         # Restore sash positions
         if "sashPosVertical" in self.preferences:
-            self.splitter_main_vertical.SetSashPosition(self.preferences["sashPosVertical"])
-            
-            # Unbind from default wxFormBuilder IDLE event that would overwrite the size
+            # Unbind from default wxFormBuilder idle event that would overwrite the position
             self.splitter_main_vertical.Unbind(wx.EVT_IDLE) 
+
+            # Bind to custom idle event to set sash pos after sizing
+            self.splitter_main_vertical.Bind(wx.EVT_IDLE, self.on_idle_set_vertical_sash_pos)
 
 
     ####################
