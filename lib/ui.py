@@ -208,19 +208,22 @@ class frame_main ( wx.Frame ):
 
         vertical_profiles.Add( ( 0, 4), 0, wx.EXPAND, 5 )
 
-        grid_profile_buttons = wx.GridSizer( 0, 3, 0, 0 )
+        horizontal_profile_buttons = wx.BoxSizer( wx.HORIZONTAL )
 
         self.button_refresh = wx.Button( self.panel_right, wx.ID_ANY, _(u"Refresh"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        grid_profile_buttons.Add( self.button_refresh, 0, wx.ALIGN_LEFT|wx.ALL, 10 )
+        horizontal_profile_buttons.Add( self.button_refresh, 0, wx.ALL, 10 )
 
         self.button_delete = wx.Button( self.panel_right, wx.ID_ANY, _(u"Delete"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        grid_profile_buttons.Add( self.button_delete, 0, wx.ALIGN_CENTER|wx.ALL, 10 )
+        horizontal_profile_buttons.Add( self.button_delete, 0, wx.ALL, 10 )
+
+
+        horizontal_profile_buttons.Add( ( 0, 0), 1, wx.EXPAND, 5 )
 
         self.button_load = wx.Button( self.panel_right, wx.ID_ANY, _(u"Load"), wx.DefaultPosition, wx.DefaultSize, 0 )
-        grid_profile_buttons.Add( self.button_load, 0, wx.ALIGN_RIGHT|wx.ALL, 10 )
+        horizontal_profile_buttons.Add( self.button_load, 1, wx.ALL, 10 )
 
 
-        vertical_profiles.Add( grid_profile_buttons, 0, wx.EXPAND, 5 )
+        vertical_profiles.Add( horizontal_profile_buttons, 0, wx.EXPAND, 5 )
 
 
         self.panel_right.SetSizer( vertical_profiles )
