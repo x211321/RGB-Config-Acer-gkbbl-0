@@ -398,7 +398,7 @@ class AcerRGBGUI_Frame(ui.frame_main):
             self.panel_right.Hide()
             self.splitter_main_vertical.Unsplit()
 
-        self.preferences["profiles"] = self.menuItem_log.IsChecked()
+        self.preferences["profiles"] = self.menuItem_profiles.IsChecked()
         self.savePreferences()
 
 
