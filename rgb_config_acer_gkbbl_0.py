@@ -791,12 +791,15 @@ class AcerRGBGUI_Frame(ui.frame_main):
 
 
         # Restore sash positions
-        if "sashPosHorizontal" in self.preferences:
-            # Unbind from default wxFormBuilder idle event that would overwrite the position
-            self.splitter_main_horizonzal.Unbind(wx.EVT_IDLE)
 
-            # Set sash position after GUI is fully drawn
-            wx.CallAfter(self.setSashPos)
+        # Horizontal sash position disable because of
+        # incompatibility on gtk based systems
+        #if "sashPosHorizontal" in self.preferences:
+        #    # Unbind from default wxFormBuilder idle event that would overwrite the position
+        #    self.splitter_main_horizonzal.Unbind(wx.EVT_IDLE)
+        #
+        #    # Set sash position after GUI is fully drawn
+        #    wx.CallAfter(self.setSashPos)
 
         # Restore sash positions
         if "sashPosVertical" in self.preferences:
@@ -827,13 +830,17 @@ class AcerRGBGUI_Frame(ui.frame_main):
     # Create submenus and menu entries
     def createMenu(self):
         # Show menu
-        if self.preferences["menu"]:
+        if self.preferences["menu"] or int(wx.__version__.replace(".", "")) < 420:
             self.button_menu_left.Hide()
             self.button_menu_right.Hide()
         else:
             self.menubar_main.Hide()
 
-            icon = wx.Bitmap("./assets/menu.png")
+            if wx.SystemSettings.GetAppearance().IsDark():
+                icon = wx.Bitmap("./assets/menu_dark.png")
+            else:
+                icon = wx.Bitmap("./assets/menu.png")
+
             self.button_menu_left.SetBitmap(icon)
             self.button_menu_right.SetBitmap(icon)
 
