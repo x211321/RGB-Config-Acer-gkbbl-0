@@ -2,7 +2,7 @@
 Name=RGB Config (acer-gkbbl-0)
 Comment=Control RGB settings of the acer-gkbbl-0 character device
 Exec=rgb_config_acer_gkbbl_0
-Icon=/usr/lib/rgb_config_acer_gkbbl_0/assets/icon.png
+Icon=rgb_config_acer_gkbbl_0
 Terminal=false
 Type=Application
 Categories=Settings;Utility;

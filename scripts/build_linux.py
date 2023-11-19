@@ -113,6 +113,7 @@ def create_app_bundle():
 def create_package_file_structure():
     os.makedirs(os.path.join(TMPPGK_DIR, "usr/bin"))
     os.makedirs(os.path.join(TMPPGK_DIR, "usr/share/applications"))
+    os.makedirs(os.path.join(TMPPGK_DIR, "usr/share/icons/hicolor/128x128/apps/"))
 
     # Copy previously bundled files to file structure / lib
     shutil.copytree(BUNDLE_DIR + "/", os.path.join(TMPPGK_DIR, "usr/lib/" + PKG_DIR + "/"))
@@ -123,6 +124,8 @@ def create_package_file_structure():
     # Copy .desktop application file to file structure / applications
     shutil.copy("../" + PKG_DIR + ".desktop", os.path.join(TMPPGK_DIR, "usr/share/applications/" + PKG_DIR + ".desktop"))
 
+    # Copy icon file to file structure / icons
+    shutil.copy("../" + PKG_DIR + ".png", os.path.join(TMPPGK_DIR, "usr/share/icons/hicolor/128x128/apps/" + PKG_DIR + ".png"))
 
 
 #####################
