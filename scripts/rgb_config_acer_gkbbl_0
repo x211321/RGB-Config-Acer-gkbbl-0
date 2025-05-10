@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd /usr/lib/rgb_config_acer_gkbbl_0/
-python3 ./rgb_config_acer_gkbbl_0.py
+GDK_BACKEND=x11 python3 ./rgb_config_acer_gkbbl_0.py
