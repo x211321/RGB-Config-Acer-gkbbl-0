@@ -11,7 +11,7 @@ from zipfile import ZipFile
 sys.path.append("../")
 from lib.version import VERSION
 
-BASE_DIR  = ""
+BASE_DIR   = ""
 
 BUILD_DIR  = "build"
 BUNDLE_DIR = "RGB_Config_acer-gkbbl-0_v" + VERSION
@@ -162,12 +162,14 @@ def build_deb(dependencies, suffix):
 # Create .rpm package
 def build_rpm(dependencies, suffix):
 
-    packageDir = BUNDLE_DIR + "_" + suffix
+    global BASE_DIR
+
+    packageDir = os.path.join(BASE_DIR, BUILD_DIR, BUNDLE_DIR + "_" + suffix)
 
     # Create SPECS directory
     os.makedirs(os.path.join(packageDir, "SPECS"))
 
-    rpmProject = os.path.join(packageDir, "BUILDROOT/" + PKG_NAME + "-"+VERSION+"-1.x86_64")
+    rpmProject = os.path.join(packageDir, "BUILDROOT/" + PKG_NAME + "-"+VERSION+"-1.noarch")
 
     # Copy previously bundled files to .rpm structure
     shutil.copytree(os.path.join(TMPPGK_DIR, "usr"), os.path.join(rpmProject, "usr"))
@@ -198,7 +200,7 @@ def build_rpm(dependencies, suffix):
     file.close()
 
     # Run rpmbuild
-    os.system("rpmbuild --define \"_topdir " + os.path.join(BASE_DIR, BUILD_DIR, packageDir) + "\" -bb " + os.path.join(packageDir, "SPECS/rgb-config-acer-gkbbl-0.spec"))
+    os.system("rpmbuild --buildroot " + rpmProject + " --define \"_topdir " + os.path.join(BASE_DIR, BUILD_DIR, packageDir) + "\" -bb " + os.path.join(packageDir, "SPECS/rgb-config-acer-gkbbl-0.spec"))
 
     # Move .rpm package to build folder
     for root, dirs, files in os.walk(os.path.join(packageDir, "RPMS/noarch/")):
