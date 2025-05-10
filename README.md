@@ -92,6 +92,8 @@ Input **I** (ignore) to continue with the installation.
 ## Arch Linux / Manjaro
 For Arch Linux based systems that use the pacman package manager a PKGBUILD is provided. Download the file that ends on **_PKGBUILD.tar.gz** from the [releases page](https://github.com/x211321/RGB-Config-Acer-gkbbl-0/releases). 
 
+> ⚠ Make sure you have the base-devel package installed before preceding with the installation.
+
 The installation will proceed via the command line:
 
 **Extract the archive**
