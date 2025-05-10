@@ -3,7 +3,7 @@ A simple GUI for controlling RGB settings of the **Acer-WMI kernel module** via 
 
 Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) for information on the required kernel module
 
-KDE Plasma user? Check out the corresponding [plasma widget](https://github.com/x211321/RGB-Config-Acer-gkbbl-0-Plasma-Widget).
+KDE Plasma user? Check out the corresponding [plasma widget](https://github.com/x211321/RGB-Config-Acer-gkbbl-0-Plasma-Widget-Plasma6).
 
 ![Main window](./img/screenshots/main_window.png)
 
