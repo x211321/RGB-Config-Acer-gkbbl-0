@@ -3,7 +3,7 @@ A simple GUI for controlling RGB settings of the **Acer-WMI kernel module** via 
 
 Visit JafarAkhondali's [project page](https://github.com/JafarAkhondali/acer-predator-turbo-and-rgb-keyboard-linux-module) for information on the required kernel module
 
-KDE Plasma user? Check out the corresponding [plasma widget](https://github.com/x211321/RGB-Config-Acer-gkbbl-0-Plasma-Widget).
+KDE Plasma user? Check out the corresponding [plasma widget](https://github.com/x211321/RGB-Config-Acer-gkbbl-0-Plasma-Widget-Plasma6).
 
 ![Main window](./img/screenshots/main_window.png)
 
@@ -32,7 +32,7 @@ For systems that use the **apt package manager** a **.deb** package is provided.
 
 **Alternatively install the application from the command line:**
 ```
-sudo dpkg -i ./RGB_Config_acer-gkbbl-0_v<VERSION>_deb.deb
+sudo apt install ./RGB_Config_acer-gkbbl-0_v<VERSION>_deb.deb
 ```
 
 ---
@@ -91,6 +91,8 @@ Input **I** (ignore) to continue with the installation.
 
 ## Arch Linux / Manjaro
 For Arch Linux based systems that use the pacman package manager a PKGBUILD is provided. Download the file that ends on **_PKGBUILD.tar.gz** from the [releases page](https://github.com/x211321/RGB-Config-Acer-gkbbl-0/releases). 
+
+> ⚠ Make sure you have the base-devel package installed before preceding with the installation.
 
 The installation will proceed via the command line:
 
