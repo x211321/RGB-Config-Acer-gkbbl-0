@@ -32,7 +32,7 @@ For systems that use the **apt package manager** a **.deb** package is provided.
 
 **Alternatively install the application from the command line:**
 ```
-sudo dpkg -i ./RGB_Config_acer-gkbbl-0_v<VERSION>_deb.deb
+sudo apt install ./RGB_Config_acer-gkbbl-0_v<VERSION>_deb.deb
 ```
 
 ---
